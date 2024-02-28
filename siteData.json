@@ -9,7 +9,7 @@
         "project-team": "Project team",
         "james-lau": "James Lau",
         "jane-doe": "Jane Doe",
-        "johnny-doe": "Johnny Doe",
+        "alicia-yap": "Alicia Yap",
         "allysa-tan": "Allysa Tan",
         "shanmugam-udhaya": "Shanmugam Udhaya"
       },
@@ -156,6 +156,14 @@
       "title": "Udhaya's Project Portfolio Page",
       "headings": {
         "not-complete-and-not-accurate-copied-straight-from-johndoe-md": "Not complete and not accurate, copied straight from johndoe.md",
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/wapisai.md",
+      "title": "Alicia's Project Portfolio Page",
+      "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
       "headingKeywords": {}
