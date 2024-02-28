@@ -8,7 +8,7 @@
         "about-us": "About Us",
         "project-team": "Project team",
         "james-lau": "James Lau",
-        "jane-doe": "Jane Doe",
+        "tan-wee-kian-justin": "Tan Wee Kian, Justin",
         "alicia-yap": "Alicia Yap",
         "allysa-tan": "Allysa Tan",
         "shanmugam-udhaya": "Shanmugam Udhaya"
@@ -148,6 +148,17 @@
       "title": "appleraincoat's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/jyztintan.md",
+      "headings": {
+        "hello-there-i-m-justin": "Hello there 👋, I'm Justin ",
+        "year-2-computer-science-undergraduate-teaching-assistant": "Year 2 Computer Science Undergraduate || Teaching Assistant ",
+        "national-university-of-singapore-school-of-computing": "National University of Singapore, School of Computing ",
+        "connect-with-me": "Connect with me:",
+        "languages-and-tools": "Languages and Tools:"
       },
       "headingKeywords": {}
     },
