@@ -7,7 +7,7 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
-        "john-doe": "John Doe",
+        "james-lau": "James Lau",
         "jane-doe": "Jane Doe",
         "johnny-doe": "Johnny Doe",
         "allysa-tan": "Allysa Tan",
@@ -144,8 +144,8 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/johndoe.md",
-      "title": "John Doe's Project Portfolio Page",
+      "src": "team/appleraincoat.md",
+      "title": "appleraincoat's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
