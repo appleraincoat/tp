@@ -38,8 +38,8 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_FAMILY + person.getFamily().toString() + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_REMARK + s.tagName + " ")
+        person.getRemarks().stream().forEach(
+            s -> sb.append(PREFIX_REMARK + s.remarkName + " ")
         );
         return sb.toString();
     }
@@ -53,12 +53,12 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Remark> remarks = descriptor.getTags().get();
+        if (descriptor.getRemarks().isPresent()) {
+            Set<Remark> remarks = descriptor.getRemarks().get();
             if (remarks.isEmpty()) {
                 sb.append(PREFIX_REMARK);
             } else {
-                remarks.forEach(s -> sb.append(PREFIX_REMARK).append(s.tagName).append(" "));
+                remarks.forEach(s -> sb.append(PREFIX_REMARK).append(s.remarkName).append(" "));
             }
         }
         return sb.toString();

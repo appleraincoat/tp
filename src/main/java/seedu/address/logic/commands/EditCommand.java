@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_REMARK + "TAG]...\n"
+            + "[" + PREFIX_REMARK + "REMARK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Family updatedFamily = editPersonDescriptor.getFamily().orElse(personToEdit.getFamily());
-        Set<Remark> updatedRemarks = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
 
         return new Person(updatedName, updatedPhone, updatedIncome,
                           updatedEmail, updatedAddress, updatedFamily,
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code remarks} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setFamily(toCopy.family);
-            setTags(toCopy.remarks);
+            setRemarks(toCopy.remarks);
         }
 
         /**
@@ -225,7 +225,7 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Remark> remarks) {
+        public void setRemarks(Set<Remark> remarks) {
             this.remarks = (remarks != null) ? new HashSet<>(remarks) : null;
         }
 
@@ -234,7 +234,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Remark>> getTags() {
+        public Optional<Set<Remark>> getRemarks() {
             return (remarks != null) ? Optional.of(Collections.unmodifiableSet(remarks)) : Optional.empty();
         }
 

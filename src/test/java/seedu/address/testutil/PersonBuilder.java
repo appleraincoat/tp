@@ -56,7 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         family = personToCopy.getFamily();
-        remarks = new HashSet<>(personToCopy.getTags());
+        remarks = new HashSet<>(personToCopy.getRemarks());
     }
 
     /**
@@ -70,8 +70,8 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.remarks = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withRemarks(String ... remarks) {
+        this.remarks = SampleDataUtil.getRemarkSet(remarks);
         return this;
     }
 

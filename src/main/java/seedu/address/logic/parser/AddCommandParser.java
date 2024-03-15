@@ -57,7 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Family family = ParserUtil.parseFamily(argMultimap.getValue(PREFIX_FAMILY).get());
-        Set<Remark> remarksList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_REMARK));
+        Set<Remark> remarksList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
 
         Person person = new Person(name, phone, income, email, address, family, remarksList);
 

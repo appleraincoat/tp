@@ -74,7 +74,7 @@ public class Person {
      * Returns an immutable remark set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Remark> getTags() {
+    public Set<Remark> getRemarks() {
         return Collections.unmodifiableSet(remarks);
     }
 

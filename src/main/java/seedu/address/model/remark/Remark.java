@@ -4,31 +4,31 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Represents a Remark in the address book.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidRemarkName(String)}
  */
 public class Remark {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Remark names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final String remarkName;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Remark}.
      *
-     * @param tagName A valid remark name.
+     * @param remarkName A valid remark name.
      */
-    public Remark(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Remark(String remarkName) {
+        requireNonNull(remarkName);
+        checkArgument(isValidRemarkName(remarkName), MESSAGE_CONSTRAINTS);
+        this.remarkName = remarkName;
     }
 
     /**
      * Returns true if a given string is a valid remark name.
      */
-    public static boolean isValidTagName(String test) {
+    public static boolean isValidRemarkName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -44,19 +44,19 @@ public class Remark {
         }
 
         Remark otherRemark = (Remark) other;
-        return tagName.equals(otherRemark.tagName);
+        return remarkName.equals(otherRemark.remarkName);
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return remarkName.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + remarkName + ']';
     }
 
 }

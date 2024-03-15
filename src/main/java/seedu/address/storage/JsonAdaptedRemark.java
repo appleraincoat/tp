@@ -9,40 +9,40 @@ import seedu.address.model.remark.Remark;
 /**
  * Jackson-friendly version of {@link Remark}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedRemark {
 
-    private final String tagName;
+    private final String remarkName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedRemark} with the given {@code remarkName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedRemark(String remarkName) {
+        this.remarkName = remarkName;
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Remark} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Remark source) {
-        tagName = source.tagName;
+    public JsonAdaptedRemark(Remark source) {
+        remarkName = source.remarkName;
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getRemarkName() {
+        return remarkName;
     }
 
     /**
-     * Converts this Jackson-friendly adapted remark object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted remark object into the model's {@code Remark} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted remark.
      */
     public Remark toModelType() throws IllegalValueException {
-        if (!Remark.isValidTagName(tagName)) {
+        if (!Remark.isValidRemarkName(remarkName)) {
             throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
         }
-        return new Remark(tagName);
+        return new Remark(remarkName);
     }
 
 }

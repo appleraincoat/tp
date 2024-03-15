@@ -38,7 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setFamily(person.getFamily());
-        descriptor.setTags(person.getTags());
+        descriptor.setRemarks(person.getRemarks());
     }
 
     /**
@@ -77,9 +77,9 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Remark> remarkSet = Stream.of(tags).map(Remark::new).collect(Collectors.toSet());
-        descriptor.setTags(remarkSet);
+    public EditPersonDescriptorBuilder withRemarks(String... remarks) {
+        Set<Remark> remarkSet = Stream.of(remarks).map(Remark::new).collect(Collectors.toSet());
+        descriptor.setRemarks(remarkSet);
         return this;
     }
 
