@@ -15,7 +15,7 @@ import seedu.address.model.person.Family;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.remark.Remark;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -129,29 +129,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String remark} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code remark} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Remark parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Remark.isValidTagName(trimmedTag)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Remark(trimmedTag);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Remark> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<Remark> remarkSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            remarkSet.add(parseTag(tagName));
         }
-        return tagSet;
+        return remarkSet;
     }
 }

@@ -17,7 +17,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.remark.Remark;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -77,9 +77,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Remark> personRemarks = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            personRemarks.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -127,8 +127,8 @@ class JsonAdaptedPerson {
         }
         final Family modelFamily = new Family(family);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelIncome, modelEmail, modelAddress, modelFamily, modelTags);
+        final Set<Remark> modelRemarks = new HashSet<>(personRemarks);
+        return new Person(modelName, modelPhone, modelIncome, modelEmail, modelAddress, modelFamily, modelRemarks);
     }
 
 }

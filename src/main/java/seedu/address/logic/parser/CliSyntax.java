@@ -16,7 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_FAMILY = new Prefix("f/");
 
     //Possible rename to additional notes to fit feature spec
-    public static final Prefix PREFIX_REMARKS = new Prefix("t/");
+    public static final Prefix PREFIX_REMARK = new Prefix("r/");
 
 
 

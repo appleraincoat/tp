@@ -55,7 +55,7 @@ command to run the application.<br>
 
 Adds a client to the Realodex. Note that `TAG` is optional, and that you may input the parameters in any order (e.g. if 
 the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable). You may
-also have multiple tags per client.
+also have multiple remarks per client.
 
 Format: `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY [t/TAG]...`
 

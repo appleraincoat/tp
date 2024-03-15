@@ -6,14 +6,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARKS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.remark.Remark;
 
 /**
  * A utility class for Person.
@@ -39,7 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_FAMILY + person.getFamily().toString() + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_REMARKS + s.tagName + " ")
+            s -> sb.append(PREFIX_REMARK + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -54,11 +54,11 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_REMARKS);
+            Set<Remark> remarks = descriptor.getTags().get();
+            if (remarks.isEmpty()) {
+                sb.append(PREFIX_REMARK);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_REMARKS).append(s.tagName).append(" "));
+                remarks.forEach(s -> sb.append(PREFIX_REMARK).append(s.tagName).append(" "));
             }
         }
         return sb.toString();
