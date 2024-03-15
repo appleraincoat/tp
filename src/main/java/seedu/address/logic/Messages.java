@@ -47,7 +47,7 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Family: ")
                 .append(person.getFamily())
-                .append("; Tags: ");
+                .append("; Additional Notes: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
