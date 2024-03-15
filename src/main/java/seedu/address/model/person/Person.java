@@ -35,7 +35,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Income income, Email email, Address address, Family family, Set<Remark> remarks) {
+    public Person(Name name, Phone phone, Income income, Email email, Address address,
+                  Family family, Set<Remark> remarks) {
         requireAllNonNull(name, phone, income, email, address, family, remarks);
         this.name = name;
         this.phone = phone;

@@ -178,7 +178,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRemarks(Arrays.asList(VALID_REMARK_1, INVALID_REMARK)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemarks(Arrays.asList(VALID_REMARK_1,
+                INVALID_REMARK)));
     }
 
     @Test
@@ -189,7 +190,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Remark> actualRemarkSet = ParserUtil.parseRemarks(Arrays.asList(VALID_REMARK_1, VALID_REMARK_2));
-        Set<Remark> expectedRemarkSet = new HashSet<Remark>(Arrays.asList(new Remark(VALID_REMARK_1), new Remark(VALID_REMARK_2)));
+        Set<Remark> expectedRemarkSet = new HashSet<Remark>(Arrays.asList(new Remark(VALID_REMARK_1),
+                new Remark(VALID_REMARK_2)));
 
         assertEquals(expectedRemarkSet, actualRemarkSet);
     }

@@ -65,7 +65,8 @@ public class AddCommandParserTest {
 
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withRemarks(VALID_REMARK_FRIEND, VALID_REMARK_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withRemarks(VALID_REMARK_FRIEND,
+                        VALID_REMARK_HUSBAND)
                 .build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + FAMILY_DESC_BOB
