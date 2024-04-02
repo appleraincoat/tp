@@ -150,6 +150,7 @@ Examples:
 Deletes all entries in Realodex.
 
 Format: `clearRealodex`
+
 ### Exiting the program : `exit`
 
 Exits the program.
