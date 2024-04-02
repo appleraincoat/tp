@@ -135,6 +135,22 @@ Generates a pop-up window which is a summarised version of the User Guide.
 
 Format: `help`
 
+### Help (Individual Commands) : `COMMAND help`
+
+Shows the help message for the specified command only.
+
+Format: `COMMAND help`
+
+Examples:
+- `add help` provides the help message for the add command
+- `filter help` provides the help message for the filter command
+
+### Clear Realodex : `clearRealodex`
+
+Deletes all entries in Realodex.
+
+Format: `clearRealodex`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -183,8 +199,10 @@ Action     | Format, Examples
 **Add**    | `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY t/TAG [r/REMARK]` <br> e.g. `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 r/Buyer t/Owes $1000.`
 **Delete (by name)** | `delete n/NAME`<br> e.g. `delete n/John`
 **Delete (by index)** | `delete INDEX`<br> e.g. `delete 3`
-**edit** | `edit INDEX [n/NAME] [p/PHONE] [i/INCOME] [e/EMAIL] [a/ADDRESS] [f/FAMILY] [t/TAG] [r/REMARK]` <br> e.g. `edit 2 n/Denzel i/100000`
-**filter** | `filter STRING`<br> e.g. `filter David`
-**list**   | `list`
-**help** | `help`
-**exit**   | `exit`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [i/INCOME] [e/EMAIL] [a/ADDRESS] [f/FAMILY] [t/TAG] [r/REMARK]` <br> e.g. `edit 2 n/Denzel i/100000`
+**Filter** | `filter STRING`<br> e.g. `filter David`
+**List**   | `list`
+**Help** | `help`
+**Help (individual commands)** | `COMMAND help`<br> e.g. `add help`,`edit help`
+**Clear** | `clearRealodex`
+**Exit**   | `exit`
