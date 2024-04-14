@@ -1250,11 +1250,6 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-## **Appendix: Appendix: Effort**
-
-### Difficulty, challenges, efforts and achievements
-
-
 ## **Appendix: Planned Enhancements**
 
 **Team size is five.**
@@ -1309,4 +1304,21 @@ command and streamline the process of adding new user profiles**
        which may commonly have `-`.
      - Symbols such as white-space as they may wish to put gaps such as `9021 5365`
    - We plan to reduce the restrictions of no symbols for future iterations 
-   
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## **Appendix: Appendix: Effort**
+
+### Difficulty, challenges, efforts and achievements
+
+1. **Modifying UI Components** One of the significant challenges we encountered was modifying the UI to incorporate our desired background. The UI comprises numerous components, 
+     making it challenging to identify and modify the relevant code sections.
+ 
+   **Achievements**  Despite the challenge, we successfully navigated the UI structure and implemented the necessary modifications to integrate our custom background, enhancing the visual appeal of the application.
+
+2. **Test Case Regressions** Another challenge we encountered was that after significant feature changes or additions, many of our test cases failed. 
+     We spent considerable time tracing the test code or components to determine the source of the errors.
+
+   **Achievements**  Despite the challenge, this turned out to be a positive experience as it indicated robust code. After addressing the failures, we gained confidence in the robustness of our bug-free features.
