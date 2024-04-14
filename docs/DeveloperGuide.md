@@ -1060,8 +1060,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to filter clients by providing a name reference.
-2. Realodex filters and displays a list of all clients whose names match the reference input.
+1. User requests to filter clients by providing a name substring.
+2. Realodex filters and displays a list of all clients whose names include the input substring.
 
     Use case ends.
 
@@ -1069,13 +1069,13 @@ Use case ends.
 
 * 1a. The input substring is empty.
 
-    * 1a1. Realodex shows an error message.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
         Use case ends.
 
 * 1b. The name input is not of valid format.
 
-  * 1b1. Realodex shows an error message.
+  * 1b1. Realodex shows an error message highlighting the correct format.
 
     Use case ends.
 
@@ -1085,13 +1085,14 @@ Use case ends.
 
 1. User requests to filter clients by providing a remark reference.
 2. Realodex filters and displays a list of all clients whose remarks match the reference input.
+
    Use case ends.
 
 **Extensions**
 
-* 1a. The input substring is empty.
+* 1a. The remark input is empty.
 
-    * 1a1. Realodex shows an error message.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
       Use case ends.
 
@@ -1102,19 +1103,20 @@ Use case ends.
 
 1. User requests to filter clients by providing a tag.
 2. Realodex filters and displays a list of all clients whose tag matches the input.
+
    Use case ends.
 
 **Extensions**
 
-* 1a. The input substring is empty.
+* 1a. The tag input is empty.
 
-  * 1a1. Realodex shows an error message.
+  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
     Use case ends.
 
 * 1b. The tag input is not of valid format.
 
-  * 1b1. Realodex shows an error message.
+  * 1b1. Realodex shows an error message highlighting the correct format.
 
     Use case ends.
 
@@ -1129,15 +1131,15 @@ Use case ends.
 
 **Extensions**
 
-* 1a. The input substring is empty.
+* 1a. The housing type input is empty.
 
-  * 1a1. Realodex shows an error message.
+  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
     Use case ends.
 
 * 1b. The housing type input is not of valid format.
 
-  * 1b1. Realodex shows an error message.
+  * 1b1. Realodex shows an error message highlighting the correct format.
 
     Use case ends.
 
@@ -1151,20 +1153,20 @@ Use case ends.
 
 **Extensions**
 
-* 1a. The input substring is empty.
+* 1a. The birthday month input is empty.
 
-  * 1a1. Realodex shows an error message.
+  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
     Use case ends.
 
 * 1b. The birthday month is not of valid format.
 
-  * 1b1. Realodex shows an error message.
+  * 1b1. Realodex shows an error message highlighting the correct format.
 
     Use case ends.
 
 
-**Use case: Getting help**
+**Use case: UC12 — Getting help**
 
 **MSS**
 
@@ -1173,6 +1175,7 @@ Use case ends.
 
    Use case ends.
 
+**Use case: UC13 — Getting help for specific command**
 
 **MSS**
 
