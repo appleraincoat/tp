@@ -12,6 +12,7 @@
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
+Some of the NFRs are inspired by [Pawfection](https://ay2324s1-cs2103t-f08-3.github.io/tp/DeveloperGuide.html#appendix-instructions-for-manual-testing)
 
 
 
@@ -1148,6 +1149,23 @@ testers are expected to do more *exploratory* testing.
 
    1. Users can type in exit to exit the app. All data is auto-saved.
 
+### Adding a person
+
+1. Test case: `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`
+   - Expected: A client `John Doe` will be added and shown on the GUI.
+   If list was already populated, ensure you scroll down to find `John Doe`.
+2. Test case: `add n/John Wick p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB`
+   - Expected:
+   A client `John Wick` will be added
+   and shown on the GUI with the optional parameters stating that it is blank.
+   If list was already populated, ensure you scroll down to find `John Wick`.
+3. `add n/Tom Hanks e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB`
+   - Expected:
+   A error message `Missing compulsory prefixes in the command! Prefixes That Are Missed Are: i/INCOME, p/PHONE` will be displayed.
+4. `add n/John Doe p/9876@@5432 i/200@00 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`
+   - Expected: A error message <br> `Error parsing phone: Phone numbers should only contain numbers, and it should be at least 3 digits long`
+     <br> `Error parsing income: Income should be an integer and should be at least 0` will be displayed
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -1179,6 +1197,33 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Sorting
+1. Sorting a list while persons are being shown
+   1. Prerequisites: Ensure at least a few people with specified birthdays are displayed on screen, 
+       You may do so by using the add command to populate a list clients.
+   2. Test case: `sort`
+      - Expected: A list sorted based on their proximity to their upcoming birthday will be displayed.
+
+### Filter By Name
+1. Test case: `filter n/John`
+   Expected: A list of clients whose names contain the string `John` will be returned.
+
+### Filter By Tag
+1. Test case: `filter t/buyer`
+   Expected: A list of clients with `BUYER` tag is returned.
+
+### Filter By Housing Type
+1. Test case: `filter h/HDB`
+   Expected: A list of clients with the HDB housing type is returned.
+
+### Filter By Remark
+1. Test case: `filter r/FOOD`
+   Expected: A list of clients whose remarks include the specified keyphrase of FOOD is returned.
+
+### Filter By Birthday
+1. Test case: `filter b/SEP`
+   Expected: A list of clients whose birthdays are in the specified month of September are returned.
 
 ### Corrupted Data
 
