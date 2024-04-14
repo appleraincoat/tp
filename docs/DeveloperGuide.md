@@ -147,7 +147,7 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Realodex, which `Person` references. This allows Realodex to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassUpdated.puml" width="800" />
+<puml src="diagrams/BetterModelClassDiagram.puml" width="800"></puml>
 
 </box>
 
