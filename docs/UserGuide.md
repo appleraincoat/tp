@@ -401,22 +401,6 @@ Parameters must follow the prefix they are associated with and are typically in 
 `add n/NAME p/PHONE i/INCOME e/EMAIL a/ADDRESS f/FAMILY t/TAG h/HOUSING_TYPE [r/REMARK] [b/BIRTHDAY]`
 </box>
 
-<box type="info" header="Notes">
-
-  * `n/NAME`,`p/PHONE`,`i/INCOME`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG` and `h/HOUSING_TYPE` are compulsory fields.
-    * If any of the above fields are missed out in the `add` command, you will receive an error message informing you of the compulsory fields that you missed. 
-      * For example, if only `n/NAME` and `i/INCOME` are present, you will be alerted that you are missing the fields `p/PHONE`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG`and`h/HOUSINGTYPE`.
-
-  * There can only be **one of each field** in the add command except for `t/TAG` which accepts **up to 2 tags**. 
-    * For example, if only `n/NAME` and `i/INCOME` are present, you will be alerted that you are missing the fields `p/PHONE`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG`and`h/HOUSINGTYPE`. 
-    * Except `t/TAG`, there can only be one of each field in the add command.
-
-- For `t/TAG`, you may input both `t/BUYER` and/or `t/SELLER` (case insensitive).
-  - If either tag is repeated more than once, for e.g. `t/BUYER t/BUYER`, the tag will only be recorded once and no error will be thrown.
-- `r/REMARK` and `b/BIRTHDAY` fields are optional, enclosed in `[]`. You may choose to omit them.
-  - If you include the prefix with a blank input, the birthday and remark fields will be taken as not specified.
-    - Example: `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB r/ b/` will successfully add John Doe but remarks and birthday will be not specified.
-</box>
 
 <box type="warning" header="Caution">
 
@@ -429,10 +413,24 @@ Parameters must follow the prefix they are associated with and are typically in 
 
 </box>
 
+<box type="info" header="Notes">
+
+  * `n/NAME`,`p/PHONE`,`i/INCOME`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG` and `h/HOUSING_TYPE` are **compulsory fields**.
+    * If any of the above fields are missed out in the `add` command, you will receive an error message informing you of the compulsory fields that you missed. 
+      * For example, if only `n/NAME` and `i/INCOME` are present, you will be alerted that you are missing the fields `p/PHONE`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG`and`h/HOUSINGTYPE`.
+
+  * There can only be **one of each field** in the add command except for `t/TAG` which accepts **up to 2 tags**.
+- For `t/TAG`, you may input both `t/BUYER` and/or `t/SELLER` (case insensitive).
+  - If either tag is repeated more than once, for e.g. `t/BUYER t/BUYER t/BUYER`, the tag will only be recorded once and no error will be thrown.
+- `r/REMARK` and `b/BIRTHDAY` fields are optional, enclosed in `[]`. You may choose to omit them.
+  - If you include the prefix with a blank input, the birthday and remark fields will be taken as not specified.
+    - Example: `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB r/ b/` will successfully add John Doe but remarks and birthday will be not specified.
+</box>
+
 <box type="wrong" header="Error">
 
-* `n/NAME`,`p/PHONE`,`i/INCOME`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG` and `h/HOUSING_TYPE` are **compulsory fields**.
-    * If you missed out any of the fields mentioned above, you will be notified with an error message **indicating the overlooked fields**.
+*   If you missed out any of the **compulsory fields** (`n/NAME`,`p/PHONE`,`i/INCOME`,`e/EMAIL`,`a/ADDRESS`,`f/FAMILY`,`t/TAG` and `h/HOUSING_TYPE`), you will be notified with an error message **indicating the overlooked fields**.
+* If more than one of each field is provided (apart from the `t/TAG` field), you will be notified with an error message **indicating the prefixes of the missing fields**. 
 </box>
 
 
