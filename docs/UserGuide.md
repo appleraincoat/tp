@@ -660,6 +660,14 @@ Deletes the client of the specified `INDEX`.
 The filter command in Realodex allows you to **narrow down your list** of clients by **one** specified field. 
 Currently, we support **filtering by name, remark, tag, birthday month, or housing type**.
 
+
+
+<box type="info" header="Notes">
+
+- When performing multiple filter operations in sequence, each new filter is applied to the original, full list of clients, not the subset produced by the previous filter. This approach ensures clarity and consistency in search results.
+- Note that the search is case-insensitive for all input parameters.
+</box>
+
 <box type="tip" header="Tip">
 
   - Regular use of the filter command can significantly **streamline** your client management processes!
@@ -673,6 +681,19 @@ Returns the list of only the clients whose **names contain the specified keyphra
 <box>
 
 `filter n/KEYPHRASE`
+</box>
+
+<box type="info" header="Notes">
+
+* Partial fragments of names will still be matched. 
+  * `filter n/Udh` matches a person with the name "Udhaya". 
+* Comprehensive searching, returning all persons with names containing the keyphrase. 
+  * `filter n/Al` returns persons named "Alicia", "Allysa", "Jamal".
+</box>
+
+<box type="warning" header="Caution">
+
+* Keyphrase input should be in valid format for names (alphanumeric) and non-empty.
 </box>
 
 **Example:**
@@ -704,7 +725,19 @@ Returns the list of clients with the **specified tag(s)**.
 This **includes** clients who may have **both "Buyer" and "Seller" tags.**
 - **Filtering by Multiple Tags**: Realodex supports filtering by **multiple tags**.
 Entering `filter t/Buyer t/Seller` will show only clients who are **tagged as both "Buyer" and "Seller"**.
+- **Comprehensive searching**, returning all persons' with the specified tag(s).
   </box>
+
+
+<box type="warning" header="Caution">
+
+- Tag input should be **valid** and **non-empty** - "Buyer" or "Seller".
+    - `filter t/buyer` matches person with tag "Buyer".
+- **Inclusive matching** of persons with multiple tags, as long as they possess the
+  tag(s) specified in the input.
+    - `filter t/buyer` matches person with tags "Buyer" and "Seller".
+
+</box>
 
 **Examples:**
 
@@ -712,7 +745,7 @@ Entering `filter t/Buyer t/Seller` will show only clients who are **tagged as bo
 
 <p align="center">
     <a href="images/filter/filterByTagSeller.png">
-    <img src="images/filter/filterByTagSeller.png" alt="filterByTagSeller" style="width:150%">
+    <img src="images/filter/filterByTagSeller.png" alt="filterByTagSeller" style="width:100%">
     </a>
     <em>Clients with "Seller" tag are returned.</em>
 </p>
@@ -736,7 +769,18 @@ Returns the list of clients with the **specified preferred housing type**.
 
 `filter h/HOUSING_TYPE`
 </box>
+<box type="info" header="Notes">
 
+* **Comprehensive searching**, returning all persons with the specified housing type.
+    - `filter h/Condominium` returns all persons with the "Condominium" preferred housing type.
+
+</box>
+<box type="warning" header="Caution">
+
+- Housing Type input should be valid and non-empty - "HDB", "Condominium", "Landed Property" or "Good Class Bungalow".
+    - `filter h/hdb` matches person with housing type "HDB".
+</box>
+  
 **Example:** 
 
 `filter h/Good Class Bungalow` will return a list of clients with a housing type preference for "Good Class Bungalow".
@@ -760,9 +804,24 @@ Returns the list of clients whose **remarks include** the **specified keyphrase*
 
 <box type="info" header="Notes">
 
-- When filtering by remarks, even **partial keywords are matched**.
+- **Partial fragments** of remarks will still be matched.
     - `filter r/hand` matches person with remark "handsome".
+- **Comprehensive searching**, returning all persons' names containing the keyword .
+    - `filter r/love` returns persons with remarks "loves to travel", "has a lovely dog".
 </box>
+
+<box type="warning" header="Caution">
+
+- Keyphrase input should be **non-empty**. This is an intentional design choice to ensure that the command is used for targeted searches, preventing the potential misinterpretation of an empty keyphrase as a request to list all clients.
+- The remarks for the `filter r/` command **must not contain any other prefixes** to prevent parsing errors.
+</box>
+
+<box type="wrong" header="Error">
+
+- The command `filter r/ my tag is t/buyer` would cause an error because the system interprets `t/` as the start of a new prefix.
+- To avoid this, ensure that the remark does not contain any spaces followed by slashes that could be misconstrued as additional prefixes.
+</box>
+
 
 **Example:**
 
@@ -774,18 +833,6 @@ Returns the list of clients whose **remarks include** the **specified keyphrase*
     </a>
     <em>Clients with remarks like "Eats alot" and "Likes to eat nasi lemak" are returned.</em>
 </p>
-
-
-<box type="warning" header="Warning">
-
-- Input remark must be **non-empty**, preventing empty remark input as a request to list all clients.
-- The remarks for the `filter r/` command **must not contain any other prefixes** which could be misconstrued as additional prefixes.
-  </box>
-
-<box type="wrong" header="Error">
-
-- The command `filter r/ my tag is t/buyer` would cause an error because the system interprets `t/` as the start of a new prefix.
-  </box>
 
 #### Filter By Birthday Month
 Returns the list of clients whose **birthdays** fall in the **specified month**.
@@ -799,10 +846,27 @@ Returns the list of clients whose **birthdays** fall in the **specified month**.
 
 <box type="info" header="Notes">
 
-- Month input should be in **3-letter abbrieviation (MMM)** format. 
-  - "Jan" for January
-  - "Feb" for February
+- Month input should be a valid month in **3-letter abbrieviation (MMM)** format and **non-empty**.
+  - E.g., "Jan" for January, "Feb" for February 
+  - Filtering by month "September" should be `filter b/Sep`
+    - `filter b/SEP` matches all people with Birthday in September.
+- Month input will also accept extraneous input, i.e. if the first 3 characters are any valid month, it will be valid. 
+  - E.g., This forgiving behavior allows you to type in `filter b/AprMogger` and Realodex will interpret the month as April!
+- **Comprehensive searching**, returning all persons with birthdays in the specified month.
+    - `filter b/Jan` returns all persons with birthday in January.
 </box>
+
+<box type="warning" header="Caution">
+
+- Persons who do not have a specified birthday will **not be included** in the search results.
+</box>
+
+<box type="wrong" header="Error">
+
+- if the extraneous input is the **same birthday prefix with spaces before** it,
+  `e.g. filter b/Sep b/mog` as that will be considered as **duplicate birthday prefixes.**
+</box>
+
 
 **Example:**
 
@@ -842,7 +906,7 @@ Lists all clients in Realodex.
 
 ### Sorting Clients : `sort`
 
-This feature **organises clients** based on **how soon their next birthday** will occur. 
+This feature **organises clients** based on **how soon their next birthday** will occur, relative to the current date. 
 
 **Format:**
 <box>
@@ -852,19 +916,16 @@ This feature **organises clients** based on **how soon their next birthday** wil
 
 <box type="info" header="Notes">
 
-* The current date is based on the local system's time.
-* The calculation is based on the number of days until their next upcoming birthday.
+* The current date is based on the local system's time. 
+* If their birthday has already passed, the calculation is based on the number of days until their next birthday next year.
 </box>
 
-[//]: # ()
-[//]: # (<box type="warning" header="Warning">)
 
-[//]: # ()
-[//]: # (* If the list presented is currently a filtered list after using [filter]&#40;#filtering-clients-filter&#41;,)
+<box type="warning" header="Warning">
 
-[//]: # (  sort will work on the new filtered list.)
-
-[//]: # (</box>)
+* If the list presented is currently a filtered list after using [filter](#filtering-clients-filter), sort will work on the new filtered list.
+* If a birthday falls on February 29th (leap day), the day calculation is based on March 1st if the year does not have a leap date as realistically, most would still celebrate every year.
+</box>
 
 **Example**
 
@@ -905,7 +966,7 @@ is used so that users understand that this command <b>clears all entries in Real
 <box type="warning" header="Warning">
 
 - Be careful when using <code>clearRealodex</code>, you will **not be able to undo** this operation!
-  </box>
+</box>
 
 **Example:**
 
@@ -969,10 +1030,13 @@ Displays the **help message** for the **specified command** only.
 
 * Note that this feature is only available for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list` and `sort` commands.
 
-[//]: # (* Although the format is `COMMAND help`, the exception is the help message for the clear command.)
-
-[//]: # (  Use `clear help` instead of `clearRealodex help`.)
+* Although the format is `COMMAND help`, the exception is the help message for the clear command, use `clear help` instead of `clearRealodex help`.
   </box>
+
+<box type="warning" header="Warning">
+
+- Any other valid command followed by `help` that is not included in this feature will simply execute the command as per normal.
+</box>
 
 **Example:**
 `add help` returns the help message for `add` command as shown below.
@@ -1016,7 +1080,7 @@ Displays the **help message** for the **specified command** only.
 
 The _JSON file_ that **stores the data** of your contacts can be found in a folder named `data`, in the **same folder/directory as the Realodex app**. 
 
-[//]: # (&#40;e.g. if you have Realodex installed in your Desktop, the `data` folder containing the file can be found in your Desktop as well.&#41;)
+(e.g. if you have Realodex installed in your Desktop, the `data` folder containing the file can be found in your Desktop as well.)
 
 #### Saving Data
 
@@ -1046,18 +1110,19 @@ You may want to **re-enter your client data in a fresh JSON file** in the event 
 ## Field Constraints
 Summarized in the table below are the attributes of a client along with their constraints. These constraints are **important** and **should be adhered** to when performing Realodex functions!
 
-| Format          | Constraints                                                                                                                                                | Example                                                                                                  |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| `n/Name`        | **Alphanumeric**, **unique**, **case-insensitive**                                                                                                         | <ul><li>✅ <code>n/John Doe</code></li><li>✅ <code>n/JoJo Siwa 1</code></li><li>❌ <code>n/Han$el</code></li></ul> |
-| `p/Phone`       | Only **numbers**, at least **3-digit long**                                                                                                                | <ul><li>✅ <code>i/1234</code></li><li>❌ <code>i/123A</code></li></ul>                                    |
-| `i/Income`      | **Integer** and should be **at least 0**.                                                                                                                  | <ul><li>✅ <code>i/10000</code></li><li>❌ <code>i/10,000</code></li><li>❌ <code>i/-1</code></li></ul>     |
-| `e/Email`       | **Format `local-part@domain`**                                                                                                                             | <ul><li>✅ <code>e/admin@realodex</code></li><li>❌ <code>e/hello@gmail</code></li></ul>                   |
-| `a/Address`     | No constraints                                                                                                                                             | <ul><li>✅ <code>a/6 College Avenue West</code></li>                                                      |
-| `f/Family`      | Should be an **integer greater than 1**                                                                                                                    | <ul><li>✅ <code>f/4</code></li><li>❌ <code>f/five</code></li></ul>                                       |
-| `t/Tag`         | Only accept **"buyer" or "seller"** as the input                                                                                                           | <ul><li>✅ <code>t/buyer</code></li></ul>                                                                 |
-| `h/HousingType` | Must be one of the following: **"HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW"** (case-insensitive). Only **one housing type** is allowed. | <ul><li>✅ <code>h/HDB</code></li></ul><ul><li>❌ <code>h/big house</code></li></ul>                       |
-| `r/Remark`      | **Can be empty** if remark is not specified.                                                                                                               | <ul><li>✅ <code>r/Likes to eat cake</code></li></ul>                                                     |
-| `b/Birthday`    | `ddMMMyyyy` format. **Not** in the **future**.<br/>**Not** earlier than **year 1000**                                                                          | <ul><li>✅ <code>b/23Apr1972</code></li></ul>                                                             |
+| Format                                                                | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Example                                                                                                               |
+|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `n/Name`                                                              | <ul><li>Should only contain alphanumeric characters and must be unique.</li><li>While we disallow <code>s/o</code> as <code>/</code> is used as a command delimiter, a simple and reasonable workaround is to use alternatives such as <code>s o</code> or <code>son of</code>.</li><li>Names are case-insensitive.</li><li>Number of spaces between words in the name do not matter. (Example: <code>n/John Doe</code> and <code>n/john   doe</code> are both considered the same valid name and both will be displayed as <code>JOHN DOE</code>.)</li><li>Although names are displayed in full capitalisation, they are still recorded in a case-insensitive manner. Hence, an input with the same name but different capitalisation will be considered a duplicate entry.</li></ul>                                                                                | <ul><li>✅ <code>n/John Doe</code></li><li>✅ <code>n/JoJo Siwa 1</code></li><li>❌ <code>n/Han$el</code></li></ul>      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                      |
+| `p/Phone`                                                             | <ul><li>Should only contain numbers, and should be at least 3 digits long.</li><li>While we disallow usage of symbols such as +, if you wish to use country codes, a reasonable work-around is to omit using of symbols. E.g., to input +6590215365 you may simply type in 6590215635</li><li>Spaces are also not allowed. However, a simple work-around for this is to omit using such spaces. E.g. to input 9021 5365 we can simply type in 90215365.</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                     | <ul><li>✅ <code>i/1234</code></li><li>❌ <code>i/123A</code></li></ul>                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                  |
+| `i/Income`                                                            | <ul><li>**Integer** and should be **at least 0**. </li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | <ul><li>✅ <code>i/10000</code></li><li>❌ <code>i/10,000</code></li><li>❌ <code>i/-1</code></li></ul>                  |
+| `e/Email`                                                             | <ul><li>Emails should be of the format local-part@domain.</li><li>The local-part should only contain alphanumeric characters and these special characters: +_.- (excluding parentheses).</li><li>The local-part may not start or end with any special characters.</li><li>This is followed by a '@' and then a domain name, made up of domain labels separated by periods.</li><li>The domain name must end with a domain label at least 2 characters long.</li><li>Each domain label must start and end with alphanumeric characters.</li><li>Each domain label may consist of alphanumeric characters, separated only by hyphens, if any.</li><li>Top-level domain (TLD) such as .com are not compulsory, as according to Internet Protocol Standards (<a href="https://datatracker.ietf.org/doc/html/rfc5322#section-3.4.1">RFC 5322 Section 3.4.1</a>).</li></ul> | <ul><li>✅ <code>e/admin@realodex</code></li><li>❌ <code>e/hello@x_mail</code></li></ul>                               |
+| `a/Address`                                                           | <ul><li>Must not include other command prefixes (`a/`,`b/`,`e/`,`f/`,`h/`,`i/`,`n/`,`p/`,`r/`,`t/`) to prevent parsing errors. For instance, `a/lemontree street t/1` may cause the command to fail, as the system will interpret `t/` as an unintended tag prefix.</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | <ul><li>✅ <code>a/6 College Avenue West</code></li>                                                                   |
+| `f/Family`                                                            | <ul><li>Should be an **integer greater than 0**</li><li>Value should not contain decimal points as this is not expected for whole number type data, a simple workaround is to simply avoid the use of decimals.</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | <ul><li>✅ <code>f/4</code></li><li>❌ <code>f/five</code></li></ul>                                                    |
+| `t/Tag`                                                               | <ul><li>Only accept **"buyer" or "seller"** as the input</li><li>Case-insensitive</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | <ul><li>✅ <code>t/buyer</code></li><li>✅ <code>t/SELLER</code></li></ul>                                              |
+| `h/HousingType`                                                       | <ul><li>Must be one of the following: **"HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW"** (case-insensitive).</li><li> Only **one housing type** is allowed.   </li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | <ul><li>✅ <code>h/HDB</code></li></ul><ul><li>❌ <code>h/big house</code></li></ul>                                    |
+| `r/Remark`                                                            | <ul><li>**Can be empty** if remark is not specified.</li><li>Must not include other command prefixes (`a/`,`b/`,`e/`,`f/`,`h/`,`i/`,`n/`,`p/`,`r/`,`t/`) to prevent parsing errors. For instance, `a/lemontree street t/1` may cause the command to fail, as the system will interpret `t/` as an unintended tag prefix.</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | <ul><li>✅ <code>r/Likes to eat cake</code></li></ul>                                                                  |
+| `b/Birthday`                                                          | <ul><li>BIRTHDAY should be in the form "DDMMMYYYY", and can be empty if the birthday is not specified. <li>The date must not be in the future.</li><li>The date must exist in the Gregorian calendar. (<code>b/29Feb2023</code> is not allowed as it is not a valid day to begin with)</li><li>The day "DD" must be numeric. For 1st-9th day of the month, the 0 need not be present. </li><li>The month "MMM" refers to the first 3 letters of the month (case-insensitive)</li><li>The year "YYYY" must be in full and greater than or equal to 1000.</li></ul>                                                                                                                                                                                                                                                                                                     | <ul><li>✅ <code>b/2Feb2002</code></li><li>✅ <code>b/23Apr1972</code></li><li>❌ <code>b/23Apr72</code></li></ul> </ul> |
+
 
 <box type="warning" header="Caution">
 
