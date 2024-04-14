@@ -169,13 +169,15 @@ Classes used by multiple components are in the `seedu.realodex.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Overall Add feature
 
-### Implementation of `AddCommand`
+#### Implementation of `AddCommand`
 The `add` feature, that was morphed from the original AddressBook3, allows users to add clients along with their critical personal information, as well as optional remarks and birthday information.
 
 #### Details
@@ -240,6 +242,10 @@ Specific field constraints are described below. They are designed with the users
 The sequence diagram below illustrates the process of adding a person into Realodex.
 <puml src="diagrams/add/AddCommandSequenceDiagram.puml" width="1000" />
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### Overall Sort feature
 
 #### Initialization of `SortCommand`
@@ -250,10 +256,6 @@ To implement the sorting functionality, the `LogicManager` component parses the 
 
 The sequence diagram below illustrates the process of creating a sort operation through the `Logic` component:
 <puml src="diagrams/sort/SortSequenceDiagram-Logic.puml" width="800" />
-
-
-
-
 
 
 #### Implementation of `SortCommand`
@@ -327,12 +329,20 @@ we'll utilize different comparators based on the user's specified field, such as
 
 <puml src="diagrams/sort/NewSortSequenceDiagram-Logic.puml" width="1000" />
 
+#### Design considerations:
 
+Support sort by other days besides Today,
+e.g., We may allow users to sort clients based on how close 
+their birthday is to Christmas instead.
 
+Pros: Allows for more flexible searches.
 
+Cons: Users will have to get used to the new command format if implemented
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Overall Filter feature
 
@@ -491,29 +501,9 @@ This is implemented using the `HousingTypeMatchPredicate` that checks whether a 
 3. The `FilterCommand` applies the `HousingTypeMatchPredicate` predicate, updating the filtered person list to only include those with a "Condominium" housing type preference.
 4. The UI reflects this filtered list.
 
-### Sort by Birthday feature
+--------------------------------------------------------------------------------------------------------------------
 
-####  Implementation
-
-The "Sort by Birthday" feature enables users to sort persons based on their birthday associated with them, if any. The core components for this feature are:
-- SortCommand: A command that, when executed, updates the sorted person list based on the predicate.
-
-#### Example Usage Scenario
-1. User launches the application, and the list of persons is loaded.
-2. User executes `sort`, aiming to sort persons by birthday
-3. LogicManager parses the command into a SortCommand.
-4. The SortCommand is executed, sorting the list based on the predicate.
-5. The UI sorts the persons by birthday, with the next upcoming birthday first, and all persons without birthdays will not show up.
-
-#### Design considerations:
-
-Aspect: Matching of remarks
-
-__Alternative 1 (current choice): Support sort by other days besides Today.__
-
-Pros: Allows for more flexible searches.
-
-Cons: May be difficult to understand
+<div style="page-break-after: always;"></div>
 
 ### Overall Help feature
 
@@ -599,6 +589,10 @@ Pros: Easy to implement as all functionality can be contained within help-relate
 
 Cons: Syntax may not be as intuitive.
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### Delete by name feature
 
 #### Description
@@ -658,6 +652,10 @@ Pros: More intuitive as the user knows that the index is being deleted.
 
 Cons: Prefix `i/` is already used for the income field, and is more inconvenient to have to type in prefix.
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### Edit by field feature
 
 #### Description
@@ -682,6 +680,8 @@ user fields `name`, `phone`, `email`, `address`, `income`, `birthday`, `housingT
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -1098,17 +1098,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A real estate agent with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to have up to 500 client profiles.
-5.  The response to any command should become visible within 5 seconds.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Application should respond to user interactions within 2 seconds. 
+3. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage. 
+4. Should be able to have up to 1000 client profiles.
+5. The response to any command should become visible within 5 seconds.
+6. Application should load the GUI components and data within 5 seconds of start-up.
+7. The user interface should be intuitive and not have a steep learning curve to get used to.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Client Profile**: Details of customer of the Real Esate Agent looking to buy / sell / rent a property
 * **Command Line Interface (CLI)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
+* **Command**: An input from you that tells Realodex to execute an action.
+* **Case-Sensitive**: The casing of the alphabetic characters matters
+* **Case-Insensitive**: The casing of the alphabetic characters does not matter
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1156,9 +1161,9 @@ testers are expected to do more *exploratory* testing.
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+      Expected: No person is deleted.
+      Error details shown in the status message.
+      Status bar remains the same.
 
 ### Editing a person
 
@@ -1196,6 +1201,9 @@ testers are expected to do more *exploratory* testing.
    3. If there is no existing user, you may want to refer to above "Corrupted Data" section
       to easily get a fresh `json` file with sample data and repeat from step 1.
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Appendix: Effort**
 
@@ -1206,10 +1214,54 @@ testers are expected to do more *exploratory* testing.
 
 **Team size is five.**
 
-1. Generic index error messages
-   - Currently, `Realodex` has a generic error message for invalid index input by users.
-     <br>e.g. if user inputs `edit -1 n/someName`, `Realodex` replies "Invalid command format! ..."
-     <br>e.g. if user inputs `delete -1`, `Realodex` replies "Index is not a non-zero unsigned integer.".
-   - In future enhancements, we aim to reply users with more descriptive error messages, such as<br>
-     "Index is negative, please input a integer index value that is > 0"<br>
-     "Index is out of bounds, please input a index value in range of the list indexes on screen"
+1. **Make index error messages more specific for out-of-bounds indexes**
+   -  Currently, if a user types in an index, that is out of bounds, assuming its within the integer limit of 2147483647,
+      as addressed in the user guide, Realodex simply returns a `The client index provided is invalid`
+       - E.g., Given list with 10 people, `edit 123 n/Denzel` and `delete 123` returns  `The client index provided is invalid`
+       - We plan to make this more specific by returning a `Client index provided is more than the 
+       actual number of clients in Realodex!`
+   
+2. **Make index error messages more specific for `edit` negative indexes**
+   - If user types in a negative index for `edit`, Realodex returns `Invalid command format!...`
+     - E.g. `edit -1 n/Denzel` returns `Invalid command format!...`
+     - We plan to make this more specific by returning `Index is not a non-zero unsigned integer.`
+
+3. **Reduce compulsory fields for the "add"
+command and streamline the process of adding new user profiles**
+   - Currently, `add` requires eight compulsory fields.
+     This might be excessive for users to always put in eight fields
+     every time they add a new user profile.
+     While this was a design choice to prevent users from missing out on important
+     fields, we plan to make this more user-friendly in the future.
+     - We plan to introduce dynamic checks such that if the profile is of certain conditions, they may not need to input certain fields.
+     - E.g., Users who add a profile that is a SELLER, they may choose to omit the input for `INCOME` which would otherwise be
+       compulsory!
+       The Rationale is that sellers may not see a need to disclose their income for real estate deals.
+   - Based on feedback, we may make some fields not compulsory all together.
+     - If users feedback that `EMAIL` is not as important for their day-to-day client management, we may remove the 
+       compulsory need for it in future iterations.
+4. **Make date error more specific for leap dates on non-leap years**
+   - Currently, if user types in an invalid date for commands such as `edit`, Realodex will return a invalid
+     `...Birthday should be in ddMMMyyyy format... Date should also not be in future years and no earlier than year 1000!`
+     - When user types in a leap date on a year with no leap date such `28Feb2023`,
+       this will expectedly return the error as its invalid date. 
+       However, the error message is not entirely helpful as the format is technically correct as its `DDMMMYYYY`.
+     - We plan to return a more specific message such as 'Date input is a leap date on a non-leap year'
+5. **Improve duplicate user profile check**
+   - Currently, Realodex prevents duplicates based on the condition of two clients having the same full name regardless of other parameters.
+     - Since many clients may have the same name or since they may only disclose a part of 
+       their name leading to greater chances of name collisions, we plan to improve our duplicate detection.
+   - We plan
+     to add more conditions to our duplicate check such
+     adding more fields to ensure they are truly not adding duplicates.
+     Even if we detected a possible duplicate,
+     we may give the user an option to continue adding the client if they wish to do so, instead of downright rejecting the 
+     addition of the profile.
+6. **Make `PHONE` input conditions less restrictive**
+   - Currently, `PHONE` only allows numbers, and it should be at least three digits long
+   - This poses problems to users who wish to input 
+     - Symbols such `+6590215365` or `1-800` numbers
+       which may commonly have `-`.
+     - Symbols such as white-space as they may wish to put gaps such as `9021 5365`
+   - We plan to reduce the restrictions of no symbols for future iterations 
+   
