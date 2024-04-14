@@ -745,7 +745,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User Executes `add ...` Command:
 2. System adds user profile to `Realodex` and replies to user with a success message.
-    Use case ends.
+    
+   Use case ends.
 
 **Extensions**
 
@@ -871,6 +872,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User Executes `edit ...` Command:
 2. System edits user profile of `Realodex` and replies to user with a success message.
+   
    Use case ends.
 
 **Extensions**
@@ -989,22 +991,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Use case resumes from step 1.
 
 
-**Use case: UC03 - Delete a person**
+**Use case: UC03 — Delete a person by name**
 
 **MSS**
 
-1.  User requests to delete user
-2.  Realodex deletes the person with success message
+1.  User requests to delete user by name
+2.  Realodex deletes the person with a success message
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The input name is not found
- * 2a1. Realodex shows an error message "<Name> is not found".
- * Use case ends.
+* 1a. The input name is not of valid format
+ * 1a1. Realodex shows an error message. 
 
-**Use case: UC04 — Sort list by birthday**
+Use case ends.
+
+* 1b. The input name is not found
+* 1b1. Realodex shows an error message.
+
+Use case ends.
+
+
+**Use case: UC04 — Delete a person by index**
+
+**MSS**
+
+1.  User requests to delete user by index
+2.  Realodex deletes the person with a success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The index is more than client list size
+* 1a1. Realodex shows an error message.
+* Use case ends.
+
+* 1b. The index is negative
+* 1b1. Realodex shows an error message.
+* Use case ends.
+
+**Use case: UC05 — Sort list by birthday**
 
 **MSS**
 
@@ -1013,7 +1041,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: List**
+**Use case: UC06 — List**
 
 **MSS**
 
@@ -1028,12 +1056,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. Realodex shows an empty list.
   * Use case ends.
 
-**Use case: Filter by Name**
+**Use case: UC07 — Filter by Name**
 
 **MSS**
 
-1. User requests to filter clients by providing a name substring.
-2. Realodex filters and displays a list of all clients whose names include the input substring.
+1. User requests to filter clients by providing a name reference.
+2. Realodex filters and displays a list of all clients whose names match the reference input.
 
     Use case ends.
 
@@ -1041,37 +1069,100 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The input substring is empty.
 
-    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message.
 
         Use case ends.
 
-* 1b. No clients' names match the input substring.
+* 1b. The name input is not of valid format.
 
-    * 1b1. Realodex displays an empty list and shows a message indicating that no matches were found.
+  * 1b1. Realodex shows an error message.
 
-      Use case ends.
+    Use case ends.
 
-**Use case: Filter by Remarks**
+**Use case: UC08 — Filter by Remarks**
 
 **MSS**
 
-1. User requests to filter clients by providing a remark substring.
-2. Realodex filters and displays a list of all clients whose remarks include the input substring.
+1. User requests to filter clients by providing a remark reference.
+2. Realodex filters and displays a list of all clients whose remarks match the reference input.
    Use case ends.
 
 **Extensions**
 
 * 1a. The input substring is empty.
 
-    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message.
 
       Use case ends.
 
-* 1b. No clients' remarks match the input substring.
 
-    * 1b1. Realodex displays an empty list and shows a message indicating that no matches were found.
+**Use case: UC09 — Filter by Tag**
 
-      Use case ends.
+**MSS**
+
+1. User requests to filter clients by providing a tag.
+2. Realodex filters and displays a list of all clients whose tag matches the input.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The input substring is empty.
+
+  * 1a1. Realodex shows an error message.
+
+    Use case ends.
+
+* 1b. The tag input is not of valid format.
+
+  * 1b1. Realodex shows an error message.
+
+    Use case ends.
+
+
+**Use case: UC10 — Filter by Housing Type**
+
+**MSS**
+
+1. User requests to filter clients by providing a housing type.
+2. Realodex filters and displays a list of all clients whose housing type matches the input.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The input substring is empty.
+
+  * 1a1. Realodex shows an error message.
+
+    Use case ends.
+
+* 1b. The housing type input is not of valid format.
+
+  * 1b1. Realodex shows an error message.
+
+    Use case ends.
+
+**Use case: UC11 — Filter by Birthday**
+
+**MSS**
+
+1. User requests to filter clients by providing a birthday month.
+2. Realodex filters and displays a list of all clients whose birthday month matches the input.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The input substring is empty.
+
+  * 1a1. Realodex shows an error message.
+
+    Use case ends.
+
+* 1b. The birthday month is not of valid format.
+
+  * 1b1. Realodex shows an error message.
+
+    Use case ends.
+
 
 **Use case: Getting help**
 
