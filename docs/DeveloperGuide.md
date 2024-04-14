@@ -1371,6 +1371,7 @@ command and streamline the process of adding new user profiles**
    - Based on feedback, we may make some fields not compulsory all together.
      - If users feedback that `EMAIL` is not as important for their day-to-day client management, we may remove the 
        compulsory need for it in future iterations.
+
 4. **Make date error more specific for leap dates on non-leap years**
    - Currently, if user types in an invalid date for commands such as `edit`, Realodex will return a invalid
      `...Birthday should be in ddMMMyyyy format... Date should also not be in future years and no earlier than year 1000!`
@@ -1378,6 +1379,7 @@ command and streamline the process of adding new user profiles**
        this will expectedly return the error as its invalid date. 
        However, the error message is not entirely helpful as the format is technically correct as its `DDMMMYYYY`.
      - We plan to return a more specific message such as 'Date input is a leap date on a non-leap year'
+
 5. **Improve duplicate user profile check**
    - Currently, Realodex prevents duplicates based on the condition of two clients having the same full name regardless of other parameters.
      - Since many clients may have the same name or since they may only disclose a part of 
@@ -1388,6 +1390,7 @@ command and streamline the process of adding new user profiles**
      Even if we detected a possible duplicate,
      we may give the user an option to continue adding the client if they wish to do so, instead of downright rejecting the 
      addition of the profile.
+
 6. **Make `PHONE` input conditions less restrictive**
    - Currently, `PHONE` only allows numbers, and it should be at least three digits long
    - This poses problems to users who wish to input 
@@ -1395,6 +1398,10 @@ command and streamline the process of adding new user profiles**
        which may commonly have `-`.
      - Symbols such as white-space as they may wish to put gaps such as `9021 5365`
    - We plan to reduce the restrictions of no symbols for future iterations 
+
+7. **Allow symbols in `NAME` input**
+   - Currently, `NAME` does not accept symbols, hence common substrings such as `s/o` or `d/o` are not allowed in the name input.
+   - We plan to allow the usage of symbols for future iterations by accepting symbols in names.
 
 --------------------------------------------------------------------------------------------------------------------
 
