@@ -1367,11 +1367,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC03 — Delete a person by name**
+**Use case: UC03 — `Delete` a person by name**
 
 **MSS**
 
-1.  User requests to delete user by name
+1.  User requests to `delete` user by name
 
 2.  Realodex deletes the person with a success message
 
@@ -1383,7 +1383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1. Realodex shows an error message highlighting the correct format for `Name`.
 
-  * 1a2. User inputs a new name.
+  * 1a2. User inputs a new `Name`.
 
   * 1a3. Steps 1a1 to 1a2 repeats until the `Name` input is valid.
   
@@ -1391,9 +1391,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The input `Name` is not found
 
-  * 1b1. Realodex shows an error message that client name is invalid.
+  * 1b1. Realodex shows an error message that `Name` is invalid.
 
-  * 1b2. User inputs a new name.
+  * 1b2. User inputs a new `Name`.
 
   * 1b3. Steps 1b1 to 1b2 repeats until the `Name` input is valid.
   
@@ -1401,11 +1401,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC04 — Delete a person by index**
+**Use case: UC04 — `Delete` a person by `index`**
 
 **MSS**
 
-1.  User requests to delete user by index
+1.  User requests to `delete` user by `index`
 
 2.  Realodex deletes the person with a success message
 
@@ -1413,45 +1413,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 1a. The index is more than client list size
+* 1a. The `index` is more than client list size
 
-  * 1a1. Realodex shows an error message indicating an invalid endex error.
+  * 1a1. Realodex shows an error message indicating an invalid `index` error.
 
-  * 1a2. User inputs a new index.
+  * 1a2. User inputs a new `index`.
 
-  * 1a3. Steps 1a1 to 1a2 repeats until the index input is valid.
+  * 1a3. Steps 1a1 to 1a2 repeats until the `index` input is valid.
 
   * Use case resumes from step 2.
 
-* 1b. The index is negative
+* 1b. The `index` is negative
 
-  * 1b1. Realodex shows an error message indicating a negative index error.
+  * 1b1. Realodex shows an error message indicating a negative `index` error.
 
-  * 1b2. User inputs a new index.
+  * 1b2. User inputs a new `index`.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the index input is valid.
+  * 1b3. Steps 1b1 to 1b2 repeats until the `index` input is valid.
 
   * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC05 — Sort list by birthday**
+**Use case: UC05 — `Sort` list by birthday**
 
 **MSS**
 
-1.  User requests to sort the list by the nearest upcoming birthday.
+1.  User requests to `sort` the list by the nearest upcoming birthday.
 
-2.  Realodex sorts the list and returns the sorted list to screen.
+2.  Realodex sorts the `list` and returns the sorted list to screen.
 
     Use case ends.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC06 — List**
+**Use case: UC06 — `List`**
 
 **MSS**
 
-1.  User requests to list
+1.  User requests to `list`
 
 2.  Realodex shows the list of all clients
 
@@ -1467,11 +1467,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC07 — Filter by Name**
+**Use case: UC07 — `Filter` by Name**
 
 **MSS**
 
-1. User requests to filter clients by providing a name substring.
+1. User requests to `filter` clients by providing a `Name` substring.
 
 2. Realodex filters and displays a list of all clients whose names include the input substring.
 
@@ -1483,13 +1483,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-        Use case ends.
+    * 1a2. User inputs a new substring.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the input substring is valid.
+
+    * Use case resumes from step 2.
 
 * 1b. The name input is not of valid format.
 
   * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+  * 1b2. User inputs a new substring.
+
+  * 1b3. Steps 1b1 to 1b2 repeats until the input substring is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1508,6 +1516,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The remark input is empty.
 
     * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+
+    * 1a2. User inputs a non-empty remark.
+
+    * Use case resumes from step 2.
 
       Use case ends.
 
@@ -1529,13 +1541,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    Use case ends.
+  * 1a2. User inputs a non-empty tag.
+
+  * Use case resumes from step 2.
 
 * 1b. The tag input is not of valid format.
 
   * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+  * 1b2. User inputs a new tag.
+
+  * 1b3. Steps 1b1 to 1b2 repeats until the tag input is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1555,13 +1573,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    Use case ends.
+  * 1a2. User inputs a non-empty housing type.
+
+  * Use case resumes from step 2.
 
 * 1b. The housing type input is not of valid format.
 
   * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+  * 1b2. User inputs a new housing type.
+
+  * 1b3. Steps 1b1 to 1b2 repeats until the housing type input is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1581,11 +1605,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    Use case ends.
+  * 1a2. User inputs a non-empty birthday month.
+
+  * Use case resumes from step 2.
 
 * 1b. The birthday month is not of valid format.
 
   * 1b1. Realodex shows an error message highlighting the correct format.
+
+  * 1b2. User inputs a new birthday month of valid format.
+
+  * 1b3. Steps 1b1 to 1b2 repeats until the birthday month input is valid.
 
     Use case ends.
 
@@ -1614,6 +1644,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The requested command does not exist.
 
     * 1a1. Realodex shows an error message command does not exist.
+
+    * 1a2. User inputs a new command.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the command input is valid.
+
+    * Use case resumes from step 2.
 
       Use case ends.
 
