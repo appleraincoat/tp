@@ -3,30 +3,30 @@ package seedu.realodex.model.person.predicates;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.realodex.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.realodex.model.person.HousingType;
 import seedu.realodex.testutil.PersonBuilder;
 
-
-
 public class HousingTypeMatchPredicateTest {
 
     @Test
+    // Test for equals method to ensure consistency and symmetry
     public void equals() {
-        HousingType housingTypeOne = new HousingType("hdb");
-        HousingType housingTypeTwo = new HousingType("Good Class Bungalow");
+        // Equivalence Partitioning (EP): Same month, different month, null, different type
+        String firstMonth = "jan";
+        String secondMonth = "feb";
 
-        HousingTypeMatchPredicate firstPredicate = new HousingTypeMatchPredicate(housingTypeOne);
-        HousingTypeMatchPredicate secondPredicate = new HousingTypeMatchPredicate(housingTypeTwo);
+        BirthdayIsInMonthPredicate firstPredicate = new BirthdayIsInMonthPredicate(firstMonth);
+        BirthdayIsInMonthPredicate secondPredicate = new BirthdayIsInMonthPredicate(secondMonth);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        HousingTypeMatchPredicate firstPredicateCopy =
-                new HousingTypeMatchPredicate(housingTypeOne);
+        BirthdayIsInMonthPredicate firstPredicateCopy = new BirthdayIsInMonthPredicate(firstMonth);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -35,57 +35,78 @@ public class HousingTypeMatchPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different month -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_housingTypeMatch_returnsTrue() {
-        // Housing Type matches HDB
-        HousingTypeMatchPredicate predicate = new HousingTypeMatchPredicate(new HousingType("hdb"));
-        assertTrue(predicate.test(new PersonBuilder().withHousingType("hdb").build()));
+    // Test for birthdayIsInMonthPredicate to return true when birthday month matches predicate month
+    public void test_birthdayIsInMonth_returnsTrue() {
+        // Equivalence Partitioning (EP): Valid month with different lengths, leap year
+        // Keyphrase is valid month with 3 letters
+        BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate("Jan");
+        assertTrue(predicate.test(new PersonBuilder().withBirthday("1Jan2001").build()));
 
-        // Housing Type matches HDB
-        predicate = new HousingTypeMatchPredicate(new HousingType("Condominium"));
-        assertTrue(predicate.test(new PersonBuilder().withHousingType("Condominium").build()));
+        // Keyphrase is valid month with 4 letters
+        predicate = new BirthdayIsInMonthPredicate("Oct");
+        assertTrue(predicate.test(new PersonBuilder().withBirthday("11Oct2001").build()));
 
-        // Housing Type matches HDB
-        predicate = new HousingTypeMatchPredicate(new HousingType("Good Class Bungalow"));
-        assertTrue(predicate.test(new PersonBuilder().withHousingType("Good Class Bungalow").build()));
+        // Keyphrase is February and Birthday in leap year
+        predicate = new BirthdayIsInMonthPredicate("Feb");
+        assertTrue(predicate.test(new PersonBuilder().withBirthday("29Feb2000").build()));
 
-        // Housing Type matches HDB
-        predicate = new HousingTypeMatchPredicate(new HousingType("Landed Property"));
-        assertTrue(predicate.test(new PersonBuilder().withHousingType("Landed Property").build()));
-
+        // Mixed-case keyphrase
+        predicate = new BirthdayIsInMonthPredicate("jAn");
+        assertTrue(predicate.test(new PersonBuilder().withBirthday("1Jan2001").build()));
     }
 
     @Test
-    public void test_housingTypeDoesNotMatch_returnsFalse() {
+    // Test for birthdayIsInMonthPredicate to return false when birthday month does not match predicate month
+    public void test_birthdayIsNotInMonth_returnsTrue() {
+        // Equivalence Partitioning (EP): Valid month with different lengths, mixed-case keyphrase
+        // Keyphrase is valid month with 3 letters
+        BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate("Jun");
+        assertFalse(predicate.test(new PersonBuilder().withBirthday("1Jan2001").build()));
 
-        // Housing Type does not match HDB
-        HousingTypeMatchPredicate predicate = new HousingTypeMatchPredicate(new HousingType("hdb"));
-        assertFalse(predicate.test(new PersonBuilder().withHousingType("Condominium").build()));
+        // Keyphrase is valid month with full month
+        predicate = new BirthdayIsInMonthPredicate("September");
+        assertFalse(predicate.test(new PersonBuilder().withBirthday("11October2001").build()));
 
-        // Housing Type matches Condominium
-        predicate = new HousingTypeMatchPredicate(new HousingType("Condominium"));
-        assertFalse(predicate.test(new PersonBuilder().withHousingType("Good Class Bungalow").build()));
-
-        // Housing Type matches Good Class Bungalow
-        predicate = new HousingTypeMatchPredicate(new HousingType("Good Class Bungalow"));
-        assertFalse(predicate.test(new PersonBuilder().withHousingType("Landed Property").build()));
-
-        // Housing Type matches Landed Property
-        predicate = new HousingTypeMatchPredicate(new HousingType("Landed Property"));
-        assertFalse(predicate.test(new PersonBuilder().withHousingType("hdb").build()));
-
+        // Mixed-case keyphrase
+        predicate = new BirthdayIsInMonthPredicate("jAn");
+        assertFalse(predicate.test(new PersonBuilder().withBirthday("1Feb2001").build()));
     }
 
     @Test
-    public void toStringMethod() {
-        String housingTypeString = "hdb";
-        HousingType housingType = new HousingType(housingTypeString);
-        HousingTypeMatchPredicate predicate = new HousingTypeMatchPredicate(housingType);
-        String expected = HousingTypeMatchPredicate.class.getCanonicalName() + "{Housing Type=" + housingType + "}";
+    // Test for birthdayIsInMonthPredicate to return false when birthday is not specified
+    public void test_birthdayNotSpecified_returnsFalse() {
+        // Equivalence Partitioning (EP): Birthday not specified
+        BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate("Jun");
+        assertFalse(predicate.test(new PersonBuilder().build()));
+
+        predicate = new BirthdayIsInMonthPredicate("October");
+        assertFalse(predicate.test(new PersonBuilder().withBirthday("").build()));
+    }
+
+    @Test
+        // Test toString method to ensure it returns correct string representation
+    void toStringMethod() {
+        String keyphrase = "Aug";
+        BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate(keyphrase);
+        String expected = BirthdayIsInMonthPredicate.class.getCanonicalName() + "{month=Aug}";
         assertEquals(expected, predicate.toString());
+    }
+
+    @Test
+        // Test toString method when input is invalid or empty
+    void toStringMethod_noBirthMonthSpecified() {
+        // Equivalence Partitioning (EP): Empty String, Invalid String
+        // Empty String input
+        String keyphraseEmptyString = "";
+        assertThrows(AssertionError.class, null, () -> new BirthdayIsInMonthPredicate(keyphraseEmptyString));
+
+        // Invalid String input
+        String keyphraseInvalidString = "sndjkfnksdnf";
+        assertThrows(AssertionError.class, null, () -> new BirthdayIsInMonthPredicate(keyphraseInvalidString));
     }
 }
