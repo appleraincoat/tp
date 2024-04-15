@@ -22,29 +22,35 @@ import seedu.realodex.testutil.PersonBuilder;
 class PredicateProducerTest {
 
     @Test
+        // Test for creating predicate based on name prefix
     void createPredicate_validNamePrefix_createsCorrectPredicate() throws ParseException {
+        // Equivalence Partitioning (EP): Valid name prefix and keyphrase
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrase = List.of("Alice");
 
         Person alice = new PersonBuilder().withName("Alice").withRemark("She is a lice").build();
         assertEquals(predicateProducer.createPredicate(PREFIX_NAME, keyphrase),
-                new NameContainsKeyphrasePredicate("Alice"));
+                     new NameContainsKeyphrasePredicate("Alice"));
         assertTrue(predicateProducer.createPredicate(PREFIX_NAME, keyphrase).test(alice));
     }
 
     @Test
+        // Test for creating predicate based on remark prefix
     void createPredicate_validRemarkPrefix_createsCorrectPredicate() throws ParseException {
+        // Equivalence Partitioning (EP): Valid remark prefix and keyphrase
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrase = List.of("She is a lice");
 
         Person alice = new PersonBuilder().withName("Alice").withRemark("She is a lice").build();
         assertEquals(predicateProducer.createPredicate(PREFIX_REMARK, keyphrase),
-                new RemarkContainsKeyphrasePredicate("She is a lice"));
+                     new RemarkContainsKeyphrasePredicate("She is a lice"));
         assertTrue(predicateProducer.createPredicate(PREFIX_REMARK, keyphrase).test(alice));
     }
 
     @Test
+        // Test for creating predicate based on tag prefix
     void createPredicate_validTagPrefix_createsCorrectPredicate() throws ParseException {
+        // Equivalence Partitioning (EP): Valid tag prefix and keyphrases
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrases = List.of("buyer");
 
@@ -53,7 +59,9 @@ class PredicateProducerTest {
     }
 
     @Test
+        // Test for creating predicate based on multiple tag prefixes
     void createPredicate_validMultipleTagPrefixes_createsCorrectPredicate() throws ParseException {
+        // Equivalence Partitioning (EP): Valid tag prefixes and keyphrases
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrases = List.of("buyer", "seller");
 
@@ -62,7 +70,9 @@ class PredicateProducerTest {
     }
 
     @Test
+        // Test for handling invalid tag prefix
     void createMatchTagPredicate_invalidTagString_assertionErrorWhenInvalidPrefix() {
+        // Equivalence Partitioning (EP): Invalid tag prefix
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrases = List.of("customer");
 
@@ -70,16 +80,20 @@ class PredicateProducerTest {
     }
 
     @Test
+        // Test for creating housing type match predicate with valid housing type strings
     void createHousingTypeMatchPredicate_validHousingTypeStrings_createsCorrectPredicate() {
+        // Equivalence Partitioning (EP): Valid housing type strings
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrases = List.of("hdb");
         HousingType housingType = new HousingType("hdb");
         assertEquals(predicateProducer.createHousingTypeMatchPredicate(keyphrases),
-                new HousingTypeMatchPredicate(housingType));
+                     new HousingTypeMatchPredicate(housingType));
     }
 
     @Test
+        // Test for handling invalid housing type strings
     void createHousingTypeMatchPredicate_invalidHousingTypeStrings_assertionErrorWhenInvalidPrefix() {
+        // Equivalence Partitioning (EP): Invalid housing type strings
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrases = List.of("hdbb");
 
@@ -87,7 +101,9 @@ class PredicateProducerTest {
     }
 
     @Test
+        // Test for handling empty keyphrase when creating predicate
     void createPredicate_emptyKeyphrase_throwsParseException() {
+        // Equivalence Partitioning (EP): Empty keyphrase
         PredicateProducer predicateProducer = new PredicateProducer();
         List<String> keyphrase = List.of("");
 
@@ -98,7 +114,9 @@ class PredicateProducerTest {
     }
 
     @Test
+        // Test for handling unknown prefix when creating predicate
     void createPredicate_returnsNullWhenInvalidPrefix() {
+        // Equivalence Partitioning (EP): Unknown prefix
         PredicateProducer predicateProducer = new PredicateProducer();
         Prefix unhandledPrefix = new Prefix("unhandled/");
         List<String> keyphrase = List.of("keyphrase");
@@ -107,5 +125,4 @@ class PredicateProducerTest {
 
         assertThrows(AssertionError.class, () -> predicateProducer.createPredicate(unhandledPrefix, keyphrase));
     }
-
 }
