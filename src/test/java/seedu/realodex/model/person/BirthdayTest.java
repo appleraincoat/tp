@@ -35,41 +35,41 @@ public class BirthdayTest {
 
     @Test
     public void isValidBirthday_test() {
-        // null date
+        // Equivalence partitioning: null
         assertThrows(NullPointerException.class, () -> Birthday.isValidBirthday(null));
 
-        // blank dates
+        // Equivalence partitioning: empty or blank string
         assertTrue(Birthday.isValidBirthday("")); // empty string
         assertTrue(Birthday.isValidBirthday(" ")); // spaces only
 
-        // missing parts
+        // Equivalence partitioning: missing parts
         assertFalse(Birthday.isValidBirthday("1")); // missing month
         assertFalse(Birthday.isValidBirthday("31June")); // missing year
         assertFalse(Birthday.isValidBirthday("June2002")); // missing day
 
-        // invalid parts
+        // Equivalence partitioning: invalid parts
         assertFalse(Birthday.isValidBirthday("29Feb2023")); // not a leap year
         assertFalse(Birthday.isValidBirthday("31June2023")); // June does not have 31 days
         assertFalse(Birthday.isValidBirthday("1-jan-2001")); // not supposed to have '-'
 
-        // valid date
+        // Equivalence partitioning: valid date
         assertTrue(Birthday.isValidBirthday("29Feb2024")); // leap year
         assertTrue(Birthday.isValidBirthday("12May2003"));
         assertTrue(Birthday.isValidBirthday("08Aug1888"));
 
-        // invalid dates
+        // Equivalence partitioning: invalid dates
         assertFalse(Birthday.isValidBirthday("01May2009233"));
         assertFalse(Birthday.isValidBirthday("0"));
 
-        // creating future dates
+        // Equivalence partitioning: creating future dates
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
         LocalDate futureDate = today.plusYears(10);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMMyyyy");
         String tomorrowFormatted = tomorrow.format(formatter);
         String futureFormatted = futureDate.format(formatter);
 
-        // future dates
+        // Equivalence partitioning: future dates
         assertFalse(Birthday.isValidBirthday(tomorrowFormatted)); //cant be in future days
         assertFalse(Birthday.isValidBirthday(futureFormatted)); //cant be in future years
 
@@ -225,45 +225,6 @@ public class BirthdayTest {
         toReturn.set(Calendar.MILLISECOND, 0);
         return toReturn;
     }
-
-    @Test
-    public void isValidBirthday_equivalencePartitioning() {
-        // Equivalence partitioning: null or empty string
-        assertTrue(Birthday.isValidBirthday("")); // empty string
-        assertTrue(Birthday.isValidBirthday(" ")); // spaces only
-
-        // Equivalence partitioning: missing parts
-        assertFalse(Birthday.isValidBirthday("1")); // missing month
-        assertFalse(Birthday.isValidBirthday("31June")); // missing year
-        assertFalse(Birthday.isValidBirthday("June2002")); // missing day
-
-        // Equivalence partitioning: invalid parts
-        assertFalse(Birthday.isValidBirthday("29Feb2023")); // not a leap year
-        assertFalse(Birthday.isValidBirthday("31June2023")); // June does not have 31 days
-        assertFalse(Birthday.isValidBirthday("1-jan-2001")); // not supposed to have '-'
-
-        // Equivalence partitioning: valid date
-        assertTrue(Birthday.isValidBirthday("29Feb2024")); // leap year
-        assertTrue(Birthday.isValidBirthday("12May2003"));
-        assertTrue(Birthday.isValidBirthday("08Aug1888"));
-
-        // Equivalence partitioning: invalid dates
-        assertFalse(Birthday.isValidBirthday("01May2009233"));
-        assertFalse(Birthday.isValidBirthday("0"));
-
-        // Equivalence partitioning: creating future dates
-        LocalDate today = LocalDate.now();
-        LocalDate tomorrow = today.plusDays(1);
-        LocalDate futureDate = today.plusYears(10);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-        String tomorrowFormatted = tomorrow.format(formatter);
-        String futureFormatted = futureDate.format(formatter);
-
-        // Equivalence partitioning: future dates
-        assertFalse(Birthday.isValidBirthday(tomorrowFormatted)); // cant be in future days
-        assertFalse(Birthday.isValidBirthday(futureFormatted)); // cant be in future years
-    }
-
     @Test
     public void isValidBirthday_leapYear() {
         // Equivalence partitioning: Leap year

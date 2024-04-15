@@ -23,23 +23,6 @@ public class IncomeTest {
     }
 
     @Test
-    public void isValidIncome() {
-        // null income
-        assertThrows(NullPointerException.class, () -> Income.isValidIncome(null));
-
-        // invalid income
-        assertFalse(Income.isValidIncome("-1")); // less than 0
-        assertFalse(Income.isValidIncome("-3")); // less than 0
-        assertFalse(Income.isValidIncome("-121333213213131313")); // less than 0 but very negative
-
-
-        // valid income numbers
-        assertTrue(Income.isValidIncome("2")); // more than 1
-        assertTrue(Income.isValidIncome("93121"));
-        assertTrue(Income.isValidIncome("1242938231332131313")); // long number
-    }
-
-    @Test
     public void isValidIncome_equivalencePartitioning() {
         // null income
         assertThrows(NullPointerException.class, () -> Income.isValidIncome(null));
