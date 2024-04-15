@@ -386,8 +386,6 @@ Feel free to **continue exploring the in-depth features** of Realodex to fully l
 
 -----
 
-<div style="page-break-after: always;"></div>
-
 ## Features
 
 ### Command Format and Usage
