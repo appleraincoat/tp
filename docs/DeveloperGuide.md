@@ -51,6 +51,8 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -194,20 +196,34 @@ Classes used by multiple components are in the `seedu.realodex.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Overall Add feature
+### <u>Overall Add feature</u>
 
-#### Implementation of `AddCommand`
+#### Description
+
 The `add` feature, that was morphed from the original AddressBook3, allows users to add clients along with their critical personal information, as well as optional remarks and birthday information.
 
-#### Details
+#### Key Components
+- `AddCommand`: Executes the addition operation based on the user's input.
+- `AddCommandParser`: Parses user input to create an `AddCommand` object.
+- `Person`: Represents a person in Realodex, encapsulating their personal information.
+- `ModelManager`: Implements the `Model` interface and contains the internal list of persons.
+- `LogicManager`: Invokes the `AddCommand` to execute the addition operation.
+- `RealodexParser`: Creates an `AddCommand` object based on the user input.
 
+#### `AddCommand` Implementation Sequence Diagram
+The sequence diagram below illustrates the process of adding a person into Realodex.
+<puml src="diagrams/add/AddCommandSequenceDiagram.puml" width="1000" />
+
+#### Component Interaction Details
 1. The user executes the command `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
-2. The `AddCommandParser` interprets the input
+2. The `AddCommandParser` interprets the input.
 3. An `AddCommand` object is created.
 4. The `LogicManager` invokes the execute method of AddCommand.
 5. The execute method of `AddCommand` invokes the `addPerson` method in `Model` property to create new contact with the new `Person` object.
 6. The execute method of `AddCommand` returns a `CommandResult` object which stores the data regarding the completion of the `AddCommand`.
-4. The UI reflects this new list with added `Person`.
+7. The UI reflects this new list with added `Person`.
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 1. The user launches the application.
@@ -216,12 +232,12 @@ The `add` feature, that was morphed from the original AddressBook3, allows users
 
 #### Design Considerations
 
-**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type
-We are cautious to choose compulsory fields that are important for real-estate agents, making them compulsory fields.
-While they may not be **absolutely necessary** for all clients, we believe that the cost of missing out on these fields outweighs the hassle of making them compulsory.
-For example, missing out on the family size may not be critical for a buyer who is single and is searching for a bachelor pad, but is critical for a family of 7 who needs a large enough house for all 7 of them.
-These fields are also made necessary for both buyers and sellers, even though they may be intuitively be more suitable for either seller or buyer. For example, while the income may not be absolutely necessary for a seller,
-it is important information if the agent would like to make recommendations for future properties for own-stay or investment purposes.
+**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type.<br>
+* We chose these fields to be compulsory as they are critical for the real estate agent to make informed decisions and recommendations for their clients.
+* While they may not be **absolutely necessary** for all clients, we believe that the cost of missing out on these fields outweighs the hassle of making them compulsory.
+* For example, missing out on the family size may not be critical for a buyer who is single and is searching for a bachelor pad, but is critical for a family of 7 who needs a large enough house for all 7 of them.
+* These fields are also made necessary for both buyers and sellers, even though they may be intuitively be more suitable for either seller or buyer. 
+* For example, while the income may not be absolutely necessary for a seller, it is important information if the agent would like to make recommendations for future properties for own-stay or investment purposes.
 
 **Optional fields** include: Remark, Birthday
 A real estate agent may not have any remark for a client yet, and wishes to leave Remark empty.
@@ -259,26 +275,41 @@ Specific field constraints are described below. They are designed with the users
 * `BIRTHDAY`:
   * Implemented as an Optional Date, making use of Java SimpleDateFormat and Calendar classes for input and output validation.
 
-The sequence diagram below illustrates the process of adding a person into Realodex.
-<puml src="diagrams/add/AddCommandSequenceDiagram.puml" width="1000" />
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-### Overall Sort feature
+### <u>Overall Sort feature</u>
 
-#### Initialization of `SortCommand`
-
+#### Description
 The `sort` feature, introduced in version 1.4, allows users to arrange clients based on their upcoming birthday proximity, which is determined by the number of days until their next birthday relative to the current date.
+
+#### Key Components
+- `SortCommand`: Executes the sorting operation based on the upcoming birthdays of persons.
+- `SortCommandParser`: Parses user input to create a `SortCommand` object.
+- `BirthdayComparator`: Compares two `Person` objects based on their birthdays to facilitate sorting.
+- `LogicManager`: Invokes the `SortCommand` to execute the sorting operation.
+- `RealodexParser`: Creates a `SortCommand` object based on the user input.
+- `UniquePersonsList`: Stores the list of unique persons in Realodex.
+- `ModelManager`: Implements the `Model` interface and contains the internal list of persons.
+
+#### `SortCommand` Architecture
+
+`SortCommand` extensively interacts with the `Model` component to facilitate list sorting during execution. Consequently, `SortCommand` depends on `ModelManager`, which is an implementation of the `Model` interface. This dependency arises because `ModelManager` instances are passed as arguments in the `public CommandResult execute(Model model) throws CommandException` method of `SortCommand`. For brevity, interactions beyond the `Model` layer are not detailed.
+<puml src="diagrams/sort/SortCommandClassDiagram-Model.puml" width="300" />
+
+<div style="page-break-after: always;"></div>
+
+#### `SortCommand` Initialization Sequence Diagram
 
 To implement the sorting functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`. The RealodexParser is responsible for creating an instance of the `SortCommand`, encapsulating the logic for sorting clients based on their upcoming birthdays.
 
 The sequence diagram below illustrates the process of creating a sort operation through the `Logic` component:
 <puml src="diagrams/sort/SortSequenceDiagram-Logic.puml" width="800" />
 
-#### Implementation of `SortCommand`
+<div style="page-break-after: always;"></div>
 
+#### `SortCommand` Implementation Sequence Diagram
 
 1. **Model Retrieval**: The method begins by retrieving the `Realodex` component from the provided `Model` object using the `getRealodex` method.
 
@@ -292,6 +323,8 @@ The sequence diagram below illustrates the process of creating a sort operation 
 
 6. **Exception Handling**: The method declares a `throws CommandException`, indicating that it may throw a `CommandException` if an error occurs during execution. However, the method implementation does not contain explicit error handling logic.
 <puml src="diagrams/sort/SortSequenceDiagram-Model.puml" width="1000" />
+
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `BirthdayComparator`
 The provided comparator compares two `Person` objects based on their birthdays.
@@ -318,35 +351,18 @@ The provided comparator compares two `Person` objects based on their birthdays.
     }
 ```
 
-#### `Model` Dependency
+#### Component Interaction Details
+1. The user executes the command `sort`, intending to sort the list of persons based on their upcoming birthdays.
+2. The `SortCommandParser` interprets the input.
+3. A `SortCommand` object is created.
+4. The `LogicManager` invokes the execute method of `SortCommand`.
+5. The execute method of `SortCommand` sorts the list of persons based on their upcoming birthdays.
+6. The UI reflects the updated list with persons sorted based on their upcoming birthdays.
 
-By now, you may have noticed that `SortCommand` extensively interacts with the `Model` component to facilitate list sorting during execution. Consequently, `SortCommand` depends on `ModelManager`, which is an implementation of the `Model` interface. This dependency arises because `ModelManager` instances are passed as arguments in the `public CommandResult execute(Model model) throws CommandException` method of `SortCommand`. For brevity, interactions beyond the `Model` layer are not detailed.
-<puml src="diagrams/sort/SortCommandClassDiagram-Model.puml" width="300" />
-
-
-#### [Proposed] Sort Features Beyond v1.4
-
-The `sort` functionality is poised for exciting developments in the future. Although initially focused on sorting
-clients based on their birthdays to bolster client relationships in a **breadth-first development** approach,
-we have ambitious plans to extend this feature to other fields. With clients having diverse attributes
-such as income and housing preferences, implementing `sort` for these fields is definitely on our roadmap.
-
-#### Initialization of new `SortCommand`
-
-To enhance the sorting functionality, we're introducing the capability to sort based on various fields specified by the user.
-The proposed command format is `sort field`, where `field` represents the attribute by which the sorting will be performed.
-For instance, users can execute commands like `sort birthday`, `sort income`, or `sort housepref`.
-
-The following sequence diagram illustrates the process
-of introducing this new `sort` operation through the `Logic` component,
-with user-specified fields.
-
-The ref frame sequence diagram is omitted here,
-as it's similar to the [sorting](#implementation-of-sortcommand) sequence illustrated earlier.
-Instead of using the `BirthdayComparator`,
-we'll utilize different comparators based on the user's specified field, such as `IncomeComparator`.
-
-<puml src="diagrams/sort/NewSortSequenceDiagram-Logic.puml" width="1000" />
+#### Example Usage Scenario
+1. The user inputs `sort`, intending to sort the list of persons based on their upcoming birthdays.
+2. The UI reflects the updated list with persons sorted based on their upcoming birthdays.
+3. The user can now view the list of persons arranged in ascending order based on their upcoming birthdays.
 
 <div style="page-break-after: always;"></div>
 
@@ -373,17 +389,50 @@ Introducing the ability to sort clients based on criteria other than "Today" ope
 
 In summary, while introducing sorting by criteria other than "Today" may come with some initial challenges, the benefits of enhanced flexibility, relevance, and personalization can outweigh these concerns, ultimately leading to a more powerful and user-friendly client management system.
 
+<div style="page-break-after: always;"></div>
+
+#### [Proposed] `Sort` Features Beyond v1.4
+
+The `sort` functionality is poised for exciting developments in the future. Although initially focused on sorting
+clients based on their birthdays to bolster client relationships in a **breadth-first development** approach,
+we have ambitious plans to extend this feature to other fields. With clients having diverse attributes
+such as income and housing preferences, implementing `sort` for these fields is definitely on our roadmap.
+
+#### Proposed `Sort` Command Initialisation Sequence Diagram
+
+To enhance the sorting functionality, we're introducing the capability to sort based on various fields specified by the user.
+The proposed command format is `sort field`, where `field` represents the attribute by which the sorting will be performed.
+For instance, users can execute commands like `sort birthday`, `sort income`, or `sort housepref`.
+
+The following sequence diagram illustrates the process
+of introducing this new `sort` operation through the `Logic` component,
+with user-specified fields.
+
+The ref frame sequence diagram is omitted here,
+as it's similar to the [sorting](#sortcommand-implementation-sequence-diagram) sequence illustrated earlier.
+Instead of using the `BirthdayComparator`,
+we'll utilize different comparators based on the user's specified field, such as `IncomeComparator`.
+
+<puml src="diagrams/sort/NewSortSequenceDiagram-Logic.puml" width="1000" />
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-### Overall Filter feature
+### <u>Overall Filter feature</u>
 
-#### Implementation
-This feature enables users to filter and view persons in Realodex based on specified criteria such as name, remark, tag, birthday, and housing type.
-The key components involved are:
+#### Description
 
+This feature enables users to filter and view persons in Realodex based on specified criteria such as name, remark, tag, birthday, and housing type.<br>
+There are five ways to filter:
+1. Filter by Name
+2. Filter by Remark
+3. Filter by Tag
+4. Filter by Birthday
+5. Filter by Housing Type
+
+#### Key Components
 - `FilterCommand`: Executes the filtering operation based on a provided predicate that encapsulates the filtering criteria.
 - `PrefixChecker`: Ensures the syntactic correctness of user inputs by verifying command prefixes.
 Detects command format violations, and facilitates clear error messaging.
@@ -395,27 +444,31 @@ that determine if a person's attributes match the user-defined criteria.
 #### Filter Command Architecture
 <puml src="diagrams/filter/FilterFeatureArchitecture.puml" width="1000" />
 
-#### Initialization of `FilterCommand`
+<div style="page-break-after: always;"></div>
 
-To implement the filter functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`. 
-The RealodexParser is responsible for creating an instance of the `FilterCommand`, encapsulating the logic for sorting clients based on a specific predicate.
-
+#### Filter Command Sequence Diagram
 The sequence diagram below illustrates the process of creating a filter operation through the `Logic` component:
 
 <puml src="diagrams/filter/FilterSequenceDiagram.puml" width="1000" />
 
-### Filter by Name feature
+### 1. Filter by Name feature
 
 #### Description
 
 The Filter by Name feature allows users to filter the list of persons in Realodex based on their names.
 This is implemented using the `NameContainsKeyphrasePredicate` that checks if a person's name contains the keyphrase provided by the user.
 
-#### Example Usage Scenario
+#### Component Interaction Details
 1. The user executes the command `filter n/John`, intending to filter out persons whose names contain "John".
 2. The FilterCommandParser interprets the input, creating a FilterCommand with the `NameContainsKeyphrasePredicate`.
 3. The `FilterCommand` applies the `NameContainsKeyphrasePredicate` predicate, updating the filtered person list to only include those whose names contain "John".
 4. The UI reflects this filtered list.
+
+#### Example Usage Scenario
+1. The user inputs `filter n/John`, intending to filter the list of persons to only include those whose names contain "John".
+2. The UI reflects the filtered list with persons whose names contain "John".
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -437,19 +490,22 @@ Pros: Precise filtering.
 
 Cons: Less flexible; users must remember exact names.
 
-### Filter by Remark Feature
+### 2. Filter by Remark Feature
 
 #### Description
 
 The Filter by Remark feature allows users to filter the list of persons in Realodex based on the remarks associated with them.
 This is implemented using the `RemarkContainsKeyphrasePredicate` that checks if a person's remarks includes the keyphrase provided by the user.
 
-#### Example Usage Scenario
-
+#### Component Interaction Details
 1. The user executes the command `filter r/Loves coding`, intending to filter out to filter out persons whose remarks include "Loves coding".
 2. The `FilterCommandParser` interprets the input, creating a FilterCommand with a `RemarkContainsKeyphrasePredicate`.
 3. The `FilterCommand` applies the `RemarkContainsKeyphrasePredicate` predicate, updating the filtered person list to only include those whose remarks contain "Loves coding".
 4. The UI reflects this filtered list.
+
+#### Example Usage Scenario
+1. The user inputs `filter r/Loves coding`, intending to filter the list of persons to only include those whose remarks include "Loves coding".
+2. The UI reflects the filtered list with persons whose remarks include "Loves coding".
 
 #### Design considerations
 
@@ -471,20 +527,26 @@ Pros: Ensures that only persons with specific remarks are listed, reducing clutt
 
 Cons: Extremely limiting. Users must remember exact remarks.
 
-### Filter by Tag Feature
+<div style="page-break-after: always;"></div>
+
+### 3. Filter by Tag Feature
 
 #### Description
 
 The Filter by Tag feature allows users to filter the list of persons in Realodex based on their tags.
 This is implemented using the `TagsMatchPredicate` that checks whether a person's tags match the tag(s) specified by the user.
 
-#### Example Usage Scenario
-
+#### Component Interaction Details
 1. The user executes the command `filter t/Buyer`, intending to filter out to filter out persons who are tagged as "Buyer".
 2. The `FilterCommandParser` interprets the input, creating a FilterCommand with a `TagsMatchPredicate`.
 3. The `FilterCommand` applies the `TagsMatchPredicate` predicate, updating the filtered person list to only include those who are tagged as "Buyer".
 4. The UI reflects this filtered list.
 
+#### Example Usage Scenario
+1. The user inputs `filter t/Buyer`, intending to filter the list of persons to only include those who are tagged as "Buyer".
+2. The UI reflects the filtered list with persons who are tagged as "Buyer", including those tagged as "Buyer" and "Seller".
+
+#### Design considerations
 **Alternative 1 (current choice): Allow inclusion of persons with matching tags, irrespective of other tags.**
 
 > For example, `filter t/Buyer` returns persons tagged as "Buyer", including those tagged as "Buyer" and "Seller".
@@ -501,20 +563,26 @@ Pros: Increase precision of search results for targeted searches.
 
 Cons: Excludes potentially relevant persons who carry the specified tag alongside others.
 
-### Filter by Birthday Feature
+### 4. Filter by Birthday Feature
 
-#### Implementation
+#### Description
 
 The Filter by Birthday feature allows users to filter the list of persons in Realodex based on their birthday month.
 This is implemented using the `BirthdayIsInMonthPredicate` that checks whether a person's birthday matches the month specified by the user.
 
-#### Example Usage Scenario
-
+#### Component Interaction Details
 1. The user executes the command `filter b/Jan`, intending to filter out to filter out persons with birthdays in January.
 2. The `FilterCommandParser` interprets the input, creating a FilterCommand with a `BirthdayIsInMonthPredicate`.
 3. The `FilterCommand` applies the `BirthdayIsInMonthPredicate` predicate, updating the filtered person list to only include those with birthday in January.
 4. The UI reflects this filtered list.
 
+#### Example Usage Scenario
+1. The user inputs `filter b/Jan`, intending to filter the list of persons to only include those with birthdays in January.
+2. The UI reflects the filtered list with persons who have birthdays in January.
+
+<div style="page-break-after: always;"></div>
+
+#### Design considerations
 **Alternative 1 (current choice): Filter by birthday month.**
 
 > For example, `filter b/Jan` returns all persons born in January, regardless of the day.
@@ -531,54 +599,71 @@ Pros: Increase precision of search results, finding persons with specific birth 
 
 Cons: Requires exact date knowledge, which may not always be available or remembered by users.
 
-### Filter by Housing Type Feature
+### 5. Filter by Housing Type Feature
 
-#### Implementation
+#### Description
 
 The Filter by Housing Type feature allows users to filter the list of persons in Realodex based on their preferred housing type.
 This is implemented using the `HousingTypeMatchPredicate` that checks whether a person's preferred housing type matches the housing type specified by the user.
 
-#### Example Usage Scenario
+#### Component Interaction Details
 1. The user executes the command `filter h/Condominium`, intending to filter out persons with a "Condominium" housing type preference.
 2. The `FilterCommandParser` interprets the input, creating a FilterCommand with a `HousingTypeMatchPredicate`.
 3. The `FilterCommand` applies the `HousingTypeMatchPredicate` predicate, updating the filtered person list to only include those with a "Condominium" housing type preference.
 4. The UI reflects this filtered list.
 
+#### Example Usage Scenario
+1. The user inputs `filter h/Condominium`, intending to filter the list of persons to only include those with a "Condominium" housing type preference.
+2. The UI reflects the filtered list with persons who have a "Condominium" housing type preference.
+
+#### Design considerations
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-### Overall Help feature
-
-#### Implementation
-
-The Help feature provides help to the user (depending on user input) by either giving details on how all commands
-are used in a new window, or a short description in the main window on how an individual, specified command is used.
-The core components for this feature are:
-- HelpCommand: A command that, when executed, either shows a new window summarising help for all commands, or
-prints the help message in the Main Window for the requested command, depending on user input.
-- HelpCommandParser: Processes the user input to instantiate the HelpCommand object appropriately to perform the
-correct action (the type of help to give, in this case help for all commands).
-
-#### Help Command Architecture
-<puml src="diagrams/help/HelpCommand.puml" width="1000" />
-
-#### Help Command Sequence Diagram
-<puml src="diagrams/help/HelpSequenceDiagram.puml" width="1000" />
-
-### Help feature
+### <u>Overall Help feature</u>
 
 #### Description
+The Help feature provides help to the user (depending on user input) by either giving details on how all commands
+are used in a new window, or a short description in the main window on how an individual, specified command is used.
 
-The help feature provides help to the user by showing a new window with a summary of how to use all commands, with
+There are two types of help features
+1. General `Help` Feature
+2. Command `Help`
+
+#### Key Components
+- `HelpCommand`: A command that, when executed, either shows a new window summarising help for all commands, or
+prints the help message in the Main Window for the requested command, depending on user input.
+- `HelpCommandParser`: Processes the user input to instantiate the HelpCommand object appropriately to perform the
+correct action (the type of help to give, in this case help for all commands).
+
+#### Overall `Help` Command Architecture
+<puml src="diagrams/help/HelpCommand.puml" width="1000" />
+
+#### `Help` Command Sequence Diagram
+<puml src="diagrams/help/HelpSequenceDiagram.puml" width="1000" />
+
+<div style="page-break-after: always;"></div>
+
+### 1. General `Help` Feature
+
+#### Description
+The `help` feature provides help to the user by showing a new window with a summary of how to use all commands, with
 the correct format and relevant examples. A link to the User Guide is also provided.
 
-#### Example Usage Scenario
+#### Component Interaction Details
 1. User launches the application.
 2. User executes `help`, wanting to get the help for all commands.
 3. `LogicManager` instantiates a `RealodexParser`, which parses the command into a `HelpCommand`.
 4. The `HelpCommand` is executed, showing a new window with help for all the features in Realodex.
 5. The GUI reflects that the help window is currently open.
+
+#### Example Usage Scenario
+1. User executes `help`, wanting to get the help for all commands.
+2. A new window opens with a summary of how to use all commands, with the correct format and relevant examples.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -596,25 +681,28 @@ Pros: Help window does not have too much information.
 
 Cons: User will need to leave the application and look at a website everytime they require help which can be inconvenient.
 
-### Help by command feature
+### 2. Help by command
 
 #### Description
-
 The Help by command feature provides help to the user for an individual command specified by the user,
 printed on the main window. This has been implemented for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list`
 and `sort` commands only.
 
-Note that although the command format is `COMMAND help`, `clear help` is the command to get the help for the
-clearRealodex command instead of `clearRealodex help`. We changed the `clear` command to `clearRealodex` to avoid
-confusion with the `delete` command, as both involve the removal of entries, and `clearRealodex`encapsulates the
-functionality of clearing the entire app more clearly. However, we kept `clear help` as this syntax is more
-user-friendly when seeking help.
+* Note that although the command format is `COMMAND help`, `clear help` is the command to get the help for the
+clearRealodex command instead of `clearRealodex help`. 
+* We changed the `clear` command to `clearRealodex` to avoid confusion with the `delete` command, as both involve the removal of entries, and `clearRealodex`encapsulates the
+functionality of clearing the entire app more clearly. 
+* However, we kept `clear help` as this syntax is more user-friendly when seeking help.
 
-#### Example Usage Scenario
+#### Component Interaction Details
 1. User launches the application.
 2. User executes `COMMAND help`, wanting to get the help for only specified `COMMAND`.
 3. LogicManager instantiates a RealodexParser, which parses the command into a HelpCommand with appropriate parameters.
 4. The HelpCommand is executed, printing the help message for the specified `COMMAND` in the GUI.
+
+#### Example Usage Scenario
+1. User executes `add help`, wanting to get the help for the `add` command.
+2. The GUI prints the help message for the `add` command.
 
 #### Design Considerations
 
@@ -636,54 +724,49 @@ Cons: Syntax may not be as intuitive.
 
 <div style="page-break-after: always;"></div>
 
-### Delete by name feature
+### <u>Overall Delete Feature</u>
+
+#### Description
+The `delete` feature provides the user the ability to delete a client's profile based on their index in the list or their name.
+
+There are two ways to delete:
+1. `Delete` by index
+2. `Delete` by name
+
+#### Key components
+* `DeleteCommand`: Executes the deletion operation based on the specified index or name.
+* `DeleteCommandParser`: Parses the user input to instantiate the DeleteCommand object appropriately to perform the correct deletion operation.
+* `DeleteCommandExecutor`: Creates DeleteCommand object based on user input and returns it.
+
+#### `Delete` Command Architecture
+<puml src="diagrams/delete/DeleteArchitecture.puml" width="1000" />
+
+#### `Delete` Command Sequence Diagram
+<puml src="diagrams/delete/DeleteSequenceDiagram.puml" width="1000" />
+
+### 1. `Delete` by index feature
 
 #### Description
 
-The delete by name feature provides the user the ability to delete a client's profile based on their name.
+The `delete` by index feature provides the user the ability to delete a client's profile based on their index in the list.
 
-#### Example Usage Scenario
-1. User launches the application.
-2. User executes `delete n/NAME`, wanting to delete the profile on the client with name `NAME`.
-3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
-4. The DeleteCommand is executed, deleting the client's profile with the name `NAME`.
-5. The UI reflects the updated list of clients.
-
-
-#### Design Considerations
-
-Aspect: Method to delete client with name `NAME`
-
-__Alternative 1: (current choice) Format is `delete n/NAME`.__
-
-Pros: Easy to implement as name and index can be differentiated using the prefix.
-
-Cons: Syntax may not be as intuitive.
-
-__Alternative 2: (current choice): Format is `delete NAME`.__
-
-Pros: More convenient for user to not have to put in the prefix `n/`.
-
-Cons: Harder to implement due to the other delete by index feature, there is no way to differentiate if the user is try to input an index or name.
-
-### Delete by index feature
-
-#### Description
-
-The delete by index feature provides the user the ability to delete a client's profile based on their index in the list.
-
-#### Example Usage Scenario
+#### Component Interaction Details
 1. User launches the application.
 2. User executes `delete INDEX`, wanting to delete the profile on the client at index `INDEX`.
 3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
 4. The DeleteCommand is executed, deleting the client's profile at index `INDEX`.
 5. The UI reflects the updated list of clients.
 
+#### Example Usage Scenario
+1. Assuming the Realodex list has 2 or more clients.
+2. User executes `delete 2`, wanting to delete the profile on the client at index 2.
+3. The UI reflects the updated list of clients where the original client at index 2 is deleted.
+
 #### Design Considerations
 
 Aspect: Method to delete client at index `INDEX`
 
-__Alternative 1: (current choice) Format is `delete INDEX`.__
+__Alternative 1 (current choice): Format is `delete INDEX`.__
 
 Pros: Easy to implement as name and index can be differentiated using the prefix.
 
@@ -695,22 +778,72 @@ Pros: More intuitive as the user knows that the index is being deleted.
 
 Cons: Prefix `i/` is already used for the income field, and is more inconvenient to have to type in prefix.
 
+### 2. Delete by name feature
+
+#### Description
+
+The `delete` by name feature provides the user the ability to delete a client's profile based on their name.
+
+#### Component Interaction Details
+1. User launches the application.
+2. User executes `delete n/NAME`, wanting to delete the profile on the client with name `NAME`.
+3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
+4. The DeleteCommand is executed, deleting the client's profile with the name `NAME`.
+5. The UI reflects the updated list of clients.
+
+#### Example Usage Scenario
+1. Assuming a client with the name `John Doe` exists in the Realodex list.
+2. User executes `delete n/John Doe`, wanting to delete the profile on the client with name `John Doe`.
+2. The UI reflects the updated list of clients, where the client with the name `John Doe` is deleted.
+
+#### Design Considerations
+
+Aspect: Method to delete client with name `NAME`
+
+__Alternative 1 (current choice): Format is `delete n/NAME`.__
+
+Pros: Easy to implement as name and index can be differentiated using the prefix.
+
+Cons: Syntax may not be as intuitive.
+
+__Alternative 2: Format is `delete NAME`.__
+
+Pros: More convenient for user to not have to put in the prefix `n/`.
+
+Cons: Harder to implement due to the other delete by index feature, there is no way to differentiate if the user is try to input an index or name.
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-### Edit by field feature
+### <u>Overall Edit Feature</u>
 
 #### Description
-
 The edit by field feature provides the user the ability to edit a client's profile based on a specified field. This has been implemented for all
 user fields `name`, `phone`, `email`, `address`, `income`, `birthday`, `housingType`, `tags`, and `remark`.
 
+#### Key Components
+* EditCommand: Executes the editing operation based on the specified index or name and field.
+* EditCommandParser: Parses the user input to instantiate the EditCommand object appropriately to perform the correct editing operation.
+
+#### Edit Command Architecture
+<puml src="diagrams/edit/EditArchitecture.puml" width="1000" />
+
+#### Edit Command Sequence Diagram
+<puml src="diagrams/edit/EditSequenceDiagram.puml" width="1000" />
+
+#### Component Interaction Details
+1. The user executes the command `edit INDEX n/John Doe`, intending to edit the name of the client at index `INDEX` to "John Doe".
+2. The `EditCommandParser` interprets the input.
+3. An `EditCommand` object is created.
+4. The `LogicManager` invokes the execute method of EditCommand.
+5. The execute method of `EditCommand` invokes the `editPerson` method in `Model` property to edit the client's profile with the new `Person` object.
+6. The execute method of `EditCommand` returns a `CommandResult` object which stores the data regarding the completion of the `EditCommand`.
+7. The UI reflects this updated list with the edited client.
+
 #### Example Usage Scenario
-1. User launches the application.
-2. User executes `edit INDEX n/NAME`, wanting to edit the name of the client at index `INDEX` to `NAME`.
-3. LogicManager instantiates a RealodexParser, which parses the command into a EditCommand with appropriate parameters.
-4. The EditCommand is executed, editing the client's profile at index `INDEX` to have the name `NAME`.
+1. The user executes the command `edit 1 n/John Doe`, intending to edit the name of the client at index 1 to "John Doe".
+2. The UI reflects the updated list with the client at index 1 having the name "John Doe".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -785,8 +918,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User Executes `add ...` Command:
-2. System adds user profile to `Realodex` and replies to user with a success message.
+1. User enters `add ...` Command.
+2. System adds user profile to `Realodex`.
+3. System replies to user with a success message.
     
    Use case ends.
 
@@ -797,181 +931,222 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Realodex throws an error and highlights the format to user.
   
     * 1a2. User enters new data.
+
+    * Steps 1a1 to 1a2 repeats until the name input is valid.
   
-    * Use case resumes from step 1.
+  * Use case resumes from step 2.
 
 * 1b. `Name` contains erroneous whitespace at front or back.
 
     * 1b1. Realodex fixes this for user without errors.
   
-    * Use case ends.
+    * Use case resumes from step 2.
 
 * 1c. `Name` is not capitalized.
 
     * 1c1. Realodex fixes this for user without errors.
   
-    * Use case ends.
+    * Use case resumes from step 2.
 
 * 1d. `Name` is blank.
 
     * 1d1. Realodex throws an error and highlights the format to user.
   
     * 1d2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1d1 to 1d2 repeats until the `Name` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1e. `Phone` contains non-integer characters.
 
     * 1e1. Realodex throws an error and highlights the format to user.
   
     * 1e2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1e1 to 1e2 repeats until the `Phone` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1f. `Phone` is less than three characters.
 
     * 1f1. Realodex throws an error and highlights the format to user.
   
     * 1f2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1f1 to 1f2 repeats until the `Phone` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1g. `Phone` is blank.
 
     * 1g1. Realodex throws an error and highlights the format to user.
   
     * 1g2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+  * Steps 1g1 to 1g2 repeats until the `Phone` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1h. `Income` is negative
 
     * 1h1. Realodex throws an error and highlights the format to user.
   
     * 1h2. User enters new data.
-  
-    * Use case ends.
+
+    * Steps 1h1 to 1h2 repeats until the `Income` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1i. `Income` contains non-integer characters.
 
     * 1i1. Realodex throws an error and highlights the format to user.
   
     * 1i2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1i1 to 1i2 repeats until the `Income` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1j. `Income` is blank.
 
     * 1j1. Realodex throws an error and highlights the format to user.
   
     * 1j2. User enters new data.
-  
-    * Use case ends.
+
+    * Steps 1j1 to 1j2 repeats until the `Income` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1k. `Email` is not in the valid format.
 
     * 1k1. Realodex throws an error and highlights the format to user.
   
     * 1k2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1k1 to 1k2 repeats until the `Email` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1l. `Email` is blank.
 
     * 1l1. Realodex throws an error and highlights the format to user.
   
     * 1l2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1l1 to 1l2 repeats until the `Email` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1m. `Address` is blank.
 
     * 1m1. Realodex throws an error and highlights the format to user.
   
     * 1m2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1m1 to 1m2 repeats until the `Address` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1n. `Family` contains non-integer characters.
 
     * 1n1. Realodex throws an error and highlights the format to user.
   
     * 1n2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1n1 to 1n2 repeats until the `Family` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1o. `Family` is negative or zero.
 
     * 1o1. Realodex throws an error and highlights the format to user.
   
     * 1o2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1o1 to 1o2 repeats until the `Family` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1p. `Family` is blank.
 
     * 1p1. Realodex throws an error and highlights the format to user.
   
     * 1p2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1p1 to 1p2 repeats until the `Family` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1q. `Tag` is not `buyer` or `seller`.
 
     * 1q1. Realodex throws an error and highlights the format to user.
   
     * 1q2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1q1 to 1q2 repeats until the `Tag` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1r. `Tag` is blank.
 
     * 1r1. Realodex throws an error and highlights the format to user.
   
     * 1r2. User enters new data.
-  
-    * Use case resumes from step 1.
 
-* 1s. `HOUSING_TYPE` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
+    * Steps 1r1 to 1r2 repeats until the `Tag` input is valid.
+
+  * Use case resumes from step 2.
+
+* 1s. `Housing Type` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
 
     * 1s1. Realodex throws an error and highlights the format to user.
   
     * 1s2. User enters new data.
-  
-    * Use case resumes from step 1.
 
-* 1t. `HOUSING_TYPE` is blank.
+    * Steps 1s1 to 1s2 repeats until the `Housing Type` input is valid.
+
+  * Use case resumes from step 2.
+
+* 1t. `Housing Type` is blank.
 
     * 1t1. Realodex throws an error and highlights the format to user.
   
     * 1t2. User enters new data.
 
-    * Use case resumes from step 1.
+    * Steps 1t1 to 1t2 repeats until the `Housing Type` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1u. `Birthday` is not in the valid format.
 
     * 1u1. Realodex throws an error and highlights the format to user.
   
     * 1u2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1u1 to 1u2 repeats until the `Birthday` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1v. `Birthday` is blank.
 
     * 1v1. Realodex throws an error and highlights the format to user.
   
     * 1v2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1v1 to 1v2 repeats until the `Birthday` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1w. Some compulsory fields are missing.
 
     * 1w1. Realodex throws an error and highlights the format to user.
   
     * 1w2. User enters new data.
-  
-    * Use case resumes from step 1.
 
+    * Steps 1w1 to 1w2 repeats until the user inputs all compulsory fields.
+
+  * Use case resumes from step 2.
 <div style="page-break-after: always;"></div>
 
 **Use case: UC02 — Editing a user profile**
@@ -990,186 +1165,230 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. `Name` does not contain fully alphanumeric characters.
 
     * 1a1. Realodex throws an error and highlights the format to user.
-  
+
     * 1a2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1a1 to 1a2 repeats until the name input is valid.
+
+  * Use case resumes from step 2.
 
 * 1b. `Name` contains erroneous whitespace at front or back.
 
     * 1b1. Realodex fixes this for user without errors.
-  
-    * Use case ends.
+
+  * Use case resumes from step 2.
 
 * 1c. `Name` is not capitalized.
 
     * 1c1. Realodex fixes this for user without errors.
-  
-    * Use case ends.
+
+  * Use case resumes from step 2.
 
 * 1d. `Name` is blank.
 
     * 1d1. Realodex throws an error and highlights the format to user.
-  
+
     * 1d2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1d1 to 1d2 repeats until the `Name` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1e. `Phone` contains non-integer characters.
 
     * 1e1. Realodex throws an error and highlights the format to user.
-  
-    * 1e2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * 1e2. User enters new data. 
+
+    * Steps 1e1 to 1e2 repeats until the `Phone` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1f. `Phone` is less than three characters.
 
     * 1f1. Realodex throws an error and highlights the format to user.
-  
+
     * 1f2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1f1 to 1f2 repeats until the `Phone` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1g. `Phone` is blank.
 
     * 1g1. Realodex throws an error and highlights the format to user.
-  
+
     * 1g2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1g1 to 1g2 repeats until the `Phone` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1h. `Income` is negative
 
     * 1h1. Realodex throws an error and highlights the format to user.
-  
+
     * 1h2. User enters new data.
-  
-    * Use case ends.
+
+    * Steps 1h1 to 1h2 repeats until the `Income` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1i. `Income` contains non-integer characters.
 
     * 1i1. Realodex throws an error and highlights the format to user.
-  
+
     * 1i2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1i1 to 1i2 repeats until the `Income` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1j. `Income` is blank.
 
     * 1j1. Realodex throws an error and highlights the format to user.
-  
+
     * 1j2. User enters new data.
-  
-    * Use case ends.
+
+    * Steps 1j1 to 1j2 repeats until the `Income` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1k. `Email` is not in the valid format.
 
     * 1k1. Realodex throws an error and highlights the format to user.
-  
+
     * 1k2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1k1 to 1k2 repeats until the `Email` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1l. `Email` is blank.
 
     * 1l1. Realodex throws an error and highlights the format to user.
-  
+
     * 1l2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1l1 to 1l2 repeats until the `Email` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1m. `Address` is blank.
 
     * 1m1. Realodex throws an error and highlights the format to user.
-  
+
     * 1m2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1m1 to 1m2 repeats until the `Address` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1n. `Family` contains non-integer characters.
 
     * 1n1. Realodex throws an error and highlights the format to user.
-  
+
     * 1n2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1n1 to 1n2 repeats until the `Family` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1o. `Family` is negative or zero.
 
     * 1o1. Realodex throws an error and highlights the format to user.
-  
+
     * 1o2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1o1 to 1o2 repeats until the `Family` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1p. `Family` is blank.
 
     * 1p1. Realodex throws an error and highlights the format to user.
-  
+
     * 1p2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1p1 to 1p2 repeats until the `Family` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1q. `Tag` is not `buyer` or `seller`.
 
     * 1q1. Realodex throws an error and highlights the format to user.
-  
+
     * 1q2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1q1 to 1q2 repeats until the `Tag` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1r. `Tag` is blank.
 
     * 1r1. Realodex throws an error and highlights the format to user.
-  
-    * 1r2. User enters new data.
-  
-    * Use case resumes from step 1.
 
-* 1s. `HOUSING_TYPE` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
+    * 1r2. User enters new data.
+
+    * Steps 1r1 to 1r2 repeats until the `Tag` input is valid.
+
+  * Use case resumes from step 2.
+
+* 1s. `Housing Type` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
 
     * 1s1. Realodex throws an error and highlights the format to user.
-  
-    * 1s2. User enters new data.
-  
-    * Use case resumes from step 1.
 
-* 1t. `HOUSING_TYPE` is blank.
+    * 1s2. User enters new data.
+
+    * Steps 1s1 to 1s2 repeats until the `Housing Type` input is valid.
+
+  * Use case resumes from step 2.
+
+* 1t. `Housing Type` is blank.
+
     * 1t1. Realodex throws an error and highlights the format to user.
-  
+
     * 1t2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1t1 to 1t2 repeats until the `Housing Type` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1u. `Birthday` is not in the valid format.
+
     * 1u1. Realodex throws an error and highlights the format to user.
-  
+
     * 1u2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1u1 to 1u2 repeats until the `Birthday` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1v. `Birthday` is blank.
+
     * 1v1. Realodex throws an error and highlights the format to user.
-  
+
     * 1v2. User enters new data.
-  
-    * Use case resumes from step 1.
+
+    * Steps 1v1 to 1v2 repeats until the `Birthday` input is valid.
+
+  * Use case resumes from step 2.
 
 * 1w. No fields input.
+
     * 1w1. Realodex throws an error and highlights the format to user.
   
     * 1w2. User enters new data.
   
-    * Use case resumes from step 1.
+  * Use case resumes from step 1.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC03 — Delete a person by name**
+**Use case: UC03 — `Delete` a person by name**
 
 **MSS**
 
-1.  User requests to delete user by name
+1.  User requests to `delete` user by name
 
 2.  Realodex deletes the person with a success message
 
@@ -1177,25 +1396,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 1a. The input name is not of valid format
+* 1a. The input `Name` is not of valid format
 
-  * 1a1. Realodex shows an error message highlighting the correct format for name.
+    * 1a1. Realodex shows an error message highlighting the correct format for `Name`.
+
+    * 1a2. User inputs a new `Name`.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the `Name` input is valid.
   
-  * Use case ends.
+  * Use case resumes from step 2.
 
-* 1b. The input name is not found
+* 1b. The input `Name` is not found
 
-  * 1b1. Realodex shows an error message.
+    * 1b1. Realodex shows an error message that `Name` is invalid.
+
+    * 1b2. User inputs a new `Name`.
+
+    * 1b3. Steps 1b1 to 1b2 repeats until the `Name` input is valid.
   
-  * Use case ends.
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC04 — Delete a person by index**
+**Use case: UC04 — `Delete` a person by `index`**
 
 **MSS**
 
-1.  User requests to delete user by index
+1.  User requests to `delete` user by `index`
 
 2.  Realodex deletes the person with a success message
 
@@ -1203,37 +1430,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 1a. The index is more than client list size
+* 1a. The `index` is more than client list size
 
-  * 1a1. Realodex shows an error message indicating an out-of-bounds error.
-  
-  * Use case ends.
+    * 1a1. Realodex shows an error message indicating an invalid `index` error.
 
-* 1b. The index is negative
+    * 1a2. User inputs a new `index`.
 
-  * 1b1. Realodex shows an error message indicating a negative index error.
-  
-  * Use case ends.
+    * 1a3. Steps 1a1 to 1a2 repeats until the `index` input is valid.
+
+  * Use case resumes from step 2.
+
+* 1b. The `index` is negative
+
+    * 1b1. Realodex shows an error message indicating a negative `index` error.
+
+    * 1b2. User inputs a new `index`.
+
+    * 1b3. Steps 1b1 to 1b2 repeats until the `index` input is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC05 — Sort list by birthday**
+**Use case: UC05 — `Sort` list by birthday**
 
 **MSS**
 
-1.  User requests to sort the list by the nearest upcoming birthday.
+1.  User requests to `sort` the list by the nearest upcoming birthday.
 
-2.  Realodex sorts the list and returns the sorted list to screen.
+2.  Realodex sorts the `list` and returns the sorted list to screen.
 
     Use case ends.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC06 — List**
+**Use case: UC06 — `List`**
 
 **MSS**
 
-1.  User requests to list
+1.  User requests to `list`
 
 2.  Realodex shows the list of all clients
 
@@ -1243,17 +1478,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty
 
-  * 2a1. Realodex shows an empty list.
+    * 2a1. Realodex shows an empty list.
   
   * Use case ends.
 
 <div style="page-break-after: always;"></div>
 
-**Use case: UC07 — Filter by Name**
+**Use case: UC07 — `Filter` by Name**
 
 **MSS**
 
-1. User requests to filter clients by providing a name substring.
+1. User requests to `filter` clients by providing a `Name` substring.
 
 2. Realodex filters and displays a list of all clients whose names include the input substring.
 
@@ -1265,13 +1500,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-        Use case ends.
+    * 1a2. User inputs a new substring.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the input substring is valid.
+
+  * Use case resumes from step 2.
 
 * 1b. The name input is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+    * 1b2. User inputs a new substring.
+
+    * 1b3. Steps 1b1 to 1b2 repeats until the input substring is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1291,7 +1534,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-      Use case ends.
+    * 1a2. User inputs a remark.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the input remark is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1309,15 +1556,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The tag input is empty.
 
-  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    Use case ends.
+    * 1a2. User inputs a new tag.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the input tag is non-empty and valid.
+
+  * Use case resumes from step 2.
 
 * 1b. The tag input is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+    * 1b2. User inputs a new tag.
+
+    * 1b3. Steps 1b1 to 1b2 repeats until the tag input is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1335,15 +1590,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The housing type input is empty.
 
-  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    Use case ends.
+    * 1a2. User inputs a housing type.
+  
+    * 1a3. Steps 1a1 to 1a2 repeats until the housing type is valid
+
+  * Use case resumes from step 2.
 
 * 1b. The housing type input is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+    * 1b2. User inputs a new housing type.
+
+    * 1b3. Steps 1b1 to 1b2 repeats until the housing type input is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1361,15 +1624,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The birthday month input is empty.
 
-  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    Use case ends.
+    * 1a2. User inputs a birthday month.
+  
+    * 1a3. Steps 1a1 to 1a2 repeats until the birthday month is non-empty and valid.
+
+  * Use case resumes from step 2.
 
 * 1b. The birthday month is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-    Use case ends.
+    * 1b2. User inputs a new birthday month.
+
+    * 1b3. Steps 1b1 to 1b2 repeats until the birthday month input is valid.
+
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1397,7 +1668,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Realodex shows an error message command does not exist.
 
-      Use case ends.
+    * 1a2. User inputs a new command.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the command input is valid.
+
+  * Use case resumes from step 2.
+
 
 <div style="page-break-after: always;"></div>
 
@@ -1410,6 +1686,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The response to any command should become visible within 5 seconds.
 6. Application should load the GUI components and data within 5 seconds of start-up.
 7. The user interface should be intuitive and not have a steep learning curve to get used to.
+8. Data should be stored locally and should not be accessible from other devices due to privacy issues.
 
 ### Glossary
 
@@ -1489,6 +1766,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No person is deleted.
       Error details shown in the status message.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a person
 
 1. Editing a person while all persons are being shown
@@ -1548,7 +1827,7 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `edit help` 
    Expected: A help message for `EditCommand` will be displayed in the box
 
-
+<div style="page-break-after: always;"></div>
 
 ### Corrupted Data
 
@@ -1599,7 +1878,7 @@ command and streamline the process of adding new user profiles**
      While this was a design choice to prevent users from missing out on important
      fields, we plan to make this more user-friendly in the future.
      - We plan to introduce dynamic checks such that if the profile is of certain conditions, they may not need to input certain fields.
-     - E.g., Users who add a profile that is a SELLER, they may choose to omit the input for `INCOME` which would otherwise be
+     - E.g., Users who add a profile that is a `SELLER`, they may choose to omit the input for `INCOME` which would otherwise be
        compulsory!
        The Rationale is that sellers may not see a need to disclose their income for real estate deals.
    - Based on feedback, we may make some fields not compulsory all together.
@@ -1609,10 +1888,10 @@ command and streamline the process of adding new user profiles**
 4. **Make date error more specific for leap dates on non-leap years**
    - Currently, if user types in an invalid date for commands such as `edit`, Realodex will return a invalid
      `...Birthday should be in ddMMMyyyy format... Date should also not be in future years and no earlier than year 1000!`
-     - When user types in a leap date on a year with no leap date such `28Feb2023`,
+     - When user types in a leap date on a year with no leap date such `29Feb2023`,
        this will expectedly return the error as its invalid date. 
        However, the error message is not entirely helpful as the format is technically correct as its `DDMMMYYYY`.
-     - We plan to return a more specific message such as 'Date input is a leap date on a non-leap year'
+     - We plan to return a more specific message such as `Date input is a leap date on a non-leap year`
 
 5. **Improve duplicate user profile check**
    - Currently, Realodex prevents duplicates based on the condition of two clients having the same full name regardless of other parameters.
@@ -1645,18 +1924,18 @@ command and streamline the process of adding new user profiles**
      hence Realodex will be required to list multiple addresses.
    - We plan to relax the duplicate prefixes restrictions for some fields and allow users to input multiple fields.
 
-9. **Allow symbols in `INCOME` input**
-  - Currently, `INCOME` only allows numbers
-  - This poses problems to users who wish to input commas in their input such as `100,000` which is common too
-  - We plan to allow users to input symbols in their income while keeping the restriction of value >= 0.
+<div style="page-break-after: always;"></div>
 
-10. **Maintain consistency for `COMMAND help`**
-    - Currently, we support `clear help`
-      - To maintain consistency, we will change this to `clearRealodex help` where `clearRealodex` is the actual command
-        to input when you wish to clear Realodex's list of clients.
-    - We plan to also support all commands except `help`.
-      E.g. `exit help` will no longer just exit Realodex
-      but provide some help suggestion for `exit`, this can help reduce confusion over what `COMMAND` is supported.
+9. **Allow symbols in `INCOME` input**
+   - Currently, `INCOME` only allows numbers
+   - This poses problems to users who wish to input commas in their input such as `100,000` which is common too
+   - We plan to allow users to input symbols in their income while keeping the restriction of value >= 0.
+
+10. **Persistent Filtered Client List**
+    - Currently, our application resets the filtered client list to show all clients after any command (e.g. `add`, `edit`, or `delete`) is executed.
+    - Users may find it an inconvenience that the list reverts to unfiltered after every command.
+    - We plan to implement a persistent filter mechanism within the client list by modifying the application to maintain the state of the filtered client list across various commands until the user decides to reset it. 
+    - This will allow the filter to remain active and allow for multiple filtering by stacking filter commands until the user decides to reset it using list.
 
 --------------------------------------------------------------------------------------------------------------------
 
