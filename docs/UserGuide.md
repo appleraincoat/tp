@@ -95,11 +95,11 @@ We hope this user guide empowers you with the knowledge and confidence to **unle
 To ensure you have a **smooth and intuitive experience**, we recommend you to familiarise yourself with the **specific formatting conventions and icons** that this guide uses. 
 
 #### Formatting Conventions
-| Format        | Meaning                                                                                                                                                                                                                |
-|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Bold**      | Used to **draw attention** to key concepts and actions you need to perform. When you see text in bold, it emphasises **important information.**                                                                        |
+| Format        | Meaning                                                                                                                                                                                                                   |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Bold**      | Used to **draw attention** to key concepts and actions you need to perform. When you see text in bold, it emphasises **important information.**                                                                           |
 | _Italics_     | Reserved for introducing _new terms and phrases_ that are essential to understanding Realodex. Italicized text may also appear in subheadings beneath screenshots to succinctly describe what you're seeing in the image. |
-| `Code blocks` | Actual commands that you may run in Realodex will be referred to in these code blocks.                                                                                                                              |
+| `Code blocks` | Actual commands or code snipplets that you may run in Realodex will be referred to in these code blocks.                                                                                                                  |
 
 
 #### Icon Legend
@@ -425,6 +425,8 @@ Parameters must follow the prefix they are associated with and are typically in 
 - `r/REMARK` and `b/BIRTHDAY` fields are optional, enclosed in `[]`. You may choose to omit them.
   - If you include the prefix with a blank input, the birthday and remark fields will be taken as not specified.
     - Example: `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB r/ b/` will successfully add John Doe but remarks and birthday will be not specified.
+  - You may also choose not to put the prefixes altogether.
+      -    - Example: `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB` will also successfully add John Doe but remarks and birthday will be not specified.
 </box>
 
 <box type="wrong" header="Error">
@@ -546,14 +548,14 @@ Deletes the client of the specified `INDEX`.
   to indicate that this client index does not exist.
     * This does not apply to unrealistic index values of >= `2147483648` which results in integer overflow as expected
       and will no longer be interpreted as a non-zero unsigned integer.
-      Hence, below error message applies.
+      Hence, error message will be shown "Index is not a non-zero unsigned integer."
 
 </box>
 
 <box type="wrong" header="Error">
 
 - If `INDEX` is a **non-zero unsigned integer**, error message will be shown "Index is not a non-zero unsigned integer."
-- If there is no client with the specified INDEX in the current list, an error message will be shown: "The client index provided is invalid".
+- If there is no client with the specified `INDEX` in the current list, an error message will be shown: "The client index provided is invalid".
 - If neither index nor name is provided `delete` will show an error message "Please provide either an index or a name."
 - If both an index and name is provided `delete INDEX n/NAME` will show an error message "Please provide either an index or a name, not both."
 - If both an index and name is provided `delete n/NAME INDEX ` will show an error message "The client name provided is invalid" as INDEX is considered part of the NAME."
@@ -729,12 +731,11 @@ Entering `filter t/Buyer t/Seller` will show only clients who are **tagged as bo
 
 <box type="warning" header="Caution">
 
-- Tag input should be **valid** and **non-empty** - "Buyer" or "Seller".
+- Tag input should be **valid** and **non-empty** , that is should only be either "Buyer" or "Seller" (case-insensitive).
     - `filter t/buyer` matches person with tag "Buyer".
 - **Inclusive matching** of persons with multiple tags, as long as they possess the
   tag(s) specified in the input.
     - `filter t/buyer` matches person with tags "Buyer" and "Seller".
-
 </box>
 
 **Examples:**
