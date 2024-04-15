@@ -250,7 +250,6 @@ Specific field constraints are described below. They are designed with the users
   * Should be an integer greater than 1.
 * `TAG`:
   * Should be restricted to case-insensitive "buyer" or "seller" using enums.
-<<<<<<< HEAD
 * `HOUSINGTYPE`: housing type a buyer wants or housing type a seller is selling
   * Should be restricted to "HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW" (case-insensitive) using enums.
   * Only one housing type is allowed.
