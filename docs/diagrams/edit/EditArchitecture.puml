@@ -17,7 +17,7 @@ Class CommandException
 Class ParseException
 
 Class EditCommandParser {
-  +parse(String): DeleteCommand
+  +parse(String): EditCommand
 }
 
 RealodexParser .right.> EditCommandParser : creates
