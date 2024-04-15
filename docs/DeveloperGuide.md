@@ -24,6 +24,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
@@ -66,6 +68,10 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -82,6 +88,10 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -119,6 +129,10 @@ How the parsing works:
 * When called upon to parse a user command, the `RealodexParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RealodexParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -143,6 +157,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <box type="info" seamless>
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Realodex, which `Person` references. This allows Realodex to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -151,6 +167,9 @@ The `Model` component,
 
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -329,6 +348,8 @@ Instead of using the `BirthdayComparator`,
 we'll utilize different comparators based on the user's specified field, such as `IncomeComparator`.
 
 <puml src="diagrams/sort/NewSortSequenceDiagram-Logic.puml" width="1000" />
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -744,6 +765,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | real estate agent user     | be reminded of significant client milestones              | acknowledge these events and further personalize our relationship                                |
 | `*`      | tech-savvy user            | use tab to autofill parts of my command                  | speed up my use of the command line                                                              |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -942,6 +964,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     * Use case resumes from step 1.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC02 — Editing a user profile**
 
@@ -1132,6 +1155,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     * Use case resumes from step 1.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC03 — Delete a person by name**
 
@@ -1157,6 +1181,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   * Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 — Delete a person by index**
 
@@ -1182,6 +1207,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   * Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC05 — Sort list by birthday**
 
 **MSS**
@@ -1191,6 +1218,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Realodex sorts the list and returns the sorted list to screen.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC06 — List**
 
@@ -1209,6 +1238,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. Realodex shows an empty list.
   
   * Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC07 — Filter by Name**
 
@@ -1234,6 +1265,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 — Filter by Remarks**
 
 **MSS**
@@ -1252,6 +1285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC09 — Filter by Tag**
 
@@ -1277,6 +1311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC10 — Filter by Housing Type**
 
@@ -1302,6 +1337,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC11 — Filter by Birthday**
 
 **MSS**
@@ -1326,6 +1363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 — Getting help**
 
@@ -1353,6 +1391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1374,6 +1413,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Case-Insensitive**: The casing of the alphabetic characters does not matter
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1430,15 +1471,15 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: Assuming, there exists a person in the list, first contact is deleted from the list.
+      Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: No person is deleted.
       Error details shown in the status message.
-      Status bar remains the same.
 
 ### Editing a person
 
@@ -1452,7 +1493,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 0 n/John Doe`<br>
       Expected: No person is updated. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Sorting
