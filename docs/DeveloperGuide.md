@@ -181,18 +181,19 @@ This section describes some noteworthy details on how certain features are imple
 The `add` feature, that was morphed from the original AddressBook3, allows users to add clients along with their critical personal information, as well as optional remarks and birthday information.
 
 #### Details
+
 1. The user executes the command `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
-2. The AddCommandParser interprets the input
-3. An AddCommand object is created.
-4. The LogicManager invokes the execute method of AddCommand.
-5. The execute method of AddCommand invokes the addPerson method in Model property to create new contact with the new Person object.
-6. The execute method of AddCommand returns a CommandResult object which stores the data regarding the completion of the Add command.
-4. The UI reflects this new list with added person.
+2. The `AddCommandParser` interprets the input
+3. An `AddCommand` object is created.
+4. The `LogicManager` invokes the execute method of AddCommand.
+5. The execute method of `AddCommand` invokes the `addPerson` method in `Model` property to create new contact with the new `Person` object.
+6. The execute method of `AddCommand` returns a `CommandResult` object which stores the data regarding the completion of the `AddCommand`.
+4. The UI reflects this new list with added `Person`.
 
 #### Example Usage Scenario
 1. The user launches the application. 
 2. The user inputs `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
-   3. The UI reflects this new list with added person John Doe.
+3. The UI reflects this new list with added person John Doe.
 
 #### Design Considerations
 
@@ -209,13 +210,13 @@ A real estate agent may also only want to track birthdays of their esteemed clie
 
 **Field Constraints**
 Specific field constraints are described below. They are designed with the users in mind.
-* NAME:
+* `NAME`:
   * Must be an alphanumeric string
-* PHONE:
+* `PHONE`:
   * Should only contain numbers, and should be at least 3 digits long. This is to account for phone numbers of all types and need not necessarily be from Singapore. We avoid the '+' sign as it is not necessary and can be replaced with the international prefix
-* INCOME:
+* `INCOME`:
   * Income should be an integer and should be at least 0. Decimals provide an unnecessary level of precision.
-* EMAIL:
+* `EMAIL`:
   * Emails should be of the format local-part@domain and adhere to the following constraints:
   1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
   2. The local-part may not start or end with any special characters.
@@ -224,19 +225,19 @@ Specific field constraints are described below. They are designed with the users
     * end with a domain label at least 2 characters long
     * have each domain label start and end with alphanumeric characters
     * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-* ADDRESS:
+* `ADDRESS`:
   * String
-* FAMILY:
+* `FAMILY`:
   * Should be an integer greater than 1.
-* TAG:
+* `TAG`:
   * Should be restricted to case-insensitive "buyer" or "seller" using enums.
-* HOUSINGTYPE: housing type a buyer wants or housing type a seller is selling
+* `HOUSINGTYPE`: housing type a buyer wants or housing type a seller is selling
   * Should be restricted to "HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW" (case-insensitive) using enums. 
   * Only one housing type is allowed.
-* REMARK:
+* `REMARK`:
   * Represented as a String
   * If remark is not specified, an empty string is used for representation 
-* BIRTHDAY:
+* `BIRTHDAY`:
   * Implemented as an Optional Date, making use of Java SimpleDateFormat and Calendar classes for input and output validation.
 
 The sequence diagram below illustrates the process of adding a person into Realodex.
@@ -331,13 +332,26 @@ we'll utilize different comparators based on the user's specified field, such as
 
 #### Design considerations:
 
-Support sort by other days besides Today,
-e.g., We may allow users to sort clients based on how close 
-their birthday is to Christmas instead.
 
-Pros: Allows for more flexible searches.
+Introducing the ability to sort clients based on criteria other than "Today" opens up a world of possibilities for users seeking more tailored and flexible search options.
 
-Cons: Users will have to get used to the new command format if implemented
+**Pros:**
+- Enhanced Flexibility: By accommodating sorting based on various criteria such as birthdays relative to holidays like Christmas, users gain the ability to prioritize their interactions based on unique contexts or preferences.
+
+- Improved Relevance:
+  Sorting by alternate criteria allows users to surface clients who are most relevant to specific events or occasions,
+  ensuring that they can engage with individuals in a timely and contextually appropriate manner.
+
+- Personalization: This feature empowers users to personalize their client management experience, aligning it more closely with their individual needs and preferences. This can lead to greater user satisfaction and efficiency.
+
+**Cons:**
+- Learning Curve: Introducing new command formats may require users to adapt to changes in the interface or workflow. While this can initially pose a challenge, clear documentation and intuitive design can help mitigate the learning curve.
+
+- Complexity: Adding additional sorting options may increase the complexity of the system, potentially leading to a more cluttered user interface or backend implementation. Careful design and prioritization are necessary to maintain usability.
+
+- Maintenance Overhead: Supporting multiple sorting criteria introduces additional maintenance overhead, requiring ongoing updates and adjustments to ensure continued functionality and relevance.
+
+In summary, while introducing sorting by criteria other than "Today" may come with some initial challenges, the benefits of enhanced flexibility, relevance, and personalization can outweigh these concerns, ultimately leading to a more powerful and user-friendly client management system.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -533,8 +547,8 @@ the correct format and relevant examples. A link to the User Guide is also provi
 #### Example Usage Scenario
 1. User launches the application.
 2. User executes `help`, wanting to get the help for all commands.
-3. LogicManager instantiates a RealodexParser, which parses the command into a HelpCommand.
-4. The HelpCommand is executed, showing a new window with help for all the features in Realodex.
+3. `LogicManager` instantiates a `RealodexParser`, which parses the command into a `HelpCommand`.
+4. The `HelpCommand` is executed, showing a new window with help for all the features in Realodex.
 5. The GUI reflects that the help window is currently open.
 
 #### Design Considerations
@@ -735,7 +749,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is Realodex and the **Actor** is the user, unless specified otherwise)
 
-
 **Use case: UC01 — Adding a user profile**
 
 **Actor: User**
@@ -750,116 +763,183 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. `Name` does not contain fully alphanumeric characters.
+
     * 1a1. Realodex throws an error and highlights the format to user.
+  
     * 1a2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1b. `Name` contains erroneous whitespace at front or back.
+
     * 1b1. Realodex fixes this for user without errors.
+  
     * Use case ends.
 
 * 1c. `Name` is not capitalized.
+
     * 1c1. Realodex fixes this for user without errors.
+  
     * Use case ends.
 
 * 1d. `Name` is blank.
+
     * 1d1. Realodex throws an error and highlights the format to user.
+  
     * 1d2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1e. `Phone` contains non-integer characters.
+
     * 1e1. Realodex throws an error and highlights the format to user.
+  
     * 1e2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1f. `Phone` is less than three characters.
+
     * 1f1. Realodex throws an error and highlights the format to user.
+  
     * 1f2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1g. `Phone` is blank.
+
     * 1g1. Realodex throws an error and highlights the format to user.
+  
     * 1g2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1h. `Income` is negative
+
     * 1h1. Realodex throws an error and highlights the format to user.
+  
     * 1h2. User enters new data.
+  
     * Use case ends.
 
 * 1i. `Income` contains non-integer characters.
+
     * 1i1. Realodex throws an error and highlights the format to user.
+  
     * 1i2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1j. `Income` is blank.
+
     * 1j1. Realodex throws an error and highlights the format to user.
+  
     * 1j2. User enters new data.
+  
     * Use case ends.
 
 * 1k. `Email` is not in the valid format.
+
     * 1k1. Realodex throws an error and highlights the format to user.
+  
     * 1k2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1l. `Email` is blank.
+
     * 1l1. Realodex throws an error and highlights the format to user.
+  
     * 1l2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1m. `Address` is blank.
+
     * 1m1. Realodex throws an error and highlights the format to user.
+  
     * 1m2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1n. `Family` contains non-integer characters.
+
     * 1n1. Realodex throws an error and highlights the format to user.
+  
     * 1n2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1o. `Family` is negative or zero.
+
     * 1o1. Realodex throws an error and highlights the format to user.
+  
     * 1o2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1p. `Family` is blank.
+
     * 1p1. Realodex throws an error and highlights the format to user.
+  
     * 1p2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1q. `Tag` is not `buyer` or `seller`.
+
     * 1q1. Realodex throws an error and highlights the format to user.
+  
     * 1q2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1r. `Tag` is blank.
+
     * 1r1. Realodex throws an error and highlights the format to user.
+  
     * 1r2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1s. `HOUSING_TYPE` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
+
     * 1s1. Realodex throws an error and highlights the format to user.
+  
     * 1s2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1t. `HOUSING_TYPE` is blank.
+
     * 1t1. Realodex throws an error and highlights the format to user.
+  
     * 1t2. User enters new data.
+
     * Use case resumes from step 1.
 
 * 1u. `Birthday` is not in the valid format.
+
     * 1u1. Realodex throws an error and highlights the format to user.
+  
     * 1u2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1v. `Birthday` is blank.
+
     * 1v1. Realodex throws an error and highlights the format to user.
+  
     * 1v2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1w. Some compulsory fields are missing.
+
     * 1w1. Realodex throws an error and highlights the format to user.
+  
     * 1w2. User enters new data.
+  
     * Use case resumes from step 1.
 
 
@@ -874,119 +954,182 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. `Name` does not contain fully alphanumeric characters.
+
     * 1a1. Realodex throws an error and highlights the format to user.
+  
     * 1a2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1b. `Name` contains erroneous whitespace at front or back.
+
     * 1b1. Realodex fixes this for user without errors.
+  
     * Use case ends.
 
 * 1c. `Name` is not capitalized.
+
     * 1c1. Realodex fixes this for user without errors.
+  
     * Use case ends.
 
 * 1d. `Name` is blank.
+
     * 1d1. Realodex throws an error and highlights the format to user.
+  
     * 1d2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1e. `Phone` contains non-integer characters.
+
     * 1e1. Realodex throws an error and highlights the format to user.
+  
     * 1e2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1f. `Phone` is less than three characters.
+
     * 1f1. Realodex throws an error and highlights the format to user.
+  
     * 1f2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1g. `Phone` is blank.
+
     * 1g1. Realodex throws an error and highlights the format to user.
+  
     * 1g2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1h. `Income` is negative
+
     * 1h1. Realodex throws an error and highlights the format to user.
+  
     * 1h2. User enters new data.
+  
     * Use case ends.
 
 * 1i. `Income` contains non-integer characters.
+
     * 1i1. Realodex throws an error and highlights the format to user.
+  
     * 1i2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1j. `Income` is blank.
+
     * 1j1. Realodex throws an error and highlights the format to user.
+  
     * 1j2. User enters new data.
+  
     * Use case ends.
 
 * 1k. `Email` is not in the valid format.
+
     * 1k1. Realodex throws an error and highlights the format to user.
+  
     * 1k2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1l. `Email` is blank.
+
     * 1l1. Realodex throws an error and highlights the format to user.
+  
     * 1l2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1m. `Address` is blank.
+
     * 1m1. Realodex throws an error and highlights the format to user.
+  
     * 1m2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1n. `Family` contains non-integer characters.
+
     * 1n1. Realodex throws an error and highlights the format to user.
+  
     * 1n2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1o. `Family` is negative or zero.
+
     * 1o1. Realodex throws an error and highlights the format to user.
+  
     * 1o2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1p. `Family` is blank.
+
     * 1p1. Realodex throws an error and highlights the format to user.
+  
     * 1p2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1q. `Tag` is not `buyer` or `seller`.
+
     * 1q1. Realodex throws an error and highlights the format to user.
+  
     * 1q2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1r. `Tag` is blank.
+
     * 1r1. Realodex throws an error and highlights the format to user.
+  
     * 1r2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1s. `HOUSING_TYPE` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
+
     * 1s1. Realodex throws an error and highlights the format to user.
+  
     * 1s2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1t. `HOUSING_TYPE` is blank.
     * 1t1. Realodex throws an error and highlights the format to user.
+  
     * 1t2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1u. `Birthday` is not in the valid format.
     * 1u1. Realodex throws an error and highlights the format to user.
+  
     * 1u2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1v. `Birthday` is blank.
     * 1v1. Realodex throws an error and highlights the format to user.
+  
     * 1v2. User enters new data.
+  
     * Use case resumes from step 1.
 
 * 1w. No fields input.
     * 1w1. Realodex throws an error and highlights the format to user.
+  
     * 1w2. User enters new data.
+  
     * Use case resumes from step 1.
 
 
@@ -995,21 +1138,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to delete user by name
+
 2.  Realodex deletes the person with a success message
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The input name is not of valid format
- * 1a1. Realodex shows an error message. 
 
-Use case ends.
+  * 1a1. Realodex shows an error message highlighting the correct format for name.
+  
+  * Use case ends.
 
 * 1b. The input name is not found
-* 1b1. Realodex shows an error message.
 
-Use case ends.
+  * 1b1. Realodex shows an error message.
+  
+  * Use case ends.
 
 
 **Use case: UC04 — Delete a person by index**
@@ -1017,25 +1163,31 @@ Use case ends.
 **MSS**
 
 1.  User requests to delete user by index
+
 2.  Realodex deletes the person with a success message
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The index is more than client list size
-* 1a1. Realodex shows an error message.
-* Use case ends.
+
+  * 1a1. Realodex shows an error message indicating an out-of-bounds error.
+  
+  * Use case ends.
 
 * 1b. The index is negative
-* 1b1. Realodex shows an error message.
-* Use case ends.
+
+  * 1b1. Realodex shows an error message indicating a negative index error.
+  
+  * Use case ends.
 
 **Use case: UC05 — Sort list by birthday**
 
 **MSS**
 
 1.  User requests to sort the list by the nearest upcoming birthday.
+
 2.  Realodex sorts the list and returns the sorted list to screen.
 
     Use case ends.
@@ -1045,14 +1197,17 @@ Use case ends.
 **MSS**
 
 1.  User requests to list
+
 2.  Realodex shows the list of all clients
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty
+
   * 2a1. Realodex shows an empty list.
+  
   * Use case ends.
 
 **Use case: UC07 — Filter by Name**
@@ -1060,6 +1215,7 @@ Use case ends.
 **MSS**
 
 1. User requests to filter clients by providing a name substring.
+
 2. Realodex filters and displays a list of all clients whose names include the input substring.
 
     Use case ends.
@@ -1083,6 +1239,7 @@ Use case ends.
 **MSS**
 
 1. User requests to filter clients by providing a remark reference.
+
 2. Realodex filters and displays a list of all clients whose remarks match the reference input.
 
    Use case ends.
@@ -1101,6 +1258,7 @@ Use case ends.
 **MSS**
 
 1. User requests to filter clients by providing a tag.
+
 2. Realodex filters and displays a list of all clients whose tag matches the input.
 
    Use case ends.
@@ -1125,7 +1283,9 @@ Use case ends.
 **MSS**
 
 1. User requests to filter clients by providing a housing type.
+
 2. Realodex filters and displays a list of all clients whose housing type matches the input.
+
    Use case ends.
 
 **Extensions**
@@ -1147,7 +1307,9 @@ Use case ends.
 **MSS**
 
 1. User requests to filter clients by providing a birthday month.
+
 2. Realodex filters and displays a list of all clients whose birthday month matches the input.
+
    Use case ends.
 
 **Extensions**
@@ -1170,6 +1332,7 @@ Use case ends.
 **MSS**
 
 1. User requests for help.
+
 2. Realodex displays a new window showing a summary of how all features are used with examples.
 
    Use case ends.
@@ -1179,7 +1342,8 @@ Use case ends.
 **MSS**
 
 1. User requests for help for a specific command.
-2. A string summarising how that individual command is used with examples is displayed on the main window.
+
+2. A string summarizing how that individual command is used with examples is displayed.
 
 **Extensions**
 
