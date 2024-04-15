@@ -27,7 +27,6 @@ public class Birthday {
             + "Example: b/Sep";
     public static final SimpleDateFormat INPUT_DATE_FORMATTER = new SimpleDateFormat(INPUT_DATE_PATTERN);
     public static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.MEDIUM);
-    private static final Logger logger = LogsCenter.getLogger(Birthday.class);
     private final Optional<Date> optionalBirthday;
     /**
      * Constructs a {@code Birthday}.
