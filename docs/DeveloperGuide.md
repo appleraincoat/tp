@@ -1853,7 +1853,7 @@ command and streamline the process of adding new user profiles**
      While this was a design choice to prevent users from missing out on important
      fields, we plan to make this more user-friendly in the future.
      - We plan to introduce dynamic checks such that if the profile is of certain conditions, they may not need to input certain fields.
-     - E.g., Users who add a profile that is a SELLER, they may choose to omit the input for `INCOME` which would otherwise be
+     - E.g., Users who add a profile that is a `SELLER`, they may choose to omit the input for `INCOME` which would otherwise be
        compulsory!
        The Rationale is that sellers may not see a need to disclose their income for real estate deals.
    - Based on feedback, we may make some fields not compulsory all together.
@@ -1866,7 +1866,7 @@ command and streamline the process of adding new user profiles**
      - When user types in a leap date on a year with no leap date such `29Feb2023`,
        this will expectedly return the error as its invalid date. 
        However, the error message is not entirely helpful as the format is technically correct as its `DDMMMYYYY`.
-     - We plan to return a more specific message such as 'Date input is a leap date on a non-leap year'
+     - We plan to return a more specific message such as `Date input is a leap date on a non-leap year`
 
 5. **Improve duplicate user profile check**
    - Currently, Realodex prevents duplicates based on the condition of two clients having the same full name regardless of other parameters.
@@ -1900,17 +1900,15 @@ command and streamline the process of adding new user profiles**
    - We plan to relax the duplicate prefixes restrictions for some fields and allow users to input multiple fields.
 
 9. **Allow symbols in `INCOME` input**
-  - Currently, `INCOME` only allows numbers
-  - This poses problems to users who wish to input commas in their input such as `100,000` which is common too
-  - We plan to allow users to input symbols in their income while keeping the restriction of value >= 0.
+   - Currently, `INCOME` only allows numbers
+   - This poses problems to users who wish to input commas in their input such as `100,000` which is common too
+   - We plan to allow users to input symbols in their income while keeping the restriction of value >= 0.
 
-10. **Maintain consistency for `COMMAND help`**
-    - Currently, we support `clear help`
-      - To maintain consistency, we will change this to `clearRealodex help` where `clearRealodex` is the actual command
-        to input when you wish to clear Realodex's list of clients.
-    - We plan to also support all commands except `help`.
-      E.g. `exit help` will no longer just exit Realodex
-      but provide some help suggestion for `exit`, this can help reduce confusion over what `COMMAND` is supported.
+10. **Persistent Filtered Client List**
+    - Currently, our application resets the filtered client list to show all clients after any command (e.g. `add`, `edit`, or `delete`) is executed.
+    - Users may find it an inconvenience that the list reverts to unfiltered after every command.
+    - We plan to implement a persistent filter mechanism within the client list by modifying the application to maintain the state of the filtered client list across various commands until the user decides to reset it. 
+    - This will allow the filter to remain active and allow for multiple filtering by stacking filter commands until the user decides to reset it using list.
 
 --------------------------------------------------------------------------------------------------------------------
 
