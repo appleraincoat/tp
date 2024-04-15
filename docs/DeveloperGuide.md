@@ -1403,9 +1403,28 @@ command and streamline the process of adding new user profiles**
    - We plan to reduce the restrictions of no symbols for future iterations 
 
 7. **Allow symbols in `NAME` input**
-   - Currently, `NAME` does not accept symbols, hence common substrings such as `s/o`, `d/o` or punctuation such as  in "Tan Xin En, Betty" 
+   - Currently, `NAME` does not accept symbols, hence common substrings such as `s/o`,
+     `d/o` or punctuation such as in "Tan Xin En, Betty" 
      are not allowed in the name input.
    - We plan to allow the usage of symbols for future iterations by accepting symbols in names.
+
+8. **Allow multiple field inputs and relax duplicate `PREFIX` restrictions**
+   - Currently, we do not allow duplicate prefixes for fields except `TAG` to prevent duplicate fields being added.
+   - However, some clients may wish to store multiple fields, e.g., a seller may wish to sell multiple properties, and 
+     hence Realodex will be required to list multiple addresses.
+   - We plan to relax the duplicate prefixes restrictions for some fields and allow users to input multiple fields.
+
+9. **Allow symbols in `INCOME` input**
+  - Currently, `INCOME` only allows numbers
+  - This poses problems to users who wish to input commas in their input such as `100,000` which is common too
+  - We plan to allow users to input symbols in their income while keeping the restriction of value >= 0.
+
+10. **Maintain consistency for `COMMAND help`**
+    - Currently, we support `clear help`
+      - To maintain consistency, we will change this to `clearRealodex help`
+    - We plan to also support all commands except `help`.
+      E.g. `exit help` will no longer just exit Realodex
+      but provide some help suggestion for `exit`, this can help reduce confusion over what `COMMAND` is supported.
 
 --------------------------------------------------------------------------------------------------------------------
 
