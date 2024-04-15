@@ -51,6 +51,8 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -305,6 +307,8 @@ To implement the sorting functionality, the `LogicManager` component parses the 
 The sequence diagram below illustrates the process of creating a sort operation through the `Logic` component:
 <puml src="diagrams/sort/SortSequenceDiagram-Logic.puml" width="800" />
 
+<div style="page-break-after: always;"></div>
+
 #### `SortCommand` Implementation Sequence Diagram
 
 1. **Model Retrieval**: The method begins by retrieving the `Realodex` component from the provided `Model` object using the `getRealodex` method.
@@ -384,6 +388,8 @@ Introducing the ability to sort clients based on criteria other than "Today" ope
 - Maintenance Overhead: Supporting multiple sorting criteria introduces additional maintenance overhead, requiring ongoing updates and adjustments to ensure continued functionality and relevance.
 
 In summary, while introducing sorting by criteria other than "Today" may come with some initial challenges, the benefits of enhanced flexibility, relevance, and personalization can outweigh these concerns, ultimately leading to a more powerful and user-friendly client management system.
+
+<div style="page-break-after: always;"></div>
 
 #### [Proposed] `Sort` Features Beyond v1.4
 
@@ -521,6 +527,8 @@ Pros: Ensures that only persons with specific remarks are listed, reducing clutt
 
 Cons: Extremely limiting. Users must remember exact remarks.
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Filter by Tag Feature
 
 #### Description
@@ -571,6 +579,8 @@ This is implemented using the `BirthdayIsInMonthPredicate` that checks whether a
 #### Example Usage Scenario
 1. The user inputs `filter b/Jan`, intending to filter the list of persons to only include those with birthdays in January.
 2. The UI reflects the filtered list with persons who have birthdays in January.
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 **Alternative 1 (current choice): Filter by birthday month.**
@@ -652,6 +662,8 @@ the correct format and relevant examples. A link to the User Guide is also provi
 #### Example Usage Scenario
 1. User executes `help`, wanting to get the help for all commands.
 2. A new window opens with a summary of how to use all commands, with the correct format and relevant examples.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -1152,213 +1164,213 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. `Name` does not contain fully alphanumeric characters.
 
-  * 1a1. Realodex throws an error and highlights the format to user.
+    * 1a1. Realodex throws an error and highlights the format to user.
 
-  * 1a2. User enters new data.
+    * 1a2. User enters new data.
 
-  * Steps 1a1 to 1a2 repeats until the name input is valid.
+    * Steps 1a1 to 1a2 repeats until the name input is valid.
 
   * Use case resumes from step 2.
 
 * 1b. `Name` contains erroneous whitespace at front or back.
 
-  * 1b1. Realodex fixes this for user without errors.
+    * 1b1. Realodex fixes this for user without errors.
 
   * Use case resumes from step 2.
 
 * 1c. `Name` is not capitalized.
 
-  * 1c1. Realodex fixes this for user without errors.
+    * 1c1. Realodex fixes this for user without errors.
 
   * Use case resumes from step 2.
 
 * 1d. `Name` is blank.
 
-  * 1d1. Realodex throws an error and highlights the format to user.
+    * 1d1. Realodex throws an error and highlights the format to user.
 
-  * 1d2. User enters new data.
+    * 1d2. User enters new data.
 
-  * Steps 1d1 to 1d2 repeats until the `Name` input is valid.
+    * Steps 1d1 to 1d2 repeats until the `Name` input is valid.
 
   * Use case resumes from step 2.
 
 * 1e. `Phone` contains non-integer characters.
 
-  * 1e1. Realodex throws an error and highlights the format to user.
+    * 1e1. Realodex throws an error and highlights the format to user.
 
-  * 1e2. User enters new data.
+    * 1e2. User enters new data. 
 
-  * Steps 1e1 to 1e2 repeats until the `Phone` input is valid.
+    * Steps 1e1 to 1e2 repeats until the `Phone` input is valid.
 
   * Use case resumes from step 2.
 
 * 1f. `Phone` is less than three characters.
 
-  * 1f1. Realodex throws an error and highlights the format to user.
+    * 1f1. Realodex throws an error and highlights the format to user.
 
-  * 1f2. User enters new data.
+    * 1f2. User enters new data.
 
-  * Steps 1f1 to 1f2 repeats until the `Phone` input is valid.
+    * Steps 1f1 to 1f2 repeats until the `Phone` input is valid.
 
   * Use case resumes from step 2.
 
 * 1g. `Phone` is blank.
 
-  * 1g1. Realodex throws an error and highlights the format to user.
+    * 1g1. Realodex throws an error and highlights the format to user.
 
-  * 1g2. User enters new data.
+    * 1g2. User enters new data.
 
-  * Steps 1g1 to 1g2 repeats until the `Phone` input is valid.
+    * Steps 1g1 to 1g2 repeats until the `Phone` input is valid.
 
   * Use case resumes from step 2.
 
 * 1h. `Income` is negative
 
-  * 1h1. Realodex throws an error and highlights the format to user.
+    * 1h1. Realodex throws an error and highlights the format to user.
 
-  * 1h2. User enters new data.
+    * 1h2. User enters new data.
 
-  * Steps 1h1 to 1h2 repeats until the `Income` input is valid.
+    * Steps 1h1 to 1h2 repeats until the `Income` input is valid.
 
   * Use case resumes from step 2.
 
 * 1i. `Income` contains non-integer characters.
 
-  * 1i1. Realodex throws an error and highlights the format to user.
+    * 1i1. Realodex throws an error and highlights the format to user.
 
-  * 1i2. User enters new data.
+    * 1i2. User enters new data.
 
-  * Steps 1i1 to 1i2 repeats until the `Income` input is valid.
+    * Steps 1i1 to 1i2 repeats until the `Income` input is valid.
 
   * Use case resumes from step 2.
 
 * 1j. `Income` is blank.
 
-  * 1j1. Realodex throws an error and highlights the format to user.
+    * 1j1. Realodex throws an error and highlights the format to user.
 
-  * 1j2. User enters new data.
+    * 1j2. User enters new data.
 
-  * Steps 1j1 to 1j2 repeats until the `Income` input is valid.
+    * Steps 1j1 to 1j2 repeats until the `Income` input is valid.
 
   * Use case resumes from step 2.
 
 * 1k. `Email` is not in the valid format.
 
-  * 1k1. Realodex throws an error and highlights the format to user.
+    * 1k1. Realodex throws an error and highlights the format to user.
 
-  * 1k2. User enters new data.
+    * 1k2. User enters new data.
 
-  * Steps 1k1 to 1k2 repeats until the `Email` input is valid.
+    * Steps 1k1 to 1k2 repeats until the `Email` input is valid.
 
   * Use case resumes from step 2.
 
 * 1l. `Email` is blank.
 
-  * 1l1. Realodex throws an error and highlights the format to user.
+    * 1l1. Realodex throws an error and highlights the format to user.
 
-  * 1l2. User enters new data.
+    * 1l2. User enters new data.
 
-  * Steps 1l1 to 1l2 repeats until the `Email` input is valid.
+    * Steps 1l1 to 1l2 repeats until the `Email` input is valid.
 
   * Use case resumes from step 2.
 
 * 1m. `Address` is blank.
 
-  * 1m1. Realodex throws an error and highlights the format to user.
+    * 1m1. Realodex throws an error and highlights the format to user.
 
-  * 1m2. User enters new data.
+    * 1m2. User enters new data.
 
-  * Steps 1m1 to 1m2 repeats until the `Address` input is valid.
+    * Steps 1m1 to 1m2 repeats until the `Address` input is valid.
 
   * Use case resumes from step 2.
 
 * 1n. `Family` contains non-integer characters.
 
-  * 1n1. Realodex throws an error and highlights the format to user.
+    * 1n1. Realodex throws an error and highlights the format to user.
 
-  * 1n2. User enters new data.
+    * 1n2. User enters new data.
 
-  * Steps 1n1 to 1n2 repeats until the `Family` input is valid.
+    * Steps 1n1 to 1n2 repeats until the `Family` input is valid.
 
   * Use case resumes from step 2.
 
 * 1o. `Family` is negative or zero.
 
-  * 1o1. Realodex throws an error and highlights the format to user.
+    * 1o1. Realodex throws an error and highlights the format to user.
 
-  * 1o2. User enters new data.
+    * 1o2. User enters new data.
 
-  * Steps 1o1 to 1o2 repeats until the `Family` input is valid.
+    * Steps 1o1 to 1o2 repeats until the `Family` input is valid.
 
   * Use case resumes from step 2.
 
 * 1p. `Family` is blank.
 
-  * 1p1. Realodex throws an error and highlights the format to user.
+    * 1p1. Realodex throws an error and highlights the format to user.
 
-  * 1p2. User enters new data.
+    * 1p2. User enters new data.
 
-  * Steps 1p1 to 1p2 repeats until the `Family` input is valid.
+    * Steps 1p1 to 1p2 repeats until the `Family` input is valid.
 
   * Use case resumes from step 2.
 
 * 1q. `Tag` is not `buyer` or `seller`.
 
-  * 1q1. Realodex throws an error and highlights the format to user.
+    * 1q1. Realodex throws an error and highlights the format to user.
 
-  * 1q2. User enters new data.
+    * 1q2. User enters new data.
 
-  * Steps 1q1 to 1q2 repeats until the `Tag` input is valid.
+    * Steps 1q1 to 1q2 repeats until the `Tag` input is valid.
 
   * Use case resumes from step 2.
 
 * 1r. `Tag` is blank.
 
-  * 1r1. Realodex throws an error and highlights the format to user.
+    * 1r1. Realodex throws an error and highlights the format to user.
 
-  * 1r2. User enters new data.
+    * 1r2. User enters new data.
 
-  * Steps 1r1 to 1r2 repeats until the `Tag` input is valid.
+    * Steps 1r1 to 1r2 repeats until the `Tag` input is valid.
 
   * Use case resumes from step 2.
 
 * 1s. `Housing Type` is not in any of 'HDB', 'CONDOMINIUM', 'LANDED PROPERTY' or 'GOOD CLASS BUNGALOW'.
 
-  * 1s1. Realodex throws an error and highlights the format to user.
+    * 1s1. Realodex throws an error and highlights the format to user.
 
-  * 1s2. User enters new data.
+    * 1s2. User enters new data.
 
-  * Steps 1s1 to 1s2 repeats until the `Housing Type` input is valid.
+    * Steps 1s1 to 1s2 repeats until the `Housing Type` input is valid.
 
   * Use case resumes from step 2.
 
 * 1t. `Housing Type` is blank.
 
-  * 1t1. Realodex throws an error and highlights the format to user.
+    * 1t1. Realodex throws an error and highlights the format to user.
 
-  * 1t2. User enters new data.
+    * 1t2. User enters new data.
 
-  * Steps 1t1 to 1t2 repeats until the `Housing Type` input is valid.
+    * Steps 1t1 to 1t2 repeats until the `Housing Type` input is valid.
 
   * Use case resumes from step 2.
 
 * 1u. `Birthday` is not in the valid format.
 
-  * 1u1. Realodex throws an error and highlights the format to user.
+    * 1u1. Realodex throws an error and highlights the format to user.
 
-  * 1u2. User enters new data.
+    * 1u2. User enters new data.
 
-  * Steps 1u1 to 1u2 repeats until the `Birthday` input is valid.
+    * Steps 1u1 to 1u2 repeats until the `Birthday` input is valid.
 
   * Use case resumes from step 2.
 
 * 1v. `Birthday` is blank.
 
-  * 1v1. Realodex throws an error and highlights the format to user.
+    * 1v1. Realodex throws an error and highlights the format to user.
 
-  * 1v2. User enters new data.
+    * 1v2. User enters new data.
 
-  * Steps 1v1 to 1v2 repeats until the `Birthday` input is valid.
+    * Steps 1v1 to 1v2 repeats until the `Birthday` input is valid.
 
   * Use case resumes from step 2.
 
@@ -1368,7 +1380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     * 1w2. User enters new data.
   
-    * Use case resumes from step 1.
+  * Use case resumes from step 1.
 
 <div style="page-break-after: always;"></div>
 
@@ -1386,21 +1398,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The input `Name` is not of valid format
 
-  * 1a1. Realodex shows an error message highlighting the correct format for `Name`.
+    * 1a1. Realodex shows an error message highlighting the correct format for `Name`.
 
-  * 1a2. User inputs a new `Name`.
+    * 1a2. User inputs a new `Name`.
 
-  * 1a3. Steps 1a1 to 1a2 repeats until the `Name` input is valid.
+    * 1a3. Steps 1a1 to 1a2 repeats until the `Name` input is valid.
   
   * Use case resumes from step 2.
 
 * 1b. The input `Name` is not found
 
-  * 1b1. Realodex shows an error message that `Name` is invalid.
+    * 1b1. Realodex shows an error message that `Name` is invalid.
 
-  * 1b2. User inputs a new `Name`.
+    * 1b2. User inputs a new `Name`.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the `Name` input is valid.
+    * 1b3. Steps 1b1 to 1b2 repeats until the `Name` input is valid.
   
   * Use case resumes from step 2.
 
@@ -1420,21 +1432,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The `index` is more than client list size
 
-  * 1a1. Realodex shows an error message indicating an invalid `index` error.
+    * 1a1. Realodex shows an error message indicating an invalid `index` error.
 
-  * 1a2. User inputs a new `index`.
+    * 1a2. User inputs a new `index`.
 
-  * 1a3. Steps 1a1 to 1a2 repeats until the `index` input is valid.
+    * 1a3. Steps 1a1 to 1a2 repeats until the `index` input is valid.
 
   * Use case resumes from step 2.
 
 * 1b. The `index` is negative
 
-  * 1b1. Realodex shows an error message indicating a negative `index` error.
+    * 1b1. Realodex shows an error message indicating a negative `index` error.
 
-  * 1b2. User inputs a new `index`.
+    * 1b2. User inputs a new `index`.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the `index` input is valid.
+    * 1b3. Steps 1b1 to 1b2 repeats until the `index` input is valid.
 
   * Use case resumes from step 2.
 
@@ -1466,7 +1478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty
 
-  * 2a1. Realodex shows an empty list.
+    * 2a1. Realodex shows an empty list.
   
   * Use case ends.
 
@@ -1492,15 +1504,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a3. Steps 1a1 to 1a2 repeats until the input substring is valid.
 
-    * Use case resumes from step 2.
+  * Use case resumes from step 2.
 
 * 1b. The name input is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-  * 1b2. User inputs a new substring.
+    * 1b2. User inputs a new substring.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the input substring is valid.
+    * 1b3. Steps 1b1 to 1b2 repeats until the input substring is valid.
 
   * Use case resumes from step 2.
 
@@ -1522,11 +1534,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-    * 1a2. User inputs a non-empty remark.
+    * 1a2. User inputs a remark.
 
-    * Use case resumes from step 2.
+    * 1a3. Steps 1a1 to 1a2 repeats until the input remark is valid.
 
-      Use case ends.
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1544,19 +1556,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The tag input is empty.
 
-  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-  * 1a2. User inputs a non-empty tag.
+    * 1a2. User inputs a new tag.
+
+    * 1a3. Steps 1a1 to 1a2 repeats until the input tag is non-empty and valid.
 
   * Use case resumes from step 2.
 
 * 1b. The tag input is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-  * 1b2. User inputs a new tag.
+    * 1b2. User inputs a new tag.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the tag input is valid.
+    * 1b3. Steps 1b1 to 1b2 repeats until the tag input is valid.
 
   * Use case resumes from step 2.
 
@@ -1576,19 +1590,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The housing type input is empty.
 
-  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-  * 1a2. User inputs a non-empty housing type.
+    * 1a2. User inputs a housing type.
+  
+    * 1a3. Steps 1a1 to 1a2 repeats until the housing type is valid
 
   * Use case resumes from step 2.
 
 * 1b. The housing type input is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-  * 1b2. User inputs a new housing type.
+    * 1b2. User inputs a new housing type.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the housing type input is valid.
+    * 1b3. Steps 1b1 to 1b2 repeats until the housing type input is valid.
 
   * Use case resumes from step 2.
 
@@ -1608,21 +1624,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The birthday month input is empty.
 
-  * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
+    * 1a1. Realodex shows an error message indicating that the filter criteria cannot be empty.
 
-  * 1a2. User inputs a non-empty birthday month.
+    * 1a2. User inputs a birthday month.
+  
+    * 1a3. Steps 1a1 to 1a2 repeats until the birthday month is non-empty and valid.
 
   * Use case resumes from step 2.
 
 * 1b. The birthday month is not of valid format.
 
-  * 1b1. Realodex shows an error message highlighting the correct format.
+    * 1b1. Realodex shows an error message highlighting the correct format.
 
-  * 1b2. User inputs a new birthday month of valid format.
+    * 1b2. User inputs a new birthday month of valid format.
 
-  * 1b3. Steps 1b1 to 1b2 repeats until the birthday month input is valid.
+    * 1b3. Steps 1b1 to 1b2 repeats until the birthday month input is valid.
 
-    Use case ends.
+  * Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
@@ -1654,9 +1672,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a3. Steps 1a1 to 1a2 repeats until the command input is valid.
 
-    * Use case resumes from step 2.
+  * Use case resumes from step 2.
 
-      Use case ends.
 
 <div style="page-break-after: always;"></div>
 
@@ -1749,6 +1766,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No person is deleted.
       Error details shown in the status message.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a person
 
 1. Editing a person while all persons are being shown
@@ -1808,7 +1827,7 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `edit help` 
    Expected: A help message for `EditCommand` will be displayed in the box
 
-
+<div style="page-break-after: always;"></div>
 
 ### Corrupted Data
 
@@ -1904,6 +1923,8 @@ command and streamline the process of adding new user profiles**
    - However, some clients may wish to store multiple fields, e.g., a seller may wish to sell multiple properties, and 
      hence Realodex will be required to list multiple addresses.
    - We plan to relax the duplicate prefixes restrictions for some fields and allow users to input multiple fields.
+
+<div style="page-break-after: always;"></div>
 
 9. **Allow symbols in `INCOME` input**
    - Currently, `INCOME` only allows numbers
