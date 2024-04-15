@@ -12,7 +12,9 @@ import seedu.realodex.testutil.PersonBuilder;
 public class NameContainsKeyphrasePredicateTest {
 
     @Test
+    // Test for equals method to ensure consistency and symmetry
     public void equals() {
+        // Equivalence Partitioning (EP): Same keyphrase, different keyphrase, null, different type
         String firstPredicateKeyphrase = "first";
         String secondPredicateKeyphrase = "first second";
 
@@ -32,12 +34,14 @@ public class NameContainsKeyphrasePredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different keyphrase -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
+    // Test for nameContainsKeyphrasePredicate to return true when name contains keyphrase
     public void test_nameContainsKeyphrase_returnsTrue() {
+        // Equivalence Partitioning (EP): Matching keyphrase in different scenarios
         // Keyphrase is one word
         NameContainsKeyphrasePredicate predicate = new NameContainsKeyphrasePredicate("Alice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
@@ -68,8 +72,9 @@ public class NameContainsKeyphrasePredicateTest {
     }
 
     @Test
+    // Test for nameContainsKeyphrasePredicate to return false when name does not contain keyphrase
     public void test_nameDoesNotContainKeyphrase_returnsFalse() {
-
+        // Equivalence Partitioning (EP): Non-matching keyphrase in different scenarios
         // Non-matching keyphrase
         NameContainsKeyphrasePredicate predicate = new NameContainsKeyphrasePredicate("Carol");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
@@ -77,23 +82,23 @@ public class NameContainsKeyphrasePredicateTest {
         Person alice = new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build();
 
-        // Keyphrase match phone but does not match name
+        // Keyphrase matches phone but does not match name
         predicate = new NameContainsKeyphrasePredicate("12345");
         assertFalse(predicate.test(alice));
 
-        // Keyphrase match email but does not match name
+        // Keyphrase matches email but does not match name
         predicate = new NameContainsKeyphrasePredicate("alice@email.com");
         assertFalse(predicate.test(alice));
 
-        // Keyphrase match address but does not match name
+        // Keyphrase matches address but does not match name
         predicate = new NameContainsKeyphrasePredicate("Main");
         assertFalse(predicate.test(alice));
         predicate = new NameContainsKeyphrasePredicate("Street");
         assertFalse(predicate.test(alice));
-
     }
 
     @Test
+    // Test toString method to ensure it returns correct string representation
     public void toStringMethod() {
         String keyphrase = "keyphrase yapyap";
         NameContainsKeyphrasePredicate predicate = new NameContainsKeyphrasePredicate(keyphrase);

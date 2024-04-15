@@ -14,7 +14,9 @@ import seedu.realodex.testutil.PersonBuilder;
 public class RemarkContainsKeyphrasePredicateTest {
 
     @Test
+    // Test for checking equality of predicates
     public void equals() {
+        // Equivalence Partitioning (EP): Equality of predicates
         String firstPredicateKeyphrase = "first";
         String secondPredicateKeyphrase = "first second";
 
@@ -34,7 +36,7 @@ public class RemarkContainsKeyphrasePredicateTest {
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
 
-        //different predicate type -> returns false
+        // different predicate type -> returns false
         NameContainsKeyphrasePredicate copy =
                 new NameContainsKeyphrasePredicate(firstPredicateKeyphrase);
         assertFalse(firstPredicate.equals(copy));
@@ -47,7 +49,9 @@ public class RemarkContainsKeyphrasePredicateTest {
     }
 
     @Test
+    // Test for checking if remark contains keyphrase
     public void test_nameContainsKeyphrase_returnsTrue() {
+        // Equivalence Partitioning (EP): Remark containing keyphrase
         // Keyphrase is one word
         RemarkContainsKeyphrasePredicate predicate = new RemarkContainsKeyphrasePredicate("Nice");
         assertTrue(predicate.test(new PersonBuilder().withRemark("Nice").build()));
@@ -78,8 +82,9 @@ public class RemarkContainsKeyphrasePredicateTest {
     }
 
     @Test
+    // Test for checking if remark does not contain keyphrase
     public void test_nameDoesNotContainKeyphrase_returnsFalse() {
-
+        // Equivalence Partitioning (EP): Remark not containing keyphrase
         // Non-matching keyphrase
         RemarkContainsKeyphrasePredicate predicate = new RemarkContainsKeyphrasePredicate("CS2103T");
         assertFalse(predicate.test(new PersonBuilder().withRemark("is not fun!").build()));
@@ -104,11 +109,12 @@ public class RemarkContainsKeyphrasePredicateTest {
         assertFalse(predicate.test(alice));
         predicate = new RemarkContainsKeyphrasePredicate("Street");
         assertFalse(predicate.test(alice));
-
     }
 
     @Test
+    // Test for checking toString method
     public void toStringMethod() {
+        // Equivalence Partitioning (EP): ToString method
         String keyphrase = "keyphrase yapyap";
         RemarkContainsKeyphrasePredicate predicate = new RemarkContainsKeyphrasePredicate(keyphrase);
         String expected = RemarkContainsKeyphrasePredicate.class.getCanonicalName() + "{keyphrase=" + keyphrase + "}";

@@ -13,21 +13,30 @@ public class RemarkTest {
         assertThrows(NullPointerException.class, () -> new Remark(null));
     }
 
-    //May seem redundant, but for further iterations where we may validate remarks.
     @Test
-    public void isValidRemark() {
-        // null name
+    public void isValidRemark_equivalencePartitioning() {
+        // null remark
         assertThrows(NullPointerException.class, () -> Remark.isValidRemark(null));
 
-        // invalid name
-        // to-do in the future, ideas include but not limited to length constraints, no illegal characters.
+        // EP: valid remark (should always return true)
+        assertTrue(Remark.isValidRemark("I love apples"));
+        assertTrue(Remark.isValidRemark("12345"));
+        assertTrue(Remark.isValidRemark("James Lau the 1st"));
+        assertTrue(Remark.isValidRemark("New York"));
+        assertTrue(Remark.isValidRemark("Tony Stark, genius playboy billionaire philanthropist"));
 
-        // valid name
-        assertTrue(Remark.isValidRemark("I love apples")); // alphabets only
-        assertTrue(Remark.isValidRemark("12345")); // numbers only
-        assertTrue(Remark.isValidRemark("James Lau the 1st")); // alphanumeric characters
-        assertTrue(Remark.isValidRemark("New York")); // with capital letters
-        assertTrue(Remark.isValidRemark("Tony Stark, genius playboy billionaire philanthropist")); // long remark
+        // EP: empty remark (should always return true)
+        assertTrue(Remark.isValidRemark(""));
+
+        // EP: remark with whitespaces (should always return true)
+        assertTrue(Remark.isValidRemark("   "));
+        assertTrue(Remark.isValidRemark("  \t  \n  "));
+
+        // EP: remark with special characters (should always return true)
+        assertTrue(Remark.isValidRemark("!@#$%^&*()_+{}|:\"<>?"));
+
+        // EP: remark with leading and trailing whitespaces (should always return true)
+        assertTrue(Remark.isValidRemark("  Remark with leading and trailing spaces  "));
     }
 
     @Test

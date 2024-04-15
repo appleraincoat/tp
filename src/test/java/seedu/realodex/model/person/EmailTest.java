@@ -128,6 +128,87 @@ public class EmailTest {
     }
 
     @Test
+    public void isValidEmail_localPart() {
+        // Equivalence partitioning: Local part
+        assertFalse(Email.isValidEmail("@example.com")); // missing local part
+        assertFalse(Email.isValidEmail("peterjackexample.com")); // missing '@' symbol
+        assertFalse(Email.isValidEmail("peterjack@")); // missing domain name
+
+        // Invalid local part characters
+        assertFalse(Email.isValidEmail("peterjack@-")); // invalid domain name
+        assertFalse(Email.isValidEmail("peterjack@exam_ple.com")); // underscore in domain name
+        assertFalse(Email.isValidEmail("peter jack@example.com")); // spaces in local part
+
+        // Valid local part characters
+        assertTrue(Email.isValidEmail("PeterJack_1190@example.com")); // underscore in local part
+        assertTrue(Email.isValidEmail("PeterJack.1190@example.com")); // period in local part
+        assertTrue(Email.isValidEmail("PeterJack+1190@example.com")); // '+' symbol in local part
+        assertTrue(Email.isValidEmail("PeterJack-1190@example.com")); // hyphen in local part
+    }
+
+    @Test
+    public void isValidEmail_domain() {
+        // Equivalence partitioning: Domain name
+        assertFalse(Email.isValidEmail("peterjack@example@com")); // '@' symbol in domain name
+        assertFalse(Email.isValidEmail("peterjack@.example.com")); // domain name starts with a period
+        assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
+        assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
+        assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
+        assertFalse(Email.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
+
+        assertTrue(Email.isValidEmail("user@example.co.uk")); // UK top-level domain
+        assertTrue(Email.isValidEmail("user@example.travel")); // .travel top-level domain
+        assertTrue(Email.isValidEmail("user@example.museum")); // .museum top-level domain
+    }
+
+    @Test
+    public void isValidEmail_specialCharacters() {
+        // Equivalence partitioning: Special characters
+        assertFalse(Email.isValidEmail("user%name@example.com")); // '%'
+        assertFalse(Email.isValidEmail("user!name@example.com")); // '!'
+        assertFalse(Email.isValidEmail("user#name@example.com")); // '#'
+        assertFalse(Email.isValidEmail("user$name@example.com")); // '$'
+        assertFalse(Email.isValidEmail("user^name@example.com")); // '^'
+        assertFalse(Email.isValidEmail("user&name@example.com")); // '&'
+        assertFalse(Email.isValidEmail("user*name@example.com")); // '*'
+        assertFalse(Email.isValidEmail("user=name@example.com")); // '='
+        assertFalse(Email.isValidEmail("user?name@example.com")); // '?'
+    }
+
+    @Test
+    public void isValidEmail_consecutiveCharacters() {
+        // Equivalence partitioning: Consecutive characters
+        assertTrue(Email.isValidEmail("user..name@example.com")); // consecutive periods
+        assertTrue(Email.isValidEmail("user__name@example.com")); // consecutive underscores
+        assertTrue(Email.isValidEmail("user--name@example.com")); // consecutive hyphens
+        assertTrue(Email.isValidEmail("user++name@example.com")); // consecutive pluses
+    }
+
+    @Test
+    public void isValidEmail_length() {
+        // Equivalence partitioning: Length
+        assertTrue(Email.isValidEmail("a".repeat(64) + "@example.com")); // local-part of 64 characters
+        assertTrue(Email.isValidEmail("user." + "example".repeat(63)
+                                              + "@example.com")); // domain label of 63 characters
+        assertTrue(Email.isValidEmail("user@example." + "com".repeat(63))); // top-level domain of 63 characters
+    }
+
+    @Test
+    public void isValidEmail_mixedCharacters() {
+        // Equivalence partitioning: Mixed characters
+        assertTrue(Email.isValidEmail("u_ser+name@example.com")); // mixed alphanumeric and '+'
+        assertTrue(Email.isValidEmail("user_name@example.com")); // mixed alphanumeric and '_'
+        assertTrue(Email.isValidEmail("use.rname@example.com")); // mixed alphanumeric and '.'
+        assertTrue(Email.isValidEmail("user-name@example.com")); // mixed alphanumeric and '-'
+
+        // Equivalence partitioning: Consecutive mixed characters
+        assertTrue(Email.isValidEmail("us..er+name@example.com")); // mixed consecutive periods and '+'
+        assertTrue(Email.isValidEmail("use_.rname@example.com")); // mixed consecutive underscores and '_'
+        assertTrue(Email.isValidEmail("us.er+-name@example.com")); // mixed consecutive period and hyphens and '-'
+        assertTrue(Email.isValidEmail("user-.n+++++++++++-----------ame@example.com")); // mixed consecutive periods and
+    }
+
+    @Test
     public void equals() {
         Email email = new Email("valid@email");
 

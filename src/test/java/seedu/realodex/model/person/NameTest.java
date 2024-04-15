@@ -40,6 +40,46 @@ public class NameTest {
     }
 
     @Test
+    public void isValidName_equivalencePartitioning() {
+        // null name
+        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+
+        // invalid name
+        assertFalse(Name.isValidName("")); // empty string
+        assertFalse(Name.isValidName(" ")); // spaces only
+        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
+        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+
+        // valid name
+        assertTrue(Name.isValidName("peter jack")); // alphabets only
+        assertTrue(Name.isValidName("12345")); // numbers only
+        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
+        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
+        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+
+        // EP: name with special characters (should be invalid)
+        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("john_doe@example.com")); // contains '@'
+
+        // EP: name with leading (should be invalid)
+        assertFalse(Name.isValidName(" peter")); // leading space
+        assertFalse(Name.isValidName(" peter ")); // leading and trailing spaces
+
+        // EP: empty string (should be invalid)
+        assertFalse(Name.isValidName("")); // empty string
+
+        // EP: name with very long length (should be valid)
+        assertTrue(Name.isValidName("a".repeat(100))); // 100 characters long
+
+        // EP: name with different character sets (should be valid)
+        assertTrue(Name.isValidName("peter jack")); // alphabets only
+        assertTrue(Name.isValidName("12345")); // numbers only
+        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
+        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
+        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
     public void equals() {
         Name name = new Name("Valid Name");
 

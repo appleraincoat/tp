@@ -12,7 +12,9 @@ import seedu.realodex.testutil.PersonBuilder;
 class BirthdayIsInMonthPredicateTest {
 
     @Test
+    // Test for equals method to ensure consistency and symmetry
     public void equals() {
+        // Equivalence Partitioning (EP): Same month, different month, null, different type
         String firstMonth = "jan";
         String secondMonth = "feb";
 
@@ -32,12 +34,14 @@ class BirthdayIsInMonthPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different month -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
+    // Test for birthdayIsInMonthPredicate to return true when birthday month matches predicate month
     public void test_birthdayIsInMonth_returnsTrue() {
+        // Equivalence Partitioning (EP): Valid month with different lengths, leap year
         // Keyphrase is valid month with 3 letters
         BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate("Jan");
         assertTrue(predicate.test(new PersonBuilder().withBirthday("1Jan2001").build()));
@@ -46,7 +50,7 @@ class BirthdayIsInMonthPredicateTest {
         predicate = new BirthdayIsInMonthPredicate("Oct");
         assertTrue(predicate.test(new PersonBuilder().withBirthday("11Oct2001").build()));
 
-        // Keyphrase is february and Birthday in leap year
+        // Keyphrase is February and Birthday in leap year
         predicate = new BirthdayIsInMonthPredicate("Feb");
         assertTrue(predicate.test(new PersonBuilder().withBirthday("29Feb2000").build()));
 
@@ -56,7 +60,9 @@ class BirthdayIsInMonthPredicateTest {
     }
 
     @Test
+    // Test for birthdayIsInMonthPredicate to return false when birthday month does not match predicate month
     public void test_birthdayIsNotInMonth_returnsTrue() {
+        // Equivalence Partitioning (EP): Valid month with different lengths, mixed-case keyphrase
         // Keyphrase is valid month with 3 letters
         BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate("Jun");
         assertFalse(predicate.test(new PersonBuilder().withBirthday("1Jan2001").build()));
@@ -71,14 +77,18 @@ class BirthdayIsInMonthPredicateTest {
     }
 
     @Test
+    // Test for birthdayIsInMonthPredicate to return false when birthday is not specified
     public void test_birthdayNotSpecified_returnsFalse() {
+        // Equivalence Partitioning (EP): Birthday not specified
         BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate("Jun");
         assertFalse(predicate.test(new PersonBuilder().build()));
 
         predicate = new BirthdayIsInMonthPredicate("October");
         assertFalse(predicate.test(new PersonBuilder().withBirthday("").build()));
     }
+
     @Test
+    // Test toString method to ensure it returns correct string representation
     void toStringMethod() {
         String keyphrase = "Aug";
         BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate(keyphrase);
@@ -86,16 +96,17 @@ class BirthdayIsInMonthPredicateTest {
         assertEquals(expected, predicate.toString());
     }
 
-    // the following tests are to meet CodeCov Requirements, will not be reached under normal use
+    // The following tests are to meet CodeCov requirements, will not be reached under normal use
     @Test
+    // Test toString method when input is invalid or empty
     void toStringMethod_noBirthMonthSpecified() {
-        // empty String input
+        // Equivalence Partitioning (EP): Empty String, Invalid String
+        // Empty String input
         String keyphraseEmptyString = "";
         assertThrows(AssertionError.class, null, () -> new BirthdayIsInMonthPredicate(keyphraseEmptyString));
 
-        // invalid String input
+        // Invalid String input
         String keyphraseInvalidString = "sndjkfnksdnf";
         assertThrows(AssertionError.class, null, () -> new BirthdayIsInMonthPredicate(keyphraseInvalidString));
-
     }
 }
