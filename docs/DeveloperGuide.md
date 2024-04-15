@@ -617,13 +617,13 @@ The delete by name feature provides the user the ability to delete a client's pr
 
 Aspect: Method to delete client with name `NAME`
 
-__Alternative 1: (current choice) Format is `delete n/NAME`.__
+__Alternative 1 (current choice): Format is `delete n/NAME`.__
 
 Pros: Easy to implement as name and index can be differentiated using the prefix.
 
 Cons: Syntax may not be as intuitive.
 
-__Alternative 2: (current choice): Format is `delete NAME`.__
+__Alternative 2: Format is `delete NAME`.__
 
 Pros: More convenient for user to not have to put in the prefix `n/`.
 
@@ -646,7 +646,7 @@ The delete by index feature provides the user the ability to delete a client's p
 
 Aspect: Method to delete client at index `INDEX`
 
-__Alternative 1: (current choice) Format is `delete INDEX`.__
+__Alternative 1 (current choice): Format is `delete INDEX`.__
 
 Pros: Easy to implement as name and index can be differentiated using the prefix.
 
