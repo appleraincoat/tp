@@ -328,18 +328,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String birthday} into a {@code Birthday}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     */
-    public static Birthday parseBirthday(String birthday) throws ParseException {
-        if (!Birthday.isValidBirthday(birthday)) {
-            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-        return new Birthday(birthday);
-    }
-
-    /**
      * Parses a {@code String month} into a {@code Date} month.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -347,8 +335,7 @@ public class ParserUtil {
     public static Date parseMonth(String monthName) throws ParseException {
         SimpleDateFormat monthFormat = new SimpleDateFormat(Birthday.INPUT_MONTH_PATTERN);
         try {
-            Date monthDate = monthFormat.parse(monthName);
-            return monthDate;
+            return monthFormat.parse(monthName);
         } catch (java.text.ParseException e) {
             throw new ParseException(Birthday.FILTER_MONTH_MESSAGE_CONSTRAINTS);
         }
