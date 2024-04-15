@@ -760,7 +760,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. `Name` does not contain fully alphanumeric characters.
 
@@ -1220,7 +1220,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The input substring is empty.
 
@@ -1244,7 +1244,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The remark input is empty.
 
@@ -1263,7 +1263,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The tag input is empty.
 
@@ -1288,7 +1288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The housing type input is empty.
 
@@ -1312,7 +1312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The birthday month input is empty.
 
@@ -1345,7 +1345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. A string summarizing how that individual command is used with examples is displayed.
 
-**Extensions**
+**Extensions:**
 
 * 1a. The requested command does not exist.
 
@@ -1462,6 +1462,12 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `sort`
       - Expected: A list sorted based on their proximity to their upcoming birthday will be displayed.
 
+### List
+1. `list` will display a list of original clients, this is useful after using `filter` commands which will display a subset of the original list.
+
+### Clear
+1. `clearRealodex` will clear the list of clients from Realodex. Be careful as you are unable to undo.
+
 ### Filter By Name
 1. Test case: `filter n/John`
    Expected: A list of clients whose names contain the string `John` will be returned.
@@ -1481,6 +1487,19 @@ testers are expected to do more *exploratory* testing.
 ### Filter By Birthday
 1. Test case: `filter b/SEP`
    Expected: A list of clients whose birthdays are in the specified month of September are returned.
+
+### Help
+1. `help` should display a help window with summary of each feature provided by Realodex
+
+### Command Help
+
+1. Test case: `add help`
+   Expected: A help message for `AddCommand` will be displayed in the box
+
+2. Test case: `edit help` 
+   Expected: A help message for `EditCommand` will be displayed in the box
+
+
 
 ### Corrupted Data
 
