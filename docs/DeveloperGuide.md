@@ -132,8 +132,7 @@ In the context of our developer guide, the provided class diagram illustrates th
 encompassing essential attributes that real-estate agents would require from their clients for official documents and for better understanding of their requirements.  
 This detailed depiction allows developers
 to grasp the internal composition of the `Person` entity
-without needing to replicate `Person` in higher-level model interactions,
-streamlining their understanding and facilitating focused development efforts.
+without needing to replicate `Person` in higher-level model interactions without cluttering too much low-level info.
 
 <puml src="diagrams/ModelClassUpdated.puml" width="500"></puml>
 
