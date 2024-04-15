@@ -136,17 +136,17 @@ This guide also includes:
 
 This table provides **definitions** of **key terms and abbreviations** used throughout the Realodex user guide.
 
-| Abbreviation/Nomenclature      | Meaning                                                                                                                                                                  |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GUI (Graphical User Interface) | The **digital interface** through which you interact with Realodex.                                                                                                      |
-| CLI (Command Line Interface)   | A **text-based interface** that allows users to interact with the application using commands typed into a command prompt or terminal.                                    |
-| Command                        | An **instruction** given by the user that prompts Realodex to perform a specific action. See the [Command Summary](#command-summary) for more details.                   |
-| Prefix                         | Initial parts of commands in Realodex that **specify the type of information** to follow (e.g., `n/` for name). View our [Prefix Summary](#prefix-summary) for more details. |
-| Case-Sensitive                 | Indicates that the casing of letters **matters**; for example, “ReAlOdEx” would be recognized differently from “realodex”.                                                   |
-| Case-Insensitive               | Indicates that the casing of letters **does not affect** how they are interpreted; “ReAlOdEx” and “realodex” would be treated as the same.                                   |
-| Command Prompt                 | A command line interpreter application available in most Windows operating systems. It allows users to **execute commands** and scripts.                                     |
-| Terminal                       | The command line interface used in **Unix and MacOS** systems, allowing users to execute commands and scripts similar to Command Prompt in Windows.                          |
-| JSON File                      | The file format Realodex uses to **store client data.**                                                                                                                      |
+| Abbreviation/Nomenclature      | Meaning                                                                                                                                                                                        |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GUI (Graphical User Interface) | The **digital interface** through which you interact with Realodex.                                                                                                                            |
+| CLI (Command Line Interface)   | A **text-based interface** that allows users to interact with the application using commands typed into a command prompt or terminal.                                                          |
+| Command                        | An **instruction** given by the user that prompts Realodex to perform a specific action. See the [Command Summary](#command-summary) for more details.                                         |
+| Prefix                         | Initial parts of commands in Realodex that **specify the type of information** to follow (e.g., `n/` for name). View our [Field Constraints](#field-constraints) for more details on prefixes. |
+| Case-Sensitive                 | Indicates that the casing of letters **matters**; for example, “ReAlOdEx” would be recognized differently from “realodex”.                                                                     |
+| Case-Insensitive               | Indicates that the casing of letters **does not affect** how they are interpreted; “ReAlOdEx” and “realodex” would be treated as the same.                                                     |
+| Command Prompt                 | A command line interpreter application available in most Windows operating systems. It allows users to **execute commands** and scripts.                                                       |
+| Terminal                       | The command line interface used in **Unix and MacOS** systems, allowing users to execute commands and scripts similar to Command Prompt in Windows.                                            |
+| JSON File                      | The file format Realodex uses to **store client data.**                                                                                                                                        |
 
 
 --------------------------------------------------------------------------------------------------------------------
