@@ -1,5 +1,7 @@
 package seedu.realodex.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,9 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.logging.Logger;
 
-import seedu.realodex.commons.core.LogsCenter;
 
 /**
  * Represents a Birthday in the Realodex
@@ -63,8 +63,11 @@ public class Birthday {
 
     /**
      * Returns if a given string is a valid birthday.
+     *
+     * @param birthday the string to be validated as a birthday.
      */
     public static boolean isValidBirthday(String birthday) {
+        requireNonNull(birthday);
         if (birthday.isBlank() || birthday.isEmpty()) {
             return true;
         }
