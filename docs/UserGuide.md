@@ -137,17 +137,17 @@ This guide also includes:
 
 This table provides **definitions** of **key terms and abbreviations** used throughout the Realodex user guide.
 
-| Abbreviation/Nomenclature      | Meaning                                                                                                                                                                  |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| GUI (Graphical User Interface) | The **digital interface** through which you interact with Realodex.                                                                                                      |
-| CLI (Command Line Interface)   | A **text-based interface** that allows users to interact with the application using commands typed into a command prompt or terminal.                                    |
-| Command                        | An **instruction** given by the user that prompts Realodex to perform a specific action. See the [Command Summary](#command-summary) for more details.                   |
-| Prefix                         | Initial parts of commands in Realodex that **specify the type of information** to follow (e.g., `n/` for name). View our [Prefix Summary](#prefix-summary) for more details. |
-| Case-Sensitive                 | Indicates that the casing of letters **matters**; for example, “ReAlOdEx” would be recognized differently from “realodex”.                                                   |
-| Case-Insensitive               | Indicates that the casing of letters **does not affect** how they are interpreted; “ReAlOdEx” and “realodex” would be treated as the same.                                   |
-| Command Prompt                 | A command line interpreter application available in most Windows operating systems. It allows users to **execute commands** and scripts.                                     |
-| Terminal                       | The command line interface used in **Unix and MacOS** systems, allowing users to execute commands and scripts similar to Command Prompt in Windows.                          |
-| JSON File                      | The file format Realodex uses to **store client data.**                                                                                                                      |
+| Abbreviation/Nomenclature      | Meaning                                                                                                                                                                            |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GUI (Graphical User Interface) | The **digital interface** through which you interact with Realodex.                                                                                                                |
+| CLI (Command Line Interface)   | A **text-based interface** that allows users to interact with the application using commands typed into a command prompt or terminal.                                              |
+| Command                        | An **instruction** given by the user that prompts Realodex to perform a specific action. See the [Command Summary](#command-summary) for more details.                             |
+| Prefix                         | Initial parts of commands in Realodex that **specify the type of information** to follow (e.g., `n/` for name). View our [Field Constraints](#field-constraints) for more details. |
+| Case-Sensitive                 | Indicates that the casing of letters **matters**; for example, “ReAlOdEx” would be recognized differently from “realodex”.                                                         |
+| Case-Insensitive               | Indicates that the casing of letters **does not affect** how they are interpreted; “ReAlOdEx” and “realodex” would be treated as the same.                                         |
+| Command Prompt                 | A command line interpreter application available in most Windows operating systems. It allows users to **execute commands** and scripts.                                           |
+| Terminal                       | The command line interface used in **Unix and MacOS** systems, allowing users to execute commands and scripts similar to Command Prompt in Windows.                                |
+| JSON File                      | The file format Realodex uses to **store client data.**                                                                                                                            |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -199,6 +199,8 @@ This table provides **definitions** of **key terms and abbreviations** used thro
 2. **Create a New Folder**: For simplicity, this will guide you on how to install Realodex in a folder in your desktop. If you like, you may store Realodex in any folder in any location that you wish.  
       On your desktop, create a new folder titled "Realodex". This will be the dedicated location for storing the Realodex application and its associated files.
 
+<div style="page-break-after: always;"></div>
+
 3. **Download Realodex**:
    Download the **latest version** of `realodex.jar` from the [official release page](https://github.com/AY2324S2-CS2103T-W10-1/tp/releases). Below is an image of what the download page looks like:
       <br>
@@ -229,6 +231,8 @@ This table provides **definitions** of **key terms and abbreviations** used thro
   </div>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 You should see a _GUI_ similar to image below pop up.
    <br>
   <div style="display:flex; justify-content: center; align-items:center;">
@@ -237,7 +241,7 @@ You should see a _GUI_ similar to image below pop up.
 <br>
 
 
-<div style="page-break-after: always;"></div>
+
 
 ---
 
@@ -322,6 +326,8 @@ Let us **view the entire client list** again. To do this, simply enter the comma
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 5. **Editing clients.** Suppose our new client John Doe has gotten a pay raise! Let's **edit** his income to **reflect this change**. 
 First, let's take note of his **index number in the client list**.
    <a href="images/tutorial/IndexJohnDoe.png" style="display: block; margin: 0 auto; text-align: center;">
@@ -355,6 +361,8 @@ Let us try deleting John Doe from the Realodex by entering `delete n/John Doe`.
 
 - Notice that the client list has been **automatically modified** after John's deletion, with the last client now being Roy.
 </box>
+
+<div style="page-break-after: always;"></div>
 
   7. **Getting Help.** Should you **need assistance** on any of the commands at anytime while using Realodex, simply enter the `help` command.
      <a href="images/tutorial/HelpWindow.png" style="display: block; margin: 0 auto; text-align: center;">
@@ -424,7 +432,6 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 
 ---
 
-<div style="page-break-after: always;"></div>
 
 ### Adding a client: `add`
 
@@ -470,6 +477,7 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 * If more than one of each field is provided (apart from the `t/TAG` field), you will be notified with an error message **indicating the prefixes of the missing fields**. 
 </box>
 
+<div style="page-break-after: always;"></div>
 
 **Example**:
 - `add n/Betsy Crowe a/Newgate Prison i/0 f/1 p/94859694 e/betsyc@rocketmail.com t/Seller h/CONDOMINIUM t/Buyer` adds a client named "Betsy Crowe" with the specified details, but without any remark or birthday.
@@ -482,6 +490,7 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
   
 ### Deleting a client : `delete`
@@ -569,15 +578,14 @@ Deletes the client of the specified `INDEX`.
 
 <p align="center">
   <a href="images/delete/before_execute_deleteindex.png">
-  <img src="images/delete/before_execute_deleteindex.png" alt="before execute delete index" style="width:100%"> 
+  <img src="images/delete/before_execute_deleteindex.png" alt="before execute delete index" style="width:90%"> 
   </a>
   <em> Client list before entering command <code>delete 3</code></em>
 </p>
 
-
 <p align="center">
   <a href="images/delete/after_execute_deleteindex.png"> 
-  <img src="images/delete/after_execute_deleteindex.png" alt="after execute delete index" style="width:100%"> 
+  <img src="images/delete/after_execute_deleteindex.png" alt="after execute delete index" style="width:90%"> 
   </a>
   <em> Client list after entering command <code>delete 3</code></em>
 </p>
@@ -586,7 +594,6 @@ Deletes the client of the specified `INDEX`.
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### Editing a client : `edit`
 
@@ -740,23 +747,23 @@ Entering `filter t/Buyer t/Seller` will show only clients who are **tagged as bo
 
 `filter t/seller` will return a list of clients tagged as "Seller".
 
-<p align="center">
+<div style="text-align: center;">
     <a href="images/filter/filterByTagSeller.png">
-    <img src="images/filter/filterByTagSeller.png" alt="filterByTagSeller" style="width:100%">
+        <img src="images/filter/filterByTagSeller.png" alt="filterByTagSeller" style="width:75%">
     </a>
-    <em>Clients with "Seller" tag are returned.</em>
-</p>
+    <div style="font-style: italic;">Clients with "Seller" tag are returned.</div>
+</div>
 
----
+<div style="page-break-after: always;"></div>
 
 `filter t/buyer t/seller` will return a list of clients tagged as both "Buyer" and "Seller". 
 
-<p align="center">
+<div style="text-align: center;">
     <a href="images/filter/filterByTagBuyerSeller.png">
-    <img src="images/filter/filterByTagBuyerSeller.png" alt="filterByTagBuyerSeller" style="width:150%">
+        <img src="images/filter/filterByTagBuyerSeller.png" alt="filterByTagBuyerSeller" style="width:75%">
     </a>
-    <em>Clients with both "Buyer" and "Seller" tags are returned.</em>
-</p>
+    <div style="font-style: italic;">Clients with both "Buyer" and "Seller" tags are returned.</div>
+</div>
 
 #### Filter By Housing Type
 Returns the list of clients with the **specified preferred housing type**.
@@ -883,6 +890,8 @@ Returns the list of clients whose **birthdays** fall in the **specified month**.
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Listing clients : `list`
 
@@ -1129,6 +1138,7 @@ Summarized in the table below are the attributes of a client along with their co
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
