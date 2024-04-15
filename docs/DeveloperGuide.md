@@ -143,7 +143,7 @@ How the parsing works:
 <br>
 
 In the context of our developer guide, the provided class diagram illustrates the structure of the `Person` class,
-encompassing essential attributes that real-estate agents would require from their clients for official documents and for better understanding of their requirements.  
+encompassing essential attributes that real-estate agents would require from their clients for official documents and for better understanding of their requirements. 
 This detailed depiction allows developers
 to grasp the internal composition of the `Person` entity
 without needing to replicate `Person` in higher-level model interactions without cluttering too much low-level info.
@@ -210,13 +210,13 @@ The `add` feature, that was morphed from the original AddressBook3, allows users
 4. The UI reflects this new list with added `Person`.
 
 #### Example Usage Scenario
-1. The user launches the application. 
+1. The user launches the application.
 2. The user inputs `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
 3. The UI reflects this new list with added person John Doe.
 
 #### Design Considerations
 
-**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type 
+**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type
 We are cautious to choose compulsory fields that are important for real-estate agents, making them compulsory fields.
 While they may not be **absolutely necessary** for all clients, we believe that the cost of missing out on these fields outweighs the hassle of making them compulsory.
 For example, missing out on the family size may not be critical for a buyer who is single and is searching for a bachelor pad, but is critical for a family of 7 who needs a large enough house for all 7 of them.
@@ -225,7 +225,7 @@ it is important information if the agent would like to make recommendations for 
 
 **Optional fields** include: Remark, Birthday
 A real estate agent may not have any remark for a client yet, and wishes to leave Remark empty.
-A real estate agent may also only want to track birthdays of their esteemed clients, and wishes to not include Birthday for the rest. 
+A real estate agent may also only want to track birthdays of their esteemed clients, and wishes to not include Birthday for the rest.
 
 **Field Constraints**
 Specific field constraints are described below. They are designed with the users in mind.
@@ -250,8 +250,9 @@ Specific field constraints are described below. They are designed with the users
   * Should be an integer greater than 1.
 * `TAG`:
   * Should be restricted to case-insensitive "buyer" or "seller" using enums.
+<<<<<<< HEAD
 * `HOUSINGTYPE`: housing type a buyer wants or housing type a seller is selling
-  * Should be restricted to "HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW" (case-insensitive) using enums. 
+  * Should be restricted to "HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW" (case-insensitive) using enums.
   * Only one housing type is allowed.
 * `REMARK`:
   * Represented as a String
@@ -276,7 +277,6 @@ To implement the sorting functionality, the `LogicManager` component parses the 
 
 The sequence diagram below illustrates the process of creating a sort operation through the `Logic` component:
 <puml src="diagrams/sort/SortSequenceDiagram-Logic.puml" width="800" />
-
 
 #### Implementation of `SortCommand`
 
@@ -395,6 +395,15 @@ that determine if a person's attributes match the user-defined criteria.
 
 #### Filter Command Architecture
 <puml src="diagrams/filter/FilterFeatureArchitecture.puml" width="1000" />
+
+#### Initialization of `FilterCommand`
+
+To implement the filter functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`. 
+The RealodexParser is responsible for creating an instance of the `FilterCommand`, encapsulating the logic for sorting clients based on a specific predicate.
+
+The sequence diagram below illustrates the process of creating a filter operation through the `Logic` component:
+
+<puml src="diagrams/filter/FilterSequenceDiagram.puml" width="1000" />
 
 ### Filter by Name feature
 
