@@ -194,7 +194,7 @@ Classes used by multiple components are in the `seedu.realodex.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## <u>Overall Add feature</u>
+### <u>Overall Add feature</u>
 
 #### Description
 
@@ -275,7 +275,7 @@ Specific field constraints are described below. They are designed with the users
 
 <div style="page-break-after: always;"></div>
 
-## <u>Overall Sort feature</u>
+### <u>Overall Sort feature</u>
 
 #### Description
 The `sort` feature, introduced in version 1.4, allows users to arrange clients based on their upcoming birthday proximity, which is determined by the number of days until their next birthday relative to the current date.
@@ -408,7 +408,7 @@ we'll utilize different comparators based on the user's specified field, such as
 
 <div style="page-break-after: always;"></div>
 
-## <u>Overall Filter feature</u>
+### <u>Overall Filter feature</u>
 
 #### Description
 
@@ -609,7 +609,7 @@ This is implemented using the `HousingTypeMatchPredicate` that checks whether a 
 
 <div style="page-break-after: always;"></div>
 
-## <u>Overall Help feature</u>
+### <u>Overall Help feature</u>
 
 #### Description
 The Help feature provides help to the user (depending on user input) by either giving details on how all commands
@@ -707,7 +707,7 @@ Cons: Syntax may not be as intuitive.
 
 <div style="page-break-after: always;"></div>
 
-## <u>Overall Delete Feature</u>
+### <u>Overall Delete Feature</u>
 
 #### Description
 The `delete` feature provides the user the ability to delete a client's profile based on their index in the list or their name.
@@ -799,7 +799,7 @@ Cons: Harder to implement due to the other delete by index feature, there is no 
 
 <div style="page-break-after: always;"></div>
 
-## <u>Overall Edit Feature</u>
+### <u>Overall Edit Feature</u>
 
 #### Description
 The edit by field feature provides the user the ability to edit a client's profile based on a specified field. This has been implemented for all
