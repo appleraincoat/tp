@@ -374,20 +374,37 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 
 **General Command Structure:**
 
-Commands typically follow this format: `COMMANDWORD PREFIX_ONE/UPPER_CASE PREFIX_TWO/UPPER_CASE ....` This structure helps in **executing specific actions** within the application.
+* Commands typically follow this format: `COMMANDWORD PREFIX_ONE/UPPER_CASE PREFIX_TWO/UPPER_CASE ....` This structure helps in **executing specific actions** within the application.
+* `COMMANDWORD` refers to the various commands user can input. 
+  * Examples include `add`, `delete`, `filter`. 
+  * A summary of all commands and their usages can be found in the [Commands Summary](#command-summary) table. 
+* Words in `UPPER_CASE` are the **parameters to be supplied by the user**.<br>
+    e.g. in `add n/NAME ....`, `NAME` is a parameter which can be used as `add n/John Doe ....`. 
+  * For more details on the parameters, do refer to the [Field Constraints](#field-constraints).
+* Parameters enclosed in `[]` are **optional to input**.<br>e.g. `[r/REMARK]` indicates an optional input field for that command.
+* You may input the parameters **in any order** (e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable).
 
 **Command Words:**
 
-`COMMANDWORD` refers to the **base commands** that the user can input, such as `add`, `delete`, `filter`. These commands are _case-insensitive_, meaning both `add` and `ADD` will perform the addition operation.
+* `COMMANDWORD` refers to the **base commands** that the user can input, such as `add`, `delete`, `filter`. These commands are _case-insensitive_, meaning both `add` and `ADD` will perform the addition operation.
 
 **Prefix Usage:**
 
-`PREFIX/` tags are used to **specify the type of data being entered**. For example, in `add n/John Doe p/98765432`, `n/` stands for name, and `p/` stands for phone number. Like command words, prefixes are also case-insensitive (`n/` and `N/` are treated the same).
+* `PREFIX/` tags are used to **specify the type of data being entered**. For example, in `add n/John Doe p/98765432`, `n/` stands for name, and `p/` stands for phone number. Like command words, prefixes are also case-insensitive (`n/` and `N/` are treated the same).
+* `PREFIX/` refers to the prefix tag associated with each user-written input. <br>
+  e.g. in `add n/NAME r/REMARK`, `NAME` is the name parameter and `REMARK` is the remark parameter.
+* `PREFIX` is **case-insensitive**, i.e.`N/` and `n/` are the same and are used to indicate a `NAME` input.
+* `PREFIX` must be **preceded by a whitespace character**.
+  e.g. `a/6 College Avenue Westr/Has a dog` will only recognise the `a/` prefix as the `r/` prefix is preceded by `t` which is not a whitespace character.
 
 **Parameter Input:**
 
-Parameters must follow the prefix they are associated with and are typically in `UPPER_CASE` in documentation to indicate where **user-supplied data should be inserted**. For instance, in the command `add n/NAME`, `NAME` is where you would place the actual name of the client.
+* Parameters must follow the prefix they are associated with and are typically in `UPPER_CASE` in documentation to indicate where **user-supplied data should be inserted**. For instance, in the command `add n/NAME`, `NAME` is where you would place the actual name of the client.
+* Parameters must follow the specific [Field Constraints](#field-constraints)
 
+<box type="warning" header="Caution">
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
 
@@ -435,40 +452,6 @@ Parameters must follow the prefix they are associated with and are typically in 
 * If more than one of each field is provided (apart from the `t/TAG` field), you will be notified with an error message **indicating the prefixes of the missing fields**. 
 </box>
 
-
-[//]: # (- For `t/TAG`, you may input both `t/BUYER` and/or `t/SELLER` &#40;case insensitive&#41;.)
-
-[//]: # (  - If either tag is repeated more than once, for e.g. `t/BUYER t/BUYER`, the tag will only be recorded once and no error will be thrown.)
-
-[//]: # (- Note that the `r/REMARK` and `b/BIRTHDAY` fields are optional, enclosed in `[]`. You may choose to omit them.)
-
-[//]: # (  - If you include the prefix with a blank input, the birthday and remark fields will be taken as not specified.)
-
-[//]: # (    - Example: `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB r/ b/` will successfully add John Doe but remarks and birthday will be not specified.)
-
-[//]: # (- Each field has constraints to the inputs it can accept. Do refer to the [Field Constraints]&#40;#field-constraints&#41; for more information.)
-
-[//]: # (  - If any of the constraints are violated, you will receive an error message detailing the fields with invalid formats.)
-
-[//]: # (  - For example, if `n/NAME`,`p/PHONE` and `t/TAG` fields do not fulfil the contraints, you will receive 3 error messages as shown.)
-
-[//]: # (    <a href="parsing_errors.png">)
-
-[//]: # (    <img src="parsing_errors.png" alt="duplicate person" style="width:150%">)
-
-[//]: # (    </a>)
-
-[//]: # (- You **cannot** have duplicate persons with the same name in Realodex.)
-
-[//]: # (  - Names are case-insensitive as described in [Field Constraints]&#40;#field-constraints&#41;.)
-
-[//]: # (  - If you try to add duplicate persons, you will get the error message "This client already exists in Realodex".)
-
-[//]: # (    <a href="images/add-command/duplicate_person_error.png">)
-
-[//]: # (    <img src="images/add-command/duplicate_person_error.png" alt="duplicate person" style="width:100%">)
-
-[//]: # (    </a>)
 
 **Example**:
 - `add n/Betsy Crowe a/Newgate Prison i/0 f/1 p/94859694 e/betsyc@rocketmail.com t/Seller h/CONDOMINIUM t/Buyer` adds a client named "Betsy Crowe" with the specified details, but without any remark or birthday.
