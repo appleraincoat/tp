@@ -21,9 +21,9 @@ Realodex offers seamless functionality to ***add***, ***edit***, ***filter***, a
 ## Why Choose Realodex?
 Realodex is **tailor-made for the real estate industry**, offering **custom tools and features** that align with the everyday workflows of real estate agents. 
 
-- **Enhanced Productivity 🚀**: Access and manage your client database efficiently. 
-- **Intuitive Interface & Features 🧠**: Our user-friendly interface is designed for quick learning, enabling you to navigate and utilise Realodex with ease.
-- **Focus on Core Goals 🤝**: Allows you to dedicate more time to closing deals and fostering client relationships.
+- **Enhanced Productivity** 🚀: Access and manage your client database efficiently. 
+- **Intuitive Interface & Features** 🧠: Our user-friendly interface is designed for quick learning, enabling you to navigate and utilise Realodex with ease.
+- **Focus on Core Goals** 🤝: Allows you to dedicate more time to closing deals and fostering client relationships.
 
 <box type="tip" header = "**New to Realodex?**">
 This guide provides a beginner-friendly introduction on Realodex's features, tutorial, and FAQ. <a href="#getting-started">Start</a> enhancing your real estate operations today!
@@ -721,13 +721,10 @@ Returns the list of clients whose **remarks include** the **specified keyphrase*
 
 `filter r/eat` will return a list of clients with remarks containing "eat".
 
-<p align="center">
-    <a href="images/filter/filterByRemarkScreenshot.png">
-    <img src="images/filter/filterByRemarkScreenshot.png" alt="filterByRemarkScreenshot" style="width:100%">
-    </a>
-    <em>Clients with remarks like "<b>Eat</b>s alot" and "Likes to <b>eat</b> nasi lemak" are returned.</em>
-</p>
-
+<a href="images/filter/filterByRemarkScreenshot.png" style="display: block; margin: 0 auto; text-align: center;">
+   <img src="images/filter/filterByRemarkScreenshot.png" alt="duplicate person" style="width:80%">
+   </a>
+<div style="text-align: center; font-style: italic;">Clients with remarks like "<b>Eat</b>s alot" and "Likes to <b>eat</b> nasi lemak" are returned.</div>
 
 <box type="warning" header="Warning">
 
@@ -739,6 +736,8 @@ Returns the list of clients whose **remarks include** the **specified keyphrase*
 
 - The command `filter r/ my tag is t/buyer` would cause an error because the system interprets `t/` as the start of a new prefix.
   </box>
+
+<div style="page-break-after: always;"></div>
 
 #### Filter By Birthday Month
 Returns the list of clients whose **birthdays** fall in the **specified month**.
