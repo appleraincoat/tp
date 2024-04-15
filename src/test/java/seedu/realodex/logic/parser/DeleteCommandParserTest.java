@@ -28,7 +28,7 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     /**
-     * Tests parsing of a valid index, expecting a DeleteCommand.
+     * EP: Parsing a valid index should return a DeleteCommand targeting that index.
      */
     @Test
     public void parse_validIndex_returnsDeleteCommand() {
@@ -37,7 +37,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing of an invalid index, expecting a ParseException.
+     * EP: Parsing an invalid index should throw a ParseException.
      */
     @Test
     public void parse_invalidIndex_throwsParseException() {
@@ -46,7 +46,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing of a valid name, expecting a DeleteCommand.
+     * EP: Parsing a valid name should return a DeleteCommand targeting that name.
      */
     @Test
     public void parse_validName_returnsDeleteCommand() {
@@ -55,7 +55,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing of an invalid name, expecting a ParseException.
+     * EP: Parsing an invalid name should throw a ParseException.
      */
     @Test
     public void parse_invalidName_throwParseException() {
@@ -66,7 +66,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing of invalid arguments, expecting a ParseException.
+     * EP: Parsing invalid arguments should throw a ParseException.
      */
     @Test
     public void parse_invalidArgs_throwsParseException() {
@@ -75,7 +75,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing when both index and name are provided, expecting a ParseException.
+     * EP: Parsing when both index and name are provided should throw a ParseException.
      */
     @Test
     public void parse_indexAndNameProvided_throwsParseException() {
@@ -84,7 +84,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing when both name and index are provided, expecting a ParseException.
+     * EP: Parsing when both name and index are provided should throw a ParseException.
      */
     @Test
     public void parse_nameAndIndex_throwsParseException() {
@@ -93,7 +93,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing when no fields are provided, expecting a ParseException.
+     * EP: Parsing when no fields are provided should throw a ParseException.
      */
     @Test
     public void parse_noFields_throwsParseException() {
@@ -102,7 +102,7 @@ public class DeleteCommandParserTest {
     }
 
     /**
-     * Tests parsing when multiple names are provided, expecting a ParseException.
+     * EP: Parsing when multiple names are provided should throw a ParseException.
      */
     @Test
     public void parse_multipleName_throwsParseException() {

@@ -53,6 +53,9 @@ public class ArgumentTokenizerTest {
         assertFalse(argMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * EP: Parsing a string with no prefixes should consider the whole string as preamble.
+     */
     @Test
     public void tokenize_noPrefixes_allTakenAsPreamble() {
         String argsString = "  some random string /t tag with leading and trailing spaces ";
@@ -60,9 +63,11 @@ public class ArgumentTokenizerTest {
 
         // Same string expected as preamble, but leading/trailing spaces should be trimmed
         assertPreamblePresent(argMultimap, argsString.trim());
-
     }
 
+    /**
+     * EP: Parsing a string with one argument should correctly identify the preamble and the argument.
+     */
     @Test
     public void tokenize_oneArgument() {
         // Preamble present
@@ -76,9 +81,11 @@ public class ArgumentTokenizerTest {
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
         assertPreambleEmpty(argMultimap);
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
-
     }
 
+    /**
+     * EP: Parsing a string with multiple arguments should correctly identify the preamble and all arguments.
+     */
     @Test
     public void tokenize_multipleArguments() {
         // Only two arguments are present
@@ -97,7 +104,7 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(argMultimap, dashT, "dashT-Value");
         assertArgumentPresent(argMultimap, hatQ, "111");
 
-        /* Also covers: Reusing of the tokenizer multiple times */
+        // Also covers: Reusing of the tokenizer multiple times
 
         // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
         // (i.e. no stale values from the previous tokenizing remain)
@@ -106,7 +113,7 @@ public class ArgumentTokenizerTest {
         assertPreambleEmpty(argMultimap);
         assertArgumentAbsent(argMultimap, pSlash);
 
-        /* Also covers: testing for prefixes not specified as a prefix */
+        // Also covers: testing for prefixes not specified as a prefix
 
         // Prefixes not previously given to the tokenizer should not return any values
         argsString = unknownPrefix + "some value";
@@ -115,6 +122,9 @@ public class ArgumentTokenizerTest {
         assertPreamblePresent(argMultimap, argsString); // Unknown prefix is taken as part of preamble
     }
 
+    /**
+     * EP: Parsing a string with multiple arguments, including repeats, should correctly handle each argument.
+     */
     @Test
     public void tokenize_multipleArgumentsWithRepeats() {
         // Two arguments repeated, some have empty values
@@ -126,6 +136,9 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(argMultimap, hatQ, "", "");
     }
 
+    /**
+     * EP: Parsing a string with multiple arguments joined should correctly separate them.
+     */
     @Test
     public void tokenize_multipleArgumentsJoined() {
         String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined^Qjoined";
@@ -136,6 +149,9 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, hatQ);
     }
 
+    /**
+     * EP: Testing the equality of two prefixes should work as expected.
+     */
     @Test
     public void equalsMethod() {
         Prefix aaa = new Prefix("aaa");

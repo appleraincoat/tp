@@ -10,6 +10,9 @@ import seedu.realodex.logic.parser.exceptions.ParseException;
 public class HelpCommandParserTest {
     private HelpCommandParser parser = new HelpCommandParser();
 
+    /**
+     * EP: Parsing a valid argument should return the corresponding HelpCommand.
+     */
     @Test
     public void parse_validArgs_returnsHelpCommand() throws ParseException {
         HelpCommand expectedHelpCommand = new HelpCommand("");
