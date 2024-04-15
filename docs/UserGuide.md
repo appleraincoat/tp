@@ -392,10 +392,7 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 
 **General Command Structure:**
 
-* Commands typically follow this format: `COMMANDWORD PREFIX_ONE/UPPER_CASE PREFIX_TWO/UPPER_CASE ....` This structure helps in **executing specific actions** within the application.
-* `COMMANDWORD` refers to the various commands user can input. 
-  * Examples include `add`, `delete`, `filter`. 
-  * A summary of all commands and their usages can be found in the [Commands Summary](#command-summary) table. 
+* Commands typically follow this format: `COMMANDWORD PREFIX_ONE/PARAM_ONE PREFIX_TWO/PARAM_TWO ....` This structure helps in **executing specific actions** within the application.
 * Words in `UPPER_CASE` are the **parameters to be supplied by the user**.<br>
     e.g. in `add n/NAME ....`, `NAME` is a parameter which can be used as `add n/John Doe ....`. 
   * For more details on the parameters, do refer to the [Field Constraints](#field-constraints).
@@ -405,14 +402,16 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 **Command Words:**
 
 * `COMMANDWORD` refers to the **base commands** that the user can input, such as `add`, `delete`, `filter`. These commands are _case-insensitive_, meaning both `add` and `ADD` will perform the addition operation.
+  * Examples include `add`, `delete`, `filter`.
+  * A summary of all commands and their usages can be found in the [Commands Summary](#command-summary) table.
 
 **Prefix Usage:**
 
-* `PREFIX/` tags are used to **specify the type of data being entered**. For example, in `add n/John Doe p/98765432`, `n/` stands for name, and `p/` stands for phone number. Like command words, prefixes are also case-insensitive (`n/` and `N/` are treated the same).
-* `PREFIX/` refers to the prefix tag associated with each user-written input. <br>
-  e.g. in `add n/NAME r/REMARK`, `NAME` is the name parameter and `REMARK` is the remark parameter.
-* `PREFIX` is **case-insensitive**, i.e.`N/` and `n/` are the same and are used to indicate a `NAME` input.
-* `PREFIX` must be **preceded by a whitespace character**.
+* `PREFIX/` is used to **specify the type of data being entered**. For example, in `add n/John Doe p/98765432`, `n/` stands for name, and `p/` stands for phone number.
+* `PREFIX/` refers to the prefix associated with each user-written input. <br>
+  e.g. in `add n/NAME r/REMARK`, `NAME` is the name parameter and `REMARK` is the remark parameter. 
+* Prefixes are **case-insensitive**, i.e.`N/` and `n/` are the same and are used to indicate a `NAME` input.
+* `PREFIX/` must be **preceded by a whitespace character**.
   e.g. `a/6 College Avenue Westr/Has a dog` will only recognise the `a/` prefix as the `r/` prefix is preceded by `t` which is not a whitespace character.
 
 **Parameter Input:**
@@ -568,7 +567,7 @@ Deletes the client of the specified `INDEX`.
 - If there is no client with the specified `INDEX` in the current list, an error message will be shown: "The client index provided is invalid".
 - If neither index nor name is provided `delete` will show an error message "Please provide either an index or a name."
 - If both an index and name is provided `delete INDEX n/NAME` will show an error message "Please provide either an index or a name, not both."
-- If both an index and name is provided `delete n/NAME INDEX ` will show an error message "The client name provided is invalid" as INDEX is considered part of the NAME."
+- If both an index and name is provided `delete n/NAME INDEX ` will show an error message "The client name provided is invalid" as INDEX is considered part of the NAME.
 
 </box>
 
@@ -632,7 +631,7 @@ Deletes the client of the specified `INDEX`.
   
 **Example:**
 
-- edit 1 p/999 will overwrite the 1st client's phone number to "999".
+- `edit 1 p/999` will overwrite the 1st client's phone number to "999".
 - `edit 2 n/Kylie  i/3333 f/5` will change the 2nd client's name to "Kylie", income to "3333" and family size to "5".
 
 <div style="text-align: center;">
