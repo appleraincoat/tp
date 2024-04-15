@@ -26,26 +26,28 @@ import seedu.realodex.model.person.Person;
 import seedu.realodex.testutil.PersonBuilder;
 
 public class AddCommandTest {
-
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
+        // EP: Null person object passed to constructor -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        // EP: Person accepted by model and added successfully
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
+                     commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
+        // EP: Attempting to add a duplicate person throws CommandException
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
@@ -55,30 +57,30 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
+        // EP: Same object -> returns true
         Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
-
-        // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
-        // same values -> returns true
+        // EP: Same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
-        // different types -> returns false
+        // EP: Different types -> returns false
         assertFalse(addAliceCommand.equals(1));
 
-        // null -> returns false
+        // EP: Null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // EP: Different person objects -> returns false
+        Person bob = new PersonBuilder().withName("Bob").build();
+        AddCommand addBobCommand = new AddCommand(bob);
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     @Test
     public void toStringMethod() {
+        // EP: toString method returns expected string representation
         AddCommand addCommand = new AddCommand(ALICE);
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
