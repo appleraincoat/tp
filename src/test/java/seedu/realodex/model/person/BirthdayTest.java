@@ -170,7 +170,7 @@ public class BirthdayTest {
     public void hashCodeTest() {
         Birthday birthday1 = new Birthday("27May2003");
         Birthday birthday2 = new Birthday("27May2003");
-        Birthday birthday3 = new Birthday("6June2006");
+        Birthday birthday3 = new Birthday("6Jun2006");
 
         // same object -> returns true
         assertTrue(birthday1.hashCode() == birthday1.hashCode());
