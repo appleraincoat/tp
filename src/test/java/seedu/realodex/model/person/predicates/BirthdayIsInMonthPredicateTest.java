@@ -88,7 +88,7 @@ class BirthdayIsInMonthPredicateTest {
     }
 
     @Test
-        // Test toString method to ensure it returns correct string representation
+    // Test toString method to ensure it returns correct string representation
     void toStringMethod() {
         String keyphrase = "Aug";
         BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate(keyphrase);

@@ -265,7 +265,7 @@ public class BirthdayTest {
     }
 
     @Test
-    public void isValidBirthday_LeapYear() {
+    public void isValidBirthday_leapYear() {
         // Equivalence partitioning: Leap year
         assertTrue(Birthday.isValidBirthday("29Feb2024")); // Leap year
         assertFalse(Birthday.isValidBirthday("29Feb2023")); // Not a leap year

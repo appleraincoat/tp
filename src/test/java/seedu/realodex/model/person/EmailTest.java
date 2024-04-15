@@ -128,7 +128,7 @@ public class EmailTest {
     }
 
     @Test
-    public void isValidEmail_LocalPart() {
+    public void isValidEmail_localPart() {
         // Equivalence partitioning: Local part
         assertFalse(Email.isValidEmail("@example.com")); // missing local part
         assertFalse(Email.isValidEmail("peterjackexample.com")); // missing '@' symbol
@@ -147,7 +147,7 @@ public class EmailTest {
     }
 
     @Test
-    public void isValidEmail_Domain() {
+    public void isValidEmail_domain() {
         // Equivalence partitioning: Domain name
         assertFalse(Email.isValidEmail("peterjack@example@com")); // '@' symbol in domain name
         assertFalse(Email.isValidEmail("peterjack@.example.com")); // domain name starts with a period
@@ -162,7 +162,7 @@ public class EmailTest {
     }
 
     @Test
-    public void isValidEmail_SpecialCharacters() {
+    public void isValidEmail_specialCharacters() {
         // Equivalence partitioning: Special characters
         assertFalse(Email.isValidEmail("user%name@example.com")); // '%'
         assertFalse(Email.isValidEmail("user!name@example.com")); // '!'
@@ -176,7 +176,7 @@ public class EmailTest {
     }
 
     @Test
-    public void isValidEmail_ConsecutiveCharacters() {
+    public void isValidEmail_consecutiveCharacters() {
         // Equivalence partitioning: Consecutive characters
         assertTrue(Email.isValidEmail("user..name@example.com")); // consecutive periods
         assertTrue(Email.isValidEmail("user__name@example.com")); // consecutive underscores
@@ -185,15 +185,16 @@ public class EmailTest {
     }
 
     @Test
-    public void isValidEmail_Length() {
+    public void isValidEmail_length() {
         // Equivalence partitioning: Length
         assertTrue(Email.isValidEmail("a".repeat(64) + "@example.com")); // local-part of 64 characters
-        assertTrue(Email.isValidEmail("user." + "example".repeat(63) + "@example.com")); // domain label of 63 characters
+        assertTrue(Email.isValidEmail("user." + "example".repeat(63)
+                                              + "@example.com")); // domain label of 63 characters
         assertTrue(Email.isValidEmail("user@example." + "com".repeat(63))); // top-level domain of 63 characters
     }
 
     @Test
-    public void isValidEmail_MixedCharacters() {
+    public void isValidEmail_mixedCharacters() {
         // Equivalence partitioning: Mixed characters
         assertTrue(Email.isValidEmail("u_ser+name@example.com")); // mixed alphanumeric and '+'
         assertTrue(Email.isValidEmail("user_name@example.com")); // mixed alphanumeric and '_'

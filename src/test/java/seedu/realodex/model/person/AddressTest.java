@@ -55,7 +55,7 @@ public class AddressTest {
     }
 
     @Test
-    public void constructor_validAddress_validAddress_success() {
+    public void constructor_validAddress_success() {
         // Boundary value: Minimum valid address
         Address address = new Address("-");
         assertTrue(address.isValidAddress("-"));

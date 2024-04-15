@@ -22,7 +22,7 @@ import seedu.realodex.testutil.PersonBuilder;
 class PredicateProducerTest {
 
     @Test
-        // Test for creating predicate based on name prefix
+    // Test for creating predicate based on name prefix
     void createPredicate_validNamePrefix_createsCorrectPredicate() throws ParseException {
         // Equivalence Partitioning (EP): Valid name prefix and keyphrase
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -35,7 +35,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for creating predicate based on remark prefix
+    // Test for creating predicate based on remark prefix
     void createPredicate_validRemarkPrefix_createsCorrectPredicate() throws ParseException {
         // Equivalence Partitioning (EP): Valid remark prefix and keyphrase
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -48,7 +48,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for creating predicate based on tag prefix
+    // Test for creating predicate based on tag prefix
     void createPredicate_validTagPrefix_createsCorrectPredicate() throws ParseException {
         // Equivalence Partitioning (EP): Valid tag prefix and keyphrases
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -59,7 +59,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for creating predicate based on multiple tag prefixes
+    // Test for creating predicate based on multiple tag prefixes
     void createPredicate_validMultipleTagPrefixes_createsCorrectPredicate() throws ParseException {
         // Equivalence Partitioning (EP): Valid tag prefixes and keyphrases
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -70,7 +70,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for handling invalid tag prefix
+    // Test for handling invalid tag prefix
     void createMatchTagPredicate_invalidTagString_assertionErrorWhenInvalidPrefix() {
         // Equivalence Partitioning (EP): Invalid tag prefix
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -80,7 +80,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for creating housing type match predicate with valid housing type strings
+    // Test for creating housing type match predicate with valid housing type strings
     void createHousingTypeMatchPredicate_validHousingTypeStrings_createsCorrectPredicate() {
         // Equivalence Partitioning (EP): Valid housing type strings
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -91,7 +91,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for handling invalid housing type strings
+    // Test for handling invalid housing type strings
     void createHousingTypeMatchPredicate_invalidHousingTypeStrings_assertionErrorWhenInvalidPrefix() {
         // Equivalence Partitioning (EP): Invalid housing type strings
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -101,7 +101,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for handling empty keyphrase when creating predicate
+    // Test for handling empty keyphrase when creating predicate
     void createPredicate_emptyKeyphrase_throwsParseException() {
         // Equivalence Partitioning (EP): Empty keyphrase
         PredicateProducer predicateProducer = new PredicateProducer();
@@ -114,7 +114,7 @@ class PredicateProducerTest {
     }
 
     @Test
-        // Test for handling unknown prefix when creating predicate
+    // Test for handling unknown prefix when creating predicate
     void createPredicate_returnsNullWhenInvalidPrefix() {
         // Equivalence Partitioning (EP): Unknown prefix
         PredicateProducer predicateProducer = new PredicateProducer();

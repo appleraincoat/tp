@@ -7,7 +7,6 @@ import static seedu.realodex.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.realodex.model.person.HousingType;
 import seedu.realodex.testutil.PersonBuilder;
 
 public class HousingTypeMatchPredicateTest {
@@ -89,7 +88,7 @@ public class HousingTypeMatchPredicateTest {
     }
 
     @Test
-        // Test toString method to ensure it returns correct string representation
+    // Test toString method to ensure it returns correct string representation
     void toStringMethod() {
         String keyphrase = "Aug";
         BirthdayIsInMonthPredicate predicate = new BirthdayIsInMonthPredicate(keyphrase);
@@ -98,7 +97,7 @@ public class HousingTypeMatchPredicateTest {
     }
 
     @Test
-        // Test toString method when input is invalid or empty
+    // Test toString method when input is invalid or empty
     void toStringMethod_noBirthMonthSpecified() {
         // Equivalence Partitioning (EP): Empty String, Invalid String
         // Empty String input

@@ -47,7 +47,7 @@ public class TagsMatchPredicateTest {
     }
 
     @Test
-        // Test for checking if person's tags match predicate's tags
+    // Test for checking if person's tags match predicate's tags
     void test_personTagsMatchPredicateTags_returnsTrue() {
         // Equivalence Partitioning (EP): Tags match predicate's tags
         Set<Tag> predicateTags = Set.of(new Tag("buyer"));
@@ -59,7 +59,7 @@ public class TagsMatchPredicateTest {
     }
 
     @Test
-        // Test for checking if person's multiple tags including predicate's tags return true
+    // Test for checking if person's multiple tags including predicate's tags return true
     void test_personMultipleTagsIncludingPredicateTags_returnsTrue() {
         // Equivalence Partitioning (EP): Multiple tags including predicate's tags return true
         Set<Tag> predicateTags = Set.of(new Tag("buyer"));
@@ -71,7 +71,7 @@ public class TagsMatchPredicateTest {
     }
 
     @Test
-        // Test for checking if person's multiple tags including multiple predicate's tags return true
+    // Test for checking if person's multiple tags including multiple predicate's tags return true
     void test_personMultipleTagsIncludingMultiplePredicateTags_returnsTrue() {
         // Equivalence Partitioning (EP): Multiple tags including multiple predicate's tags return true
         Set<Tag> predicateTags = Set.of(new Tag("buyer"), new Tag("seller"));
@@ -83,7 +83,7 @@ public class TagsMatchPredicateTest {
     }
 
     @Test
-        // Test for checking if person with no tags doesn't match predicate's tags
+    // Test for checking if person with no tags doesn't match predicate's tags
     void test_personNoTagsDontMatchPredicateTags_returnsFalse() {
         // Equivalence Partitioning (EP): Person with no tags doesn't match predicate's tags
         Set<Tag> predicateTags = Set.of(new Tag("buyer"));
@@ -95,7 +95,7 @@ public class TagsMatchPredicateTest {
     }
 
     @Test
-        // Test for checking if person's tags don't match predicate's tags
+    // Test for checking if person's tags don't match predicate's tags
     void test_personTagsDontMatchPredicateTags_returnsFalse() {
         // Equivalence Partitioning (EP): Person's tags don't match predicate's tags
         Set<Tag> predicateTags = Set.of(new Tag("buyer"));
@@ -107,7 +107,7 @@ public class TagsMatchPredicateTest {
     }
 
     @Test
-        // Test for checking if person's tags don't match multiple predicate's tags
+    // Test for checking if person's tags don't match multiple predicate's tags
     void test_personTagsDontMatchMultiplePredicateTags_returnsFalse() {
         // Equivalence Partitioning (EP): Person's tags don't match multiple predicate's tags
         Set<Tag> predicateTags = Set.of(new Tag("buyer"), new Tag("seller"));
