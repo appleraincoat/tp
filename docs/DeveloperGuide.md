@@ -212,7 +212,7 @@ The `add` feature, that was morphed from the original AddressBook3, allows users
 The sequence diagram below illustrates the process of adding a person into Realodex.
 <puml src="diagrams/add/AddCommandSequenceDiagram.puml" width="1000" />
 
-#### Details
+#### Component Interaction Details
 1. The user executes the command `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
 2. The `AddCommandParser` interprets the input.
 3. An `AddCommand` object is created.
@@ -341,7 +341,7 @@ The provided comparator compares two `Person` objects based on their birthdays.
     }
 ```
 
-#### Details
+#### Component Interaction Details
 1. The user executes the command `sort`, intending to sort the list of persons based on their upcoming birthdays.
 2. The `SortCommandParser` interprets the input.
 3. A `SortCommand` object is created.
@@ -1863,7 +1863,7 @@ command and streamline the process of adding new user profiles**
 4. **Make date error more specific for leap dates on non-leap years**
    - Currently, if user types in an invalid date for commands such as `edit`, Realodex will return a invalid
      `...Birthday should be in ddMMMyyyy format... Date should also not be in future years and no earlier than year 1000!`
-     - When user types in a leap date on a year with no leap date such `28Feb2023`,
+     - When user types in a leap date on a year with no leap date such `29Feb2023`,
        this will expectedly return the error as its invalid date. 
        However, the error message is not entirely helpful as the format is technically correct as its `DDMMMYYYY`.
      - We plan to return a more specific message such as 'Date input is a leap date on a non-leap year'
