@@ -221,6 +221,8 @@ The sequence diagram below illustrates the process of adding a person into Realo
 6. The execute method of `AddCommand` returns a `CommandResult` object which stores the data regarding the completion of the `AddCommand`.
 7. The UI reflects this new list with added `Person`.
 
+<div style="page-break-after: always;"></div>
+
 #### Example Usage Scenario
 1. The user launches the application.
 2. The user inputs `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
@@ -294,6 +296,8 @@ The `sort` feature, introduced in version 1.4, allows users to arrange clients b
 `SortCommand` extensively interacts with the `Model` component to facilitate list sorting during execution. Consequently, `SortCommand` depends on `ModelManager`, which is an implementation of the `Model` interface. This dependency arises because `ModelManager` instances are passed as arguments in the `public CommandResult execute(Model model) throws CommandException` method of `SortCommand`. For brevity, interactions beyond the `Model` layer are not detailed.
 <puml src="diagrams/sort/SortCommandClassDiagram-Model.puml" width="300" />
 
+<div style="page-break-after: always;"></div>
+
 #### `SortCommand` Initialization Sequence Diagram
 
 To implement the sorting functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`. The RealodexParser is responsible for creating an instance of the `SortCommand`, encapsulating the logic for sorting clients based on their upcoming birthdays.
@@ -315,6 +319,8 @@ The sequence diagram below illustrates the process of creating a sort operation 
 
 6. **Exception Handling**: The method declares a `throws CommandException`, indicating that it may throw a `CommandException` if an error occurs during execution. However, the method implementation does not contain explicit error handling logic.
 <puml src="diagrams/sort/SortSequenceDiagram-Model.puml" width="1000" />
+
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `BirthdayComparator`
 The provided comparator compares two `Person` objects based on their birthdays.
@@ -432,6 +438,7 @@ that determine if a person's attributes match the user-defined criteria.
 #### Filter Command Architecture
 <puml src="diagrams/filter/FilterFeatureArchitecture.puml" width="1000" />
 
+<div style="page-break-after: always;"></div>
 
 #### Filter Command Sequence Diagram
 The sequence diagram below illustrates the process of creating a filter operation through the `Logic` component:
@@ -454,6 +461,8 @@ This is implemented using the `NameContainsKeyphrasePredicate` that checks if a 
 #### Example Usage Scenario
 1. The user inputs `filter n/John`, intending to filter the list of persons to only include those whose names contain "John".
 2. The UI reflects the filtered list with persons whose names contain "John".
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -624,6 +633,8 @@ correct action (the type of help to give, in this case help for all commands).
 
 #### `Help` Command Sequence Diagram
 <puml src="diagrams/help/HelpSequenceDiagram.puml" width="1000" />
+
+<div style="page-break-after: always;"></div>
 
 ### 1. General `Help` Feature
 
@@ -1658,6 +1669,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The response to any command should become visible within 5 seconds.
 6. Application should load the GUI components and data within 5 seconds of start-up.
 7. The user interface should be intuitive and not have a steep learning curve to get used to.
+8. Data should be stored locally and should not be accessible from other devices due to privacy issues.
 
 ### Glossary
 
