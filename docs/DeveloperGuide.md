@@ -1636,7 +1636,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. Realodex shows an error message highlighting the correct format.
 
-    * 1b2. User inputs a new birthday month of valid format.
+    * 1b2. User inputs a new birthday month.
 
     * 1b3. Steps 1b1 to 1b2 repeats until the birthday month input is valid.
 
