@@ -224,14 +224,14 @@ This table provides **definitions** of **key terms and abbreviations** used thro
   </div>
 <br>
 
+<div style="page-break-after: always;"></div>
+
 6. **Run Realodex**: Now enter `java -jar realodex.jar` to **run the application**.
    <br>
   <div style="display:flex; justify-content: center; align-items:center;">
     <img src="images/quick-start/running.png" alt="running" style=" width: 600px; margin-bottom: 16px;">
   </div>
 <br>
-
-<div style="page-break-after: always;"></div>
 
 You should see a _GUI_ similar to image below pop up.
    <br>
@@ -240,10 +240,9 @@ You should see a _GUI_ similar to image below pop up.
   </div>
 <br>
 
-
-
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Introduction to Realodex GUI
 
@@ -431,6 +430,7 @@ Understanding the **command format** in Realodex is crucial for effectively mana
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 ### Adding a client: `add`
 
@@ -570,6 +570,8 @@ Deletes the client of the specified `INDEX`.
 - If both an index and name is provided `delete n/NAME INDEX ` will show an error message "The client name provided is invalid" as INDEX is considered part of the NAME.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -911,8 +913,6 @@ Lists all clients in Realodex.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ### Sorting Clients : `sort`
 
 This feature **organises clients** based on **how soon their next birthday** will occur, relative to the current date. 
@@ -930,6 +930,8 @@ This feature **organises clients** based on **how soon their next birthday** wil
 * If the list presented is currently a filtered list after using [filter](#filtering-clients-filter), sort will work on the new filtered list.
 * If a birthday falls on February 29th (leap day), the day calculation is based on March 1st if the year does not have a leap date as realistically, most would still celebrate every year.
 </box>
+* 
+<div style="page-break-after: always;"></div>
 
 **Example**
 
@@ -1057,8 +1059,6 @@ Displays the **help message** for the **specified command** only.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ### Exiting the program : `exit`
 
 **Exits the program** and closes the window.
@@ -1077,6 +1077,8 @@ Displays the **help message** for the **specified command** only.
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### File Data
 
