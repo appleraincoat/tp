@@ -131,6 +131,7 @@ This guide also includes:
 - **Features**: Discover and learn how to utilize all the functionalities of Realodex in our detailed [Features](#features) section.
 - **FAQ**: Find answers to common questions and helpful tips in the [FAQ](#faq) section.
 
+<div style="page-break-after: always;"></div>
 
 #### Glossary
 
@@ -150,6 +151,7 @@ This table provides **definitions** of **key terms and abbreviations** used thro
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Getting Started
 
@@ -185,7 +187,7 @@ This table provides **definitions** of **key terms and abbreviations** used thro
    The red box indicates the expected Java version you should see.
    <br>
       <div style="display:flex; justify-content: center; align-items:center;">
-        <img src="images/quick-start/java-version-macs.png" alt="java-version-macs" style="width: 900px; margin-bottom: 16px;">
+        <img src="images/quick-start/java-version-macs.png" alt="java-version-macs" style="width: 700px; margin-bottom: 16px;">
       </div>
 
    c. If Java is not installed or the wrong version is installed, 
@@ -255,9 +257,9 @@ The GUI is structured into several distinct components, each designed to **enhan
   <img src="images/navigating-gui/client_profile.png" alt="client profile" style="width:100%">
   </a>
 
+---
 <div style="page-break-after: always;"></div>
 
----
 
 ### Realodex Tutorial
 **Welcome** to your first session with Realodex.
@@ -266,7 +268,7 @@ Follow along to get a feel of how Realodex works. Let's begin!
 
 1. **Starting Realodex.** Launch Realodex. The app will show up as follows:
    <a href="images/tutorial/Launch.png" style="display: block; margin: 0 auto; text-align: center;">
-   <img src="images/tutorial/Launch.png" alt="duplicate person" style="width:100%">
+   <img src="images/tutorial/Launch.png" alt="duplicate person" style="width:65%">
    </a>
 
 <box type="info" header="Notes">
@@ -280,7 +282,7 @@ add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02
 `
 
    <a href="images/tutorial/AddJohnDoe.png" style="display: block; margin: 0 auto; text-align: center;">
-   <img src="images/tutorial/AddJohnDoe.png" alt="duplicate person" style="width:100%">
+   <img src="images/tutorial/AddJohnDoe.png" alt="duplicate person" style="width:65%">
    </a>
 <div style="text-align: center; font-style: italic;">New client John Doe has now been added!</div>
 
@@ -314,7 +316,7 @@ Let's search for our new client John, by simply keying in the command: `filter n
 Let us **view the entire client list** again. To do this, simply enter the command: `list`.
 
 <a href="images/tutorial/List.png" style="display: block; margin: 0 auto; text-align: center;">
-   <img src="images/tutorial/List.png" alt="duplicate person" style="width:100%">
+   <img src="images/tutorial/List.png" alt="duplicate person" style="width:75%">
    </a>
 <div style="text-align: center; font-style: italic;">The list command outputs the entire client list.</div>
 
@@ -345,7 +347,7 @@ We can also **remove client profiles** from Realodex.
 Let us try deleting John Doe from the Realodex by entering `delete n/John Doe`. 
 <div style="text-align: center;">
   <a href="images/tutorial/DeleteJohnDoe.png" style="display: block; margin: 0 auto;">
-    <img src="images/tutorial/DeleteJohnDoe.png" alt="duplicate person" style="width:100%">
+    <img src="images/tutorial/DeleteJohnDoe.png" alt="duplicate person" style="width:75%">
   </a>
   <div style="font-style: italic; margin-top: 10px;">The delete command deletes client John Doe with a successful deletion message.</div>
 </div>
@@ -356,7 +358,7 @@ Let us try deleting John Doe from the Realodex by entering `delete n/John Doe`.
 
   7. **Getting Help.** Should you **need assistance** on any of the commands at anytime while using Realodex, simply enter the `help` command.
      <a href="images/tutorial/HelpWindow.png" style="display: block; margin: 0 auto; text-align: center;">
-     <img src="images/tutorial/HelpWindow.png" alt="duplicate person" style="width:100%">
+     <img src="images/tutorial/HelpWindow.png" alt="duplicate person" style="width:80%">
      </a>
 <div style="text-align: center; font-style: italic;">A help window is displayed explaining each command usage.</div>
      <br>
@@ -364,7 +366,7 @@ Let us try deleting John Doe from the Realodex by entering `delete n/John Doe`.
 For specific **guidance on individual commands**, you can also enter `COMMAND help`.
 Let's try it out with `delete help`. 
      <a href="images/tutorial/DeleteHelp.png" style="display: block; margin: 0 auto; text-align: center;">
-     <img src="images/tutorial/DeleteHelp.png" alt="duplicate person" style="width:100%">
+     <img src="images/tutorial/DeleteHelp.png" alt="duplicate person" style="width:80%">
      </a>
 <div style="text-align: center; font-style: italic;">A message on the delete command usage will be shown.</div>
      <br>
