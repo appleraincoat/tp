@@ -1403,7 +1403,8 @@ command and streamline the process of adding new user profiles**
    - We plan to reduce the restrictions of no symbols for future iterations 
 
 7. **Allow symbols in `NAME` input**
-   - Currently, `NAME` does not accept symbols, hence common substrings such as `s/o` or `d/o` are not allowed in the name input.
+   - Currently, `NAME` does not accept symbols, hence common substrings such as `s/o`, `d/o` or punctuation such as  in "Tan Xin En, Betty" 
+     are not allowed in the name input.
    - We plan to allow the usage of symbols for future iterations by accepting symbols in names.
 
 --------------------------------------------------------------------------------------------------------------------
