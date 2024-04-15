@@ -3,8 +3,9 @@
   title: "User Guide"
   pageNav: 3
 ---
+# Realodex User Guide
 
-# 🚀 Welcome to Realodex! 🚀
+## Welcome to Realodex!
 
 <div style="text-align: center;">
     <a href="images/realodex_icon.png">
@@ -20,13 +21,15 @@ Realodex offers seamless functionality to ***add***, ***edit***, ***filter***, a
 ## Why Choose Realodex?
 Realodex is **tailor-made for the real estate industry**, offering **custom tools and features** that align with the everyday workflows of real estate agents. 
 
-- **Enhanced Productivity**: Access and manage your client database efficiently. 
-- **Intuitive Interface & Features**: Our user-friendly interface is designed for quick learning, enabling you to navigate and utilise Realodex with ease.
-- **Focus on Core Goals**: Allows you to dedicate more time to closing deals and fostering client relationships.
+- **Enhanced Productivity 🚀**: Access and manage your client database efficiently. 
+- **Intuitive Interface & Features 🧠**: Our user-friendly interface is designed for quick learning, enabling you to navigate and utilise Realodex with ease.
+- **Focus on Core Goals 🤝**: Allows you to dedicate more time to closing deals and fostering client relationships.
 
 <box type="tip" header = "**New to Realodex?**">
-This guide provides detailed documentation on Realodex's features, FAQs, and upcoming updates. <a href="#getting-started">Start</a> enhancing your real estate operations today!
+This guide provides a beginner-friendly introduction on Realodex's features, tutorial, and FAQ. <a href="#getting-started">Start</a> enhancing your real estate operations today!
 </box>
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -88,6 +91,8 @@ This guide provides detailed documentation on Realodex's features, FAQs, and upc
    
 - [Known Issues](#known-issues)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating this User Guide
 **Welcome** to the Realodex User Guide! 
@@ -118,11 +123,11 @@ These boxes **highlight error messages** and critical failure information</box>
 
 #### Key Sections
 This guide also includes:
-- **Effortless Navigation**: Seamlessly navigate between sections using the [Table of Contents](#table-of-contents).
-- **Getting Started for New Users**: If you are new to Realodex, begin your journey by exploring our [Getting Started Guide](#getting-started), which provides comprehensive instructions to set up Realodex.
-- **Tutorial**: Dive into a detailed, step-by-step walkthrough of Realodex’s features in our [Tutorial](#realodex-tutorial) section.
-- **Features**: Discover and learn how to utilize all the functionalities of Realodex in our detailed [Features](#features) section.
-- **FAQ**: Find answers to common questions and helpful tips in the [FAQ](#faq) section.
+- **Table of Contents**: Seamlessly **navigate** between sections using the [Table of Contents](#table-of-contents).
+- **Guide to Downloading Realodex**: Begin your journey with Realodex by following our [installation guide](#downloading-realodex), which provides step-by-step instructions to **set up Realodex**.
+- **Tutorial**: Dive into a **beginner-friendly walkthrough** of Realodex’s features with the [Realodex Tutorial](#realodex-tutorial).
+- **Features**: Explore the **full capabilities of Realodex** in our detailed [Features](#features) section, designed to help you maximise your use of the application.
+- **FAQ**: Find **answers to common questions** and **helpful tips** in the [FAQ](#faq) section.
 
 
 #### Glossary
@@ -141,10 +146,15 @@ This table provides **definitions** of **key terms and abbreviations** used thro
 | Terminal                       | The command line interface used in **Unix and MacOS** systems, allowing users to execute commands and scripts similar to Command Prompt in Windows.                          |
 | JSON File                      | The file format Realodex uses to **store client data.**                                                                                                                      |
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting Started
+
+In this section, we will guide you through the [initial setup of Realodex](#downloading-realodex) and [introduce our Realodex GUI](#introduction-to-realodex-gui).
+We also provide a [hands-on Realodex tutorial](#realodex-tutorial), designed to give you your first experience with the platform.
+Let’s get started!
 
 ### Downloading Realodex
 
@@ -231,6 +241,8 @@ You should see a _GUI_ similar to image below pop up.
 
 <div style="page-break-after: always;"></div>
 
+<div style="page-break-after: always;"></div>
+
 ---
 
 ### Introduction to Realodex GUI
@@ -254,9 +266,9 @@ The GUI is structured into several distinct components, each designed to **enhan
 ---
 
 ### Realodex Tutorial
-**Welcome** to your first session with Realodex.
+**Welcome** to your first session with Realodex!
 We've designed this tutorial to **help new users familiarize themselves** with the functionality and flow of the application. 
-Follow along to get a feel of how Realodex works. Let's begin!
+Follow along to get a feel of how Realodex works.
 
 1. **Starting Realodex.** Launch Realodex. The app will show up as follows:
    <a href="images/tutorial/Launch.png" style="display: block; margin: 0 auto; text-align: center;">
@@ -366,15 +378,13 @@ Let's try it out with `delete help`.
 **Congratulations**! You have finished the Realodex tutorial and are now ready to use Realodex. 
 Feel free to **continue exploring the in-depth features** of Realodex to fully leverage its capabilities in your real estate operations!
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 ### Command Format and Usage
 
 Understanding the **command format** in Realodex is crucial for effectively managing your client data. Here are the key aspects of our command structure:
-
-**General Command Structure:**
-
-Commands typically follow this format: `COMMANDWORD PREFIX_ONE/UPPER_CASE PREFIX_TWO/UPPER_CASE ....` This structure helps in **executing specific actions** within the application.
 
 **Command Words:**
 
@@ -388,6 +398,9 @@ Commands typically follow this format: `COMMANDWORD PREFIX_ONE/UPPER_CASE PREFIX
 
 Parameters must follow the prefix they are associated with and are typically in `UPPER_CASE` in documentation to indicate where **user-supplied data should be inserted**. For instance, in the command `add n/NAME`, `NAME` is where you would place the actual name of the client.
 
+**General Command Structure:**
+
+Commands typically follow this format: `COMMANDWORD PREFIX_ONE/UPPER_CASE PREFIX_TWO/UPPER_CASE ....` This structure helps in **executing specific actions** within the application.
 
 </box>
 
@@ -624,9 +637,9 @@ Returns the list of only the clients whose **names contain the specified keyphra
 
 <p align="center">
     <a href="images/filter/filterByNameScreenshot.png">
-    <img src="images/filter/filterByNameScreenshot.png" alt="filterByNameScreenshot" style="width:150%">
+    <img src="images/filter/filterByNameScreenshot.png" alt="filterByNameScreenshot" style="width:100%">
     </a>
-    <em> "Charlotte Oliveiro" and "David Li" are returned.</em>
+    <em> "Charlotte O<b>li</b>veiro" and "David <b>Li</b>" are returned.</em>
 </p>
 
 <br>
@@ -654,7 +667,7 @@ Entering `filter t/Buyer t/Seller` will show only clients who are **tagged as bo
 
 <p align="center">
     <a href="images/filter/filterByTagSeller.png">
-    <img src="images/filter/filterByTagSeller.png" alt="filterByTagSeller" style="width:150%">
+    <img src="images/filter/filterByTagSeller.png" alt="filterByTagSeller" style="width:100%">
     </a>
     <em>Clients with "Seller" tag are returned.</em>
 </p>
@@ -665,7 +678,7 @@ Entering `filter t/Buyer t/Seller` will show only clients who are **tagged as bo
 
 <p align="center">
     <a href="images/filter/filterByTagBuyerSeller.png">
-    <img src="images/filter/filterByTagBuyerSeller.png" alt="filterByTagBuyerSeller" style="width:150%">
+    <img src="images/filter/filterByTagBuyerSeller.png" alt="filterByTagBuyerSeller" style="width:100%">
     </a>
     <em>Clients with both "Buyer" and "Seller" tags are returned.</em>
 </p>
@@ -685,7 +698,7 @@ Returns the list of clients with the **specified preferred housing type**.
 
 <p align="center">
     <a href="images/filter/filterByHousingType.png">
-    <img src="images/filter/filterByHousingType.png" alt="filterByHousingType" style="width:150%">
+    <img src="images/filter/filterByHousingType.png" alt="filterByHousingType" style="width:100%">
     </a>
     <em>Clients with housing preference of "Good Class Bungalow" are returned.</em>
 </p>
@@ -703,7 +716,7 @@ Returns the list of clients whose **remarks include** the **specified keyphrase*
 <box type="info" header="Notes">
 
 - When filtering by remarks, even **partial keywords are matched**.
-    - `filter r/hand` matches person with remark "handsome".
+    - `filter r/hand` matches person with remark "<b>hand</b>some".
 </box>
 
 **Example:**
@@ -712,9 +725,9 @@ Returns the list of clients whose **remarks include** the **specified keyphrase*
 
 <p align="center">
     <a href="images/filter/filterByRemarkScreenshot.png">
-    <img src="images/filter/filterByRemarkScreenshot.png" alt="filterByRemarkScreenshot" style="width:150%">
+    <img src="images/filter/filterByRemarkScreenshot.png" alt="filterByRemarkScreenshot" style="width:100%">
     </a>
-    <em>Clients with remarks like "Eats alot" and "Likes to eat nasi lemak" are returned.</em>
+    <em>Clients with remarks like "<b>Eat</b>s alot" and "Likes to <b>eat</b> nasi lemak" are returned.</em>
 </p>
 
 
@@ -752,7 +765,7 @@ Returns the list of clients whose **birthdays** fall in the **specified month**.
 
 <p align="center">
     <a href="images/filter/filterByBirthday.png">
-    <img src="images/filter/filterByBirthday.png" alt="filterByBirthday" style="width:150%">
+    <img src="images/filter/filterByBirthday.png" alt="filterByBirthday" style="width:100%">
     </a>
     <em>Clients with birthdays in April are returned.</em>
 </p>
@@ -949,6 +962,8 @@ Displays the **help message** for the **specified command** only.
   </box>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 

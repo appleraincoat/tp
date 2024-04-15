@@ -128,7 +128,7 @@ How the parsing works:
 <br>
 
 In the context of our developer guide, the provided class diagram illustrates the structure of the `Person` class,
-encompassing essential attributes that real-estate agents would require from their clients for official documents and for better understanding of their requirements.  
+encompassing essential attributes that real-estate agents would require from their clients for official documents and for better understanding of their requirements. 
 This detailed depiction allows developers
 to grasp the internal composition of the `Person` entity
 without needing to replicate `Person` in higher-level model interactions,
@@ -147,7 +147,7 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Realodex, which `Person` references. This allows Realodex to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassUpdated.puml" width="800" />
+<puml src="diagrams/BetterModelClassDiagram.puml" width="800" />
 
 </box>
 
@@ -188,13 +188,13 @@ The `add` feature, that was morphed from the original AddressBook3, allows users
 4. The UI reflects this new list with added person.
 
 #### Example Usage Scenario
-1. The user launches the application. 
+1. The user launches the application.
 2. The user inputs `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/buyer t/seller h/HDB r/Has 3 cats b/01May2009`, intending to add a person with the specified details.
    3. The UI reflects this new list with added person John Doe.
 
 #### Design Considerations
 
-**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type 
+**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type
 We are cautious to choose compulsory fields that are important for real-estate agents, making them compulsory fields.
 While they may not be **absolutely necessary** for all clients, we believe that the cost of missing out on these fields outweighs the hassle of making them compulsory.
 For example, missing out on the family size may not be critical for a buyer who is single and is searching for a bachelor pad, but is critical for a family of 7 who needs a large enough house for all 7 of them.
@@ -203,7 +203,7 @@ it is important information if the agent would like to make recommendations for 
 
 **Optional fields** include: Remark, Birthday
 A real estate agent may not have any remark for a client yet, and wishes to leave Remark empty.
-A real estate agent may also only want to track birthdays of their esteemed clients, and wishes to not include Birthday for the rest. 
+A real estate agent may also only want to track birthdays of their esteemed clients, and wishes to not include Birthday for the rest.
 
 **Field Constraints**
 Specific field constraints are described below. They are designed with the users in mind.
@@ -229,11 +229,11 @@ Specific field constraints are described below. They are designed with the users
 * TAG:
   * Should be restricted to case-insensitive "buyer" or "seller" using enums.
 * HOUSINGTYPE: housing type a buyer wants or housing type a seller is selling
-  * Should be restricted to "HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW" (case-insensitive) using enums. 
+  * Should be restricted to "HDB", "CONDOMINIUM", "LANDED PROPERTY", "GOOD CLASS BUNGALOW" (case-insensitive) using enums.
   * Only one housing type is allowed.
 * REMARK:
   * Represented as a String
-  * If remark is not specified, an empty string is used for representation 
+  * If remark is not specified, an empty string is used for representation
 * BIRTHDAY:
   * Implemented as an Optional Date, making use of Java SimpleDateFormat and Calendar classes for input and output validation.
 
@@ -250,9 +250,6 @@ To implement the sorting functionality, the `LogicManager` component parses the 
 
 The sequence diagram below illustrates the process of creating a sort operation through the `Logic` component:
 <puml src="diagrams/sort/SortSequenceDiagram-Logic.puml" width="800" />
-
-
-
 
 
 
@@ -305,15 +302,15 @@ By now, you may have noticed that `SortCommand` extensively interacts with the `
 
 #### [Proposed] Sort Features Beyond v1.4
 
-The `sort` functionality is poised for exciting developments in the future. Although initially focused on sorting 
-clients based on their birthdays to bolster client relationships in a **breadth-first development** approach, 
-we have ambitious plans to extend this feature to other fields. With clients having diverse attributes 
+The `sort` functionality is poised for exciting developments in the future. Although initially focused on sorting
+clients based on their birthdays to bolster client relationships in a **breadth-first development** approach,
+we have ambitious plans to extend this feature to other fields. With clients having diverse attributes
 such as income and housing preferences, implementing `sort` for these fields is definitely on our roadmap.
 
 #### Initialization of new `SortCommand`
 
-To enhance the sorting functionality, we're introducing the capability to sort based on various fields specified by the user. 
-The proposed command format is `sort field`, where `field` represents the attribute by which the sorting will be performed. 
+To enhance the sorting functionality, we're introducing the capability to sort based on various fields specified by the user.
+The proposed command format is `sort field`, where `field` represents the attribute by which the sorting will be performed.
 For instance, users can execute commands like `sort birthday`, `sort income`, or `sort housepref`.
 
 The following sequence diagram illustrates the process
@@ -321,7 +318,7 @@ of introducing this new `sort` operation through the `Logic` component,
 with user-specified fields.
 
 The ref frame sequence diagram is omitted here,
-as it's similar to the [sorting](#implementation-of-sortcommand) sequence illustrated earlier. 
+as it's similar to the [sorting](#implementation-of-sortcommand) sequence illustrated earlier.
 Instead of using the `BirthdayComparator`,
 we'll utilize different comparators based on the user's specified field, such as `IncomeComparator`.
 
@@ -350,6 +347,15 @@ that determine if a person's attributes match the user-defined criteria.
 
 #### Filter Command Architecture
 <puml src="diagrams/filter/FilterFeatureArchitecture.puml" width="1000" />
+
+#### Initialization of `FilterCommand`
+
+To implement the filter functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`. 
+The RealodexParser is responsible for creating an instance of the `FilterCommand`, encapsulating the logic for sorting clients based on a specific predicate.
+
+The sequence diagram below illustrates the process of creating a filter operation through the `Logic` component:
+
+<puml src="diagrams/filter/FilterSequenceDiagram.puml" width="1000" />
 
 ### Filter by Name feature
 
@@ -434,7 +440,7 @@ This is implemented using the `TagsMatchPredicate` that checks whether a person'
 
 **Alternative 1 (current choice): Allow inclusion of persons with matching tags, irrespective of other tags.**
 
-> For example, `filter t/Buyer` returns persons tagged as "Buyer", inclusing those tagged as "Buyer" and "Seller".
+> For example, `filter t/Buyer` returns persons tagged as "Buyer", including those tagged as "Buyer" and "Seller".
 
 Pros: Inclusive Search that returns anyone with the "Buyer" tag, increasing breadth of search outcomes.
 
@@ -519,7 +525,7 @@ Cons: May be difficult to understand
 
 #### Implementation
 
-The Help feature provides help to the user (depending on user input) by either giving details on how all commands 
+The Help feature provides help to the user (depending on user input) by either giving details on how all commands
 are used in a new window, or a short description in the main window on how an individual, specified command is used.
 The core components for this feature are:
 - HelpCommand: A command that, when executed, either shows a new window summarising help for all commands, or
@@ -568,19 +574,19 @@ Cons: User will need to leave the application and look at a website everytime th
 #### Description
 
 The Help by command feature provides help to the user for an individual command specified by the user,
-printed on the main window. This has been implemented for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list` 
+printed on the main window. This has been implemented for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list`
 and `sort` commands only.
 
-Note that although the command format is `COMMAND help`, `clear help` is the command to get the help for the 
-clearRealodex command instead of `clearRealodex help`. We changed the `clear` command to `clearRealodex` to avoid  
-confusion with the `delete` command, as both involve the removal of entries, and `clearRealodex`encapsulates the 
-functionality of clearing the entire app more clearly. However, we kept `clear help` as this syntax is more 
+Note that although the command format is `COMMAND help`, `clear help` is the command to get the help for the
+clearRealodex command instead of `clearRealodex help`. We changed the `clear` command to `clearRealodex` to avoid
+confusion with the `delete` command, as both involve the removal of entries, and `clearRealodex`encapsulates the
+functionality of clearing the entire app more clearly. However, we kept `clear help` as this syntax is more
 user-friendly when seeking help.
 
 #### Example Usage Scenario
 1. User launches the application.
 2. User executes `COMMAND help`, wanting to get the help for only specified `COMMAND`.
-3. LogicManager instantiates a RealodexPraser, which parses the command into a HelpCommand with appropriate parameters.
+3. LogicManager instantiates a RealodexParser, which parses the command into a HelpCommand with appropriate parameters.
 4. The HelpCommand is executed, printing the help message for the specified `COMMAND` in the GUI.
 
 #### Design Considerations
@@ -599,6 +605,77 @@ Pros: Easy to implement as all functionality can be contained within help-relate
 
 Cons: Syntax may not be as intuitive.
 
+### Delete by name feature
+
+#### Description
+
+The delete by name feature provides the user the ability to delete a client's profile based on their name.
+
+#### Example Usage Scenario
+1. User launches the application.
+2. User executes `delete n/NAME`, wanting to delete the profile on the client with name `NAME`.
+3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
+4. The DeleteCommand is executed, deleting the client's profile with the name `NAME`.
+5. The UI reflects the updated list of clients.
+
+
+#### Design Considerations
+
+Aspect: Method to delete client with name `NAME`
+
+__Alternative 1: (current choice) Format is `delete n/NAME`.__
+
+Pros: Easy to implement as name and index can be differentiated using the prefix.
+
+Cons: Syntax may not be as intuitive.
+
+__Alternative 2: (current choice): Format is `delete NAME`.__
+
+Pros: More convenient for user to not have to put in the prefix `n/`.
+
+Cons: Harder to implement due to the other delete by index feature, there is no way to differentiate if the user is try to input an index or name.
+
+### Delete by index feature
+
+#### Description
+
+The delete by index feature provides the user the ability to delete a client's profile based on their index in the list.
+
+#### Example Usage Scenario
+1. User launches the application.
+2. User executes `delete INDEX`, wanting to delete the profile on the client at index `INDEX`.
+3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
+4. The DeleteCommand is executed, deleting the client's profile at index `INDEX`.
+5. The UI reflects the updated list of clients.
+
+#### Design Considerations
+
+Aspect: Method to delete client at index `INDEX`
+
+__Alternative 1: (current choice) Format is `delete INDEX`.__
+
+Pros: Easy to implement as name and index can be differentiated using the prefix.
+
+Cons: Syntax may not be as intuitive.
+
+__Alternative 2: Format is `delete i/INDEX`.__
+
+Pros: More intuitive as the user knows that the index is being deleted.
+
+Cons: Prefix `i/` is already used for the income field, and is more inconvenient to have to type in prefix.
+
+### Edit by field feature
+
+#### Description
+
+The edit by field feature provides the user the ability to edit a client's profile based on a specified field. This has been implemented for all
+user fields `name`, `phone`, `email`, `address`, `income`, `birthday`, `housingType`, `tags`, and `remark`.
+
+#### Example Usage Scenario
+1. User launches the application.
+2. User executes `edit INDEX n/NAME`, wanting to edit the name of the client at index `INDEX` to `NAME`.
+3. LogicManager instantiates a RealodexParser, which parses the command into a EditCommand with appropriate parameters.
+4. The EditCommand is executed, editing the client's profile at index `INDEX` to have the name `NAME`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1122,7 +1199,7 @@ testers are expected to do more *exploratory* testing.
 
    2. If there is an existing user, try `delete index` where index is of that user.
       <br>Expected: This user will no longer appear in the `json` file after command is executed.
-   3. If there is no existing user, you may want to refer to above "Corrupted Data" section 
+   3. If there is no existing user, you may want to refer to above "Corrupted Data" section
       to easily get a fresh `json` file with sample data and repeat from step 1.
 
 
