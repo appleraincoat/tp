@@ -126,7 +126,7 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("us.er+-name@example.com")); // mixed consecutive period and hyphens and '-'
         assertTrue(Email.isValidEmail("user-.n+++++++++++-----------ame@example.com")); // mixed consecutive periods and
     }
-    
+
     @Test
     public void isValidEmail_LocalPart() {
         // Equivalence partitioning: Local part
