@@ -429,12 +429,6 @@ Detects command format violations, and facilitates clear error messaging.
 - `Predicates`: `NameContainsKeyphrasePredicate`, `RemarkContainsKeyphrasePredicate`, `TagsMatchPredicate`, `BirthdayIsInMonthPredicate`, and `HousingTypeMatchPredicate`
 that determine if a person's attributes match the user-defined criteria.
 
-[//]: # (#### Initialization of `FilterCommand`)
-
-[//]: # (To implement the filter functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`.)
-
-[//]: # (The RealodexParser is responsible for creating an instance of the `FilterCommand`, encapsulating the logic for sorting clients based on a specific predicate.)
-
 #### Filter Command Architecture
 <puml src="diagrams/filter/FilterFeatureArchitecture.puml" width="1000" />
 
