@@ -49,7 +49,7 @@ deactivate RealodexParser
 LogicManager -> EditCommand : execute(m)
 activate EditCommand
 
-EditCommand -> Model : editPerson("name"))
+EditCommand -> Model : setPerson(personToEdit, editedPerson))
 activate Model
 
 Model --> EditCommand
