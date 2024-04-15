@@ -1421,7 +1421,8 @@ command and streamline the process of adding new user profiles**
 
 10. **Maintain consistency for `COMMAND help`**
     - Currently, we support `clear help`
-      - To maintain consistency, we will change this to `clearRealodex help`
+      - To maintain consistency, we will change this to `clearRealodex help` where `clearRealodex` is the actual command
+        to input when you wish to clear Realodex's list of clients.
     - We plan to also support all commands except `help`.
       E.g. `exit help` will no longer just exit Realodex
       but provide some help suggestion for `exit`, this can help reduce confusion over what `COMMAND` is supported.
@@ -1437,9 +1438,9 @@ command and streamline the process of adding new user profiles**
 1. **Modifying UI Components** One of the significant challenges we encountered was modifying the UI to incorporate our desired background. The UI comprises numerous components, 
      making it challenging to identify and modify the relevant code sections.
  
-   **Achievements**  Despite the challenge, we successfully navigated the UI structure and implemented the necessary modifications to integrate our custom background, enhancing the visual appeal of the application.
+   **Achievements** Despite the challenge, we successfully navigated the UI structure and implemented the necessary modifications to integrate our custom background, enhancing the visual appeal of the application.
 
 2. **Test Case Regressions** Another challenge we encountered was that after significant feature changes or additions, many of our test cases failed. 
      We spent considerable time tracing the test code or components to determine the source of the errors.
 
-   **Achievements**  Despite the challenge, this turned out to be a positive experience as it indicated robust code. After addressing the failures, we gained confidence in the robustness of our bug-free features.
+   **Achievements** Despite the challenge, this turned out to be a positive experience as it indicated robust code. After addressing the failures, we gained confidence in the robustness of our bug-free features.
