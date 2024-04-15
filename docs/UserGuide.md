@@ -366,7 +366,7 @@ Let us try deleting John Doe from the Realodex by entering `delete n/John Doe`.
 - Notice that the client list has been **automatically modified** after John's deletion, with the last client now being Roy.
 </box>
 
-  7. **Getting Help.** Should you **need assistance** on any of the commands at anytime while using Realodex, simply enter the `help` command.
+  7. **Getting Help.** Should you **need assistance** on any of the commands at anytime while using Realodex, simply enter the `help` command and a help window will pop up!
      <a href="images/tutorial/HelpWindow.png" style="display: block; margin: 0 auto; text-align: center;">
      <img src="images/tutorial/HelpWindow.png" alt="duplicate person" style="width:70%">
      </a>
