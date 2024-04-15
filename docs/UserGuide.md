@@ -469,8 +469,8 @@ Parameters must follow the prefix they are associated with and are typically in 
 [//]: # (    </a>)
 
 **Example**:
-
-`add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB r/Owes $1000. b/27May2003`
+- `add n/Betsy Crowe a/Newgate Prison i/0 f/1 p/94859694 e/betsyc@rocketmail.com t/Seller h/CONDOMINIUM t/Buyer` adds a client named "Betsy Crowe" with the specified details, but without any remark or birthday.
+- `add n/John Doe p/98765432 i/20000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 f/4 t/Buyer h/HDB r/Owes $1000. b/27May2003`  adds a client named "John Doe" with the specified details.
 
 ![add-example.png](add-example.png)
   <div style="text-align: center; font-style: italic;">John Doe has been added into Realodex.</div>
