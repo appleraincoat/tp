@@ -194,9 +194,10 @@ Classes used by multiple components are in the `seedu.realodex.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Overall Add feature
+## <u>Overall Add feature</u>
 
-#### Implementation of `AddCommand`
+#### Description
+
 The `add` feature, that was morphed from the original AddressBook3, allows users to add clients along with their critical personal information, as well as optional remarks and birthday information.
 
 #### Details
@@ -216,7 +217,7 @@ The `add` feature, that was morphed from the original AddressBook3, allows users
 
 #### Design Considerations
 
-**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type
+**Compulsory fields** include: Name, Phone Number, Income, Email, Address, Family Size, Buyer / Seller Tag, Housing Type.<br>
 We are cautious to choose compulsory fields that are important for real-estate agents, making them compulsory fields.
 While they may not be **absolutely necessary** for all clients, we believe that the cost of missing out on these fields outweighs the hassle of making them compulsory.
 For example, missing out on the family size may not be critical for a buyer who is single and is searching for a bachelor pad, but is critical for a family of 7 who needs a large enough house for all 7 of them.
@@ -266,7 +267,7 @@ The sequence diagram below illustrates the process of adding a person into Realo
 
 <div style="page-break-after: always;"></div>
 
-### Overall Sort feature
+## <u>Overall Sort feature</u>
 
 #### Initialization of `SortCommand`
 
@@ -378,12 +379,19 @@ In summary, while introducing sorting by criteria other than "Today" may come wi
 
 <div style="page-break-after: always;"></div>
 
-### Overall Filter feature
+## <u>Overall Filter feature</u>
 
-#### Implementation
-This feature enables users to filter and view persons in Realodex based on specified criteria such as name, remark, tag, birthday, and housing type.
-The key components involved are:
+#### Description
 
+This feature enables users to filter and view persons in Realodex based on specified criteria such as name, remark, tag, birthday, and housing type.<br>
+There are five ways to filter:
+1. Filter by Name
+2. Filter by Remark
+3. Filter by Tag
+4. Filter by Birthday
+5. Filter by Housing Type
+
+#### Key Components
 - `FilterCommand`: Executes the filtering operation based on a provided predicate that encapsulates the filtering criteria.
 - `PrefixChecker`: Ensures the syntactic correctness of user inputs by verifying command prefixes.
 Detects command format violations, and facilitates clear error messaging.
@@ -392,19 +400,22 @@ Detects command format violations, and facilitates clear error messaging.
 - `Predicates`: `NameContainsKeyphrasePredicate`, `RemarkContainsKeyphrasePredicate`, `TagsMatchPredicate`, `BirthdayIsInMonthPredicate`, and `HousingTypeMatchPredicate`
 that determine if a person's attributes match the user-defined criteria.
 
+[//]: # (#### Initialization of `FilterCommand`)
+
+[//]: # (To implement the filter functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`.)
+
+[//]: # (The RealodexParser is responsible for creating an instance of the `FilterCommand`, encapsulating the logic for sorting clients based on a specific predicate.)
+
 #### Filter Command Architecture
 <puml src="diagrams/filter/FilterFeatureArchitecture.puml" width="1000" />
 
-#### Initialization of `FilterCommand`
 
-To implement the filter functionality, the `LogicManager` component parses the user's input command. Subsequently, it forwards the parsed command text to the `RealodexParser`. 
-The RealodexParser is responsible for creating an instance of the `FilterCommand`, encapsulating the logic for sorting clients based on a specific predicate.
-
+#### Filter Command Sequence Diagram
 The sequence diagram below illustrates the process of creating a filter operation through the `Logic` component:
 
 <puml src="diagrams/filter/FilterSequenceDiagram.puml" width="1000" />
 
-### Filter by Name feature
+### 1. Filter by Name feature
 
 #### Description
 
@@ -437,7 +448,7 @@ Pros: Precise filtering.
 
 Cons: Less flexible; users must remember exact names.
 
-### Filter by Remark Feature
+### 2. Filter by Remark Feature
 
 #### Description
 
@@ -471,7 +482,7 @@ Pros: Ensures that only persons with specific remarks are listed, reducing clutt
 
 Cons: Extremely limiting. Users must remember exact remarks.
 
-### Filter by Tag Feature
+### 3. Filter by Tag Feature
 
 #### Description
 
@@ -501,9 +512,9 @@ Pros: Increase precision of search results for targeted searches.
 
 Cons: Excludes potentially relevant persons who carry the specified tag alongside others.
 
-### Filter by Birthday Feature
+### 4. Filter by Birthday Feature
 
-#### Implementation
+#### Description
 
 The Filter by Birthday feature allows users to filter the list of persons in Realodex based on their birthday month.
 This is implemented using the `BirthdayIsInMonthPredicate` that checks whether a person's birthday matches the month specified by the user.
@@ -531,9 +542,9 @@ Pros: Increase precision of search results, finding persons with specific birth 
 
 Cons: Requires exact date knowledge, which may not always be available or remembered by users.
 
-### Filter by Housing Type Feature
+### 5. Filter by Housing Type Feature
 
-#### Implementation
+#### Description
 
 The Filter by Housing Type feature allows users to filter the list of persons in Realodex based on their preferred housing type.
 This is implemented using the `HousingTypeMatchPredicate` that checks whether a person's preferred housing type matches the housing type specified by the user.
@@ -548,27 +559,28 @@ This is implemented using the `HousingTypeMatchPredicate` that checks whether a 
 
 <div style="page-break-after: always;"></div>
 
-### Overall Help feature
-
-#### Implementation
+## <u>Overall Help feature</u>
 
 The Help feature provides help to the user (depending on user input) by either giving details on how all commands
 are used in a new window, or a short description in the main window on how an individual, specified command is used.
-The core components for this feature are:
+
+There are two types of help features
+1. Help (general)
+2. Help by **command**
+
+#### Key Components
 - HelpCommand: A command that, when executed, either shows a new window summarising help for all commands, or
 prints the help message in the Main Window for the requested command, depending on user input.
 - HelpCommandParser: Processes the user input to instantiate the HelpCommand object appropriately to perform the
 correct action (the type of help to give, in this case help for all commands).
 
-#### Help Command Architecture
+#### Overall Help Command Architecture
 <puml src="diagrams/help/HelpCommand.puml" width="1000" />
 
 #### Help Command Sequence Diagram
 <puml src="diagrams/help/HelpSequenceDiagram.puml" width="1000" />
 
-### Help feature
-
-#### Description
+### 1. Help (general)
 
 The help feature provides help to the user by showing a new window with a summary of how to use all commands, with
 the correct format and relevant examples. A link to the User Guide is also provided.
@@ -596,9 +608,7 @@ Pros: Help window does not have too much information.
 
 Cons: User will need to leave the application and look at a website everytime they require help which can be inconvenient.
 
-### Help by command feature
-
-#### Description
+### 2. Help by command
 
 The Help by command feature provides help to the user for an individual command specified by the user,
 printed on the main window. This has been implemented for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list`
@@ -636,7 +646,51 @@ Cons: Syntax may not be as intuitive.
 
 <div style="page-break-after: always;"></div>
 
-### Delete by name feature
+## <u>Overall Delete Feature</u>
+
+The delete feature provides the user the ability to delete a client's profile based on their index in the list or their name.
+
+There are two ways to delete:
+1. Delete by index
+2. Delete by name
+
+#### Key components
+
+#### Delete Command Architecture
+
+#### Delete Command Sequence Diagram
+<puml src="diagrams/delete/DeleteSequenceDiagram.puml" width="1000" />
+
+### 1. Delete by index feature
+
+#### Description
+
+The delete by index feature provides the user the ability to delete a client's profile based on their index in the list.
+
+#### Example Usage Scenario
+1. User launches the application.
+2. User executes `delete INDEX`, wanting to delete the profile on the client at index `INDEX`.
+3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
+4. The DeleteCommand is executed, deleting the client's profile at index `INDEX`.
+5. The UI reflects the updated list of clients.
+
+#### Design Considerations
+
+Aspect: Method to delete client at index `INDEX`
+
+__Alternative 1 (current choice): Format is `delete INDEX`.__
+
+Pros: Easy to implement as name and index can be differentiated using the prefix.
+
+Cons: Syntax may not be as intuitive.
+
+__Alternative 2: Format is `delete i/INDEX`.__
+
+Pros: More intuitive as the user knows that the index is being deleted.
+
+Cons: Prefix `i/` is already used for the income field, and is more inconvenient to have to type in prefix.
+
+### 2. Delete by name feature
 
 #### Description
 
@@ -666,40 +720,15 @@ Pros: More convenient for user to not have to put in the prefix `n/`.
 
 Cons: Harder to implement due to the other delete by index feature, there is no way to differentiate if the user is try to input an index or name.
 
-### Delete by index feature
-
-#### Description
-
-The delete by index feature provides the user the ability to delete a client's profile based on their index in the list.
-
-#### Example Usage Scenario
-1. User launches the application.
-2. User executes `delete INDEX`, wanting to delete the profile on the client at index `INDEX`.
-3. LogicManager instantiates a RealodexParser, which parses the command into a DeleteCommand with appropriate parameters.
-4. The DeleteCommand is executed, deleting the client's profile at index `INDEX`.
-5. The UI reflects the updated list of clients.
-
-#### Design Considerations
-
-Aspect: Method to delete client at index `INDEX`
-
-__Alternative 1 (current choice): Format is `delete INDEX`.__
-
-Pros: Easy to implement as name and index can be differentiated using the prefix.
-
-Cons: Syntax may not be as intuitive.
-
-__Alternative 2: Format is `delete i/INDEX`.__
-
-Pros: More intuitive as the user knows that the index is being deleted.
-
-Cons: Prefix `i/` is already used for the income field, and is more inconvenient to have to type in prefix.
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
+## <u>Overall Edit Feature</u>
+
 ### Edit by field feature
+<puml src="diagrams/edit/EditSequenceDiagram.puml" width="1000" />
+
 
 #### Description
 
