@@ -657,6 +657,7 @@ There are two ways to delete:
 #### Key components
 
 #### Delete Command Architecture
+<puml src="diagrams/delete/DeleteArchitecture.puml" width="1000" />
 
 #### Delete Command Sequence Diagram
 <puml src="diagrams/delete/DeleteSequenceDiagram.puml" width="1000" />
