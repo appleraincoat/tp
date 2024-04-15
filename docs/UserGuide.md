@@ -1022,10 +1022,9 @@ Displays the **help message** for the **specified command** only.
 
 <box type="info" header="Notes">
 
-* Note that this feature is only available for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list` and `sort` commands.
-
+* Note that this feature is only available for the `add`,`clearRealodex`,`delete`,`edit`,`filter`,`list` and `sort` commands, which are the commonly used commands.
 * Although the format is `COMMAND help`, the exception is the help message for the clear command, use `clear help` instead of `clearRealodex help`.
-* For the full list, of help commands, you can use the general [help command](#help-help)
+* For the full list of commands, you can use the general [help command](#help-help)
 </box>
 
 <box type="warning" header="Warning">
