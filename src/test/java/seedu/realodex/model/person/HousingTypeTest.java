@@ -7,31 +7,40 @@ import static seedu.realodex.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.realodex.testutil.Assert.assertThrows;
+
 public class HousingTypeTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
+        // EP: Null housing type passed to constructor -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> new HousingType(null));
     }
 
     @Test
     public void constructor_invalidHousingType_throwsIllegalArgumentException() {
+        // EP: Invalid housing type passed to constructor -> throws IllegalArgumentException
         String invalidHousingType = "";
         assertThrows(IllegalArgumentException.class, () -> new HousingType(invalidHousingType));
     }
 
     @Test
     public void isValidHousingType() {
-        // null housing type
+        // EP: Null housing type passed to isValidHousingType method -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> HousingType.isValidHousingType(null));
 
-        // Invalid housing types
-        assertFalse(HousingType.isValidHousingType("")); // Empty tag name
+        // EP: Invalid housing types
+        assertFalse(HousingType.isValidHousingType("")); // Empty housing type
         assertFalse(HousingType.isValidHousingType("HDBB")); // Does not match any housing type
         assertFalse(HousingType.isValidHousingType("HDB ")); // Extra space at the end
-        assertFalse(HousingType.isValidHousingType("H DB")); // Space within the tag name
+        assertFalse(HousingType.isValidHousingType("H DB")); // Space within the housing type
 
-        // Valid housing types
+        // EP: Valid housing types
         assertTrue(HousingType.isValidHousingType("hdb"));
         assertTrue(HousingType.isValidHousingType("CONDOMINIUM"));
         assertTrue(HousingType.isValidHousingType("landed property")); // Tag converts string to uppercase
@@ -40,6 +49,7 @@ public class HousingTypeTest {
 
     @Test
     public void toStringWithRepresentation() {
+        // EP: Testing toStringWithRepresentation method with different housing types
         HousingType housingType1 = new HousingType("HDB");
         assertEquals(housingType1.toStringWithRepresentation(), "Preferred housing type is HDB");
 
@@ -55,6 +65,7 @@ public class HousingTypeTest {
 
     @Test
     public void equals() {
+        // EP: Testing equals method with different housing types
         HousingType housingType1 = new HousingType("HDB");
         HousingType housingType2 = new HousingType("HDB");
         HousingType housingType3 = new HousingType("CONDOMINIUM");
@@ -74,6 +85,7 @@ public class HousingTypeTest {
 
     @Test
     public void hashCodeTest() {
+        // EP: Testing hashCode method with different housing types
         HousingType housingType1 = new HousingType("HDB");
         HousingType housingType2 = new HousingType("HDB");
         HousingType housingType3 = new HousingType("CONDOMINIUM");
@@ -87,5 +99,4 @@ public class HousingTypeTest {
         // different values -> returns false
         assertFalse(housingType1.hashCode() == housingType3.hashCode());
     }
-
 }

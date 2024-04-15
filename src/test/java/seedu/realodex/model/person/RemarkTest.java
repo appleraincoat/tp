@@ -13,20 +13,6 @@ public class RemarkTest {
         assertThrows(NullPointerException.class, () -> new Remark(null));
     }
 
-    //May seem redundant, but for further iterations where we may validate remarks.
-    @Test
-    public void isValidRemark() {
-        // null name
-        assertThrows(NullPointerException.class, () -> Remark.isValidRemark(null));
-
-        // valid name
-        assertTrue(Remark.isValidRemark("I love apples")); // alphabets only
-        assertTrue(Remark.isValidRemark("12345")); // numbers only
-        assertTrue(Remark.isValidRemark("James Lau the 1st")); // alphanumeric characters
-        assertTrue(Remark.isValidRemark("New York")); // with capital letters
-        assertTrue(Remark.isValidRemark("Tony Stark, genius playboy billionaire philanthropist")); // long remark
-    }
-
     @Test
     public void isValidRemark_equivalencePartitioning() {
         // null remark
